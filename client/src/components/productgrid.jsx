@@ -1,13 +1,52 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios';
 
 const ProductGrid = (props) => {
+
+    // useEffect(async() => {
+
+        
+    //     const pageUrl = new URL('https://api.99spokes.com/v1/bikes');
+    //     pageUrl.searchParams.set('year', 2021);
+    //     pageUrl.searchParams.set('subcategory', 'trail');
+    //     // pageUrl.searchParams.set('limit', 100);
+    //     // pageUrl.searchParams.set('include', '*');
+        
+    //     let cursor = 'start';
+        
+
+        // Create .env file set auth key var in file and gitignore .env folder
+    //     while (cursor) {
+    //         pageUrl.searchParams.set('cursor', cursor);
+            
+    //         const response = await fetch(pageUrl.href, {
+    //             headers: {
+    //                 accept: 'application/json',
+    //                 Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50TmFtZSI6ImpvcmRhbnJ1aGxlIiwidmVyc2lvbiI6MSwiaWF0IjoxNjY4NzM0OTQ2fQ.SgSg3jjm7VTGXKDqcikEckeU0_AwX2dVNNlR2KSOZ10"}`,
+    //             },
+    //         });
+            
+    //         if (!response.ok) {
+    //             throw new Error(`Error ${response.status}`);
+    //         }
+            
+    //         const page = await response.json();
+            
+    //         // updating the paging cursor
+    //         cursor = page.nextCursor;
+            
+    //         for (const bike of page.items) {
+    //             console.log(bike.id);
+    //         }
+    //     }
+    // }, [])
 
 
 
     return (
         // Body
-        <div className='bg-gradient-to-br from-slate-50 to-stone-300'>
+        <div className='bg-gradient-to-br from-slate-50 to-stone-300 h-screen'>
             <div className='max-w-screen-xl mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 p-8 '>
                 <div className='bg-white flex flex-col items-center rounded shadow p-4'>
                     <img src="https://jnsn.imgix.net/globalassets/digizuite/24639-en-bi003581-charcoal.jpg?w=1000&auto=format&q=70&fit=max" alt="bike" />
