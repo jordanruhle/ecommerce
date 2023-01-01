@@ -34,36 +34,38 @@ export const Cart = () => {
                     </div>
 
                     {/* ------------ Order Summary ------------- */}
-                    <div className='bg-white flex flex-col  p-4 col-span-1'>
+                    <OrderSummary />
 
-                        <h2 className='text-2xl my-4' >Order Summary</h2>
+                    {/* <div className='bg-white flex flex-col  p-4 col-span-1'>
+
+                        <h2 className='text-2xl my-4' >Order Summary</h2> */}
 
                         {/* ----------- Shipping -------------- */}
-                        <div className='flex justify-between'>
+                        {/* <div className='flex justify-between'>
                             <p className='text-lg my-4'>Shipping</p>
                             <p className='text-lg my-4' >FREE!</p>
-                        </div>
+                        </div> */}
 
                         {/* ----------- Subtotal -------------- */}
-                        <div className='flex justify-between'>
+                        {/* <div className='flex justify-between'>
                             <p className='text-lg my-4'>Subtotal</p>
                             <p className='text-lg my-4' >$7,999.99</p>
-                        </div>
+                        </div> */}
 
                         {/* ----------- Tax -------------- */}
-                        <div className='flex justify-between'>
+                        {/* <div className='flex justify-between'>
                             <p className='text-lg my-4'>Estimated Tax</p>
                             <p className='text-lg my-4'>Calculated at Checkout</p>
-                        </div>
+                        </div> */}
 
                         {/* ----------- Total -------------- */}
-                        <div className='flex justify-between'>
+                        {/* <div className='flex justify-between'>
                             <p className='text-lg my-4 font-bold'>Total</p>
                             <p className='text-lg my-4 font-bold' >$8,000.00</p>
                         </div>
                         <button className='bg-red-600 hover:bg-slate-500 text-white text-lg font-semibold py-2 px-4 my-4 border w-full'>CHECKOUT</button>
 
-                    </div>
+                    </div> */}
 
             </form>
         </>
