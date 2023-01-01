@@ -1,168 +1,144 @@
-import React from 'react'
-import { FaMountain } from 'react-icons/fa'
-import ItemCard from './ItemCard'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
-const CheckoutForm = () => {
+import CheckoutNav from './CheckoutNav';
+import BillingInfo from './BillingInfo';
+import ShippingAddressForm from './ShippingAddressForm';
+import RedButton from './RedButton';
+
+const CheckoutForm = (props) => {
+
+    const [billingInfo, setBillingInfo] = useState({
+        email: "",
+        firstName: "",
+        lastName: "",
+        company: "",
+        address: "",
+        address2: "",
+        city: "",
+        zip: 0,
+        phone: 0,
+        sameAddress: true,
+        shippingFirstName: "",
+        shippingLastName: "",
+        shippingCompany: "",
+        shippingAddress: "",
+        shippingAddress2: "",
+        shippingCity: "",
+        shippingZip: 0,
+        shippingPhone: 0,
+        deliveryMethod: "standard",
+        cardNumber: 0,
+        securityCode: 0,
+        expirationMonth: "01",
+        expirationYear: 2023
+    });
+
+    const [shippingForm, setShippingForm] = useState(false);
+    const [errors, setErrors] = useState([]);
+
+    const formChangeHandler = (e) => {
+        setBillingInfo({
+            ...billingInfo,
+            [e.target.name]: e.target.checked
+        })
+        console.log(billingInfo)
+    }
+    
+    const boolCheckboxHandler = (e) => {
+        const bool = e.target.value == "true" ? true : false;
+        setBillingInfo({
+            ...billingInfo,
+            [e.target.name]: bool
+        })
+        console.log(billingInfo)
+    }
+
+    const submitHandler = (e) => {
+        e.preventDefault();
+        axios.post("http://localhost:8000/api/order")
+    }
+
+    // useEffect(() => {
+    //     console.log("Same Shipping Address " + billingInfo.sameAddress)
+    // }, [billingInfo.sameAddress])
+
+
     return (
         <div>
-            <div className='w-full flex justify-center sm:justify-between items-center py-2 px-8 2xl:px-72 text-white bg-stone-800 font-body flex-wrap'>
-
-                {/*----------- Company Logo ------------ */}
-                <h1 className='text-2xl font-bold bg-white rounded-full border-slate-300 border-8 px-2 text-stone-800 min-w-max' > Mountain <FaMountain className='mb-1' style={{ display: "inline-block" }} /> Bikes</h1>
-            </div>
+            <CheckoutNav />
             <div className='max-w-screen-md mx-auto'>
 
-
-                {/*----------- Billing Address ------------ */}
                 <form className='bg-white p-10 ' action="">
-                    <h3 className='text-2xl my-4 uppercase'>Biling Address </h3>
-                    <p className=' mb-4 text-zinc-500'>Enter the billing information associated with your credit card.</p>
 
-                    {/*---------- Email ---------- */}
-                    <div className='mb-6'>
-                        <p className='text-md font-semibold mb-2 uppercase'>Email*</p>
-                        <input type="email" name="email" className=' w-full p-3 border' />
-                    </div>
-                    {/*---------- First Name ---------- */}
-                    <div className=' mb-6'>
-                        <p className='text-md font-semibold mb-2 uppercase focus:bg-slate-50'>Frist Name*</p>
-                        <input type="text" name="firstName" className=' w-full p-3 border' />
-                    </div>
-                    {/*---------- Last Name ---------- */}
-                    <div className='mb-6'>
-                        <p className='text-md font-semibold mb-2 uppercase'>Last Name*</p>
-                        <input type="text" name="lastName" className=' w-full p-3 border' />
-                    </div>
-                    {/*---------- Company ---------- */}
-                    <div className='mb-6'>
-                        <p className='text-md font-semibold mb-2 uppercase'>Company</p>
-                        <input type="text" name="company" className=' w-full p-3 border' />
-                    </div>
-                    {/*---------- Address ---------- */}
-                    <div className='mb-6'>
-                        <p className='text-md font-semibold mb-2 uppercase'>Address*</p>
-                        <input type="text" name="address" className=' w-full p-3 border' />
-                    </div>
-                    {/*---------- Address Line 2 ---------- */}
-                    <div className='mb-6'>
-                        <p className='text-md font-semibold mb-2 uppercase'>Address Line 2 (Optional)</p>
-                        <input type="text" name="address2" className=' w-full p-3 border' />
-                    </div>
-                    {/*---------- City ---------- */}
-                    <div className='mb-6'>
-                        <p className='text-md font-semibold mb-2 uppercase'>City*</p>
-                        <input type="text" name="city" className=' w-full p-3 border' />
-                    </div>
-                    {/*---------- Zip/Postal Code ---------- */}
-                    <div className='mb-6'>
-                        <p className='text-md font-semibold mb-2 uppercase'>Zip/Postal Code*</p>
-                        <input type="text" name="zip" className=' w-full p-3 border' />
-                    </div>
-                    {/*---------- Phone ---------- */}
-                    <div className='mb-6'>
-                        <p className='text-md font-semibold mb-2 uppercase'>Phone*</p>
-                        <input type="text" name="phoneNumber" className=' w-full p-3 border' />
-                    </div>
+                    {/*----------- Billing Information Form ------------ */}
+                    <BillingInfo formChangeHandler={formChangeHandler} />
 
-                    {/*----------- Shipping Address ------------ */}
+
+                    {/*----------- Shipping Address Same as Billing? ------------ */}
                     <h3 className='text-2xl my-4 uppercase'>Shipping Address </h3>
-                    <p className='mb-2'>
-                        <input type="radio" name="differentShipingAddress" for="shippingSameAsBilling" /> <p className='inline'>Ship to My Billing Address</p>
-                    </p>
-                    <p className='mb-2'>
-                        <input type="radio" name="differentShipingAddress" for="shippingDifferentThenBilling" value="" /> <p className='inline'>Ship to Different Address</p>
-                    </p>
+                    <div className='mb-2'>
+                        <input onChange={(e) => { boolCheckboxHandler(e) }} type="checkbox" name="sameAddress" htmlFor="shippingSameAsBilling" value="true" checked={billingInfo.sameAddress == true} /> <p className='inline'>Ship to My Billing Address</p>
+                    </div>
+                    <div className='mb-2'>
+                        <input onChange={(e) => { boolCheckboxHandler(e) }} type="checkbox" name="sameAddress" htmlFor="shippingDifferentThenBilling" value="false" checked={billingInfo.sameAddress == false} /> <p className='inline'>Ship to Different Address</p>
+                    </div>
 
-                    <p>Enter new shipping address below:</p>
 
-                    {/*---------- First Name ---------- */}
-                    <div className=' my-6'>
-                        <p className='text-md font-semibold mb-2 uppercase focus:bg-slate-50'>Frist Name*</p>
-                        <input type="text" name="shippingFirstName" className=' w-full p-3 border' />
-                    </div>
-                    {/*---------- Last Name ---------- */}
-                    <div className='mb-6'>
-                        <p className='text-md font-semibold mb-2 uppercase'>Last Name*</p>
-                        <input type="text" name="shippingLastName" className=' w-full p-3 border' />
-                    </div>
-                    {/*---------- Company ---------- */}
-                    <div className='mb-6'>
-                        <p className='text-md font-semibold mb-2 uppercase'>Company</p>
-                        <input type="text" name="ShippingCompany" className=' w-full p-3 border' />
-                    </div>
-                    {/*---------- Address ---------- */}
-                    <div className='mb-6'>
-                        <p className='text-md font-semibold mb-2 uppercase'>Address*</p>
-                        <input type="text" name="shippingAddress" className=' w-full p-3 border' />
-                    </div>
-                    {/*---------- Address Line 2 ---------- */}
-                    <div className='mb-6'>
-                        <p className='text-md font-semibold mb-2 uppercase'>Address Line 2 (Optional)</p>
-                        <input type="text" name="shippingAddress2" className=' w-full p-3 border' />
-                    </div>
-                    {/*---------- City ---------- */}
-                    <div className='mb-6'>
-                        <p className='text-md font-semibold mb-2 uppercase'>City*</p>
-                        <input type="text" name="city" className=' w-full p-3 border' />
-                    </div>
-                    {/*---------- Zip/Postal Code ---------- */}
-                    <div className='mb-6'>
-                        <p className='text-md font-semibold mb-2 uppercase'>Zip/Postal Code*</p>
-                        <input type="text" name="zip" className=' w-full p-3 border' />
-                    </div>
-                    {/*---------- Phone ---------- */}
-                    <div className='mb-6'>
-                        <p className='text-md font-semibold mb-2 uppercase'>Phone*</p>
-                        <input type="text" name="shippingPhoneNumber" className=' w-full p-3 border' />
+                    {/*----------- Shipping Information Form ------------ */}
+                    { billingInfo.sameAddress == true ? <div></div>
+                        : <ShippingAddressForm formChangeHandler={formChangeHandler} />
+                    }
+
+
+                    {/*----------- Shipping Type ------------ */}
+                    <h3 className='text-2xl my-4 uppercase'>Pick a Shipping Option</h3>
+                    <div className="max-w-sm">
+                        <div className='flex justify-between mb-2'>
+                            <div>
+                                <input onChange={(e) => { formChangeHandler(e) }} type="radio" name="deliveryMethod" htmlFor="economy" value="economy" /> <p className='inline'>Economy</p>
+                            </div>
+                            <p>
+                                $79.99
+                            </p>
+                        </div>
+                        <div className='flex justify-between mb-2'>
+                            <div>
+                                <input onChange={(e) => { formChangeHandler(e) }} type="radio" name="deliveryMethod" htmlFor="standard" value="standard" defaultChecked/> <p className='inline'>Standard</p>
+                            </div>
+                            <p>
+                                $79.99
+                            </p>
+                        </div>
+                        <div className='flex justify-between mb-2'>
+                            <div>
+                                <input onChange={(e) => { formChangeHandler(e) }} type="radio" name="deliveryMethod" htmlFor="twoDay" value="twoDay" /> <p className='inline'>Two Business Days</p>
+                            </div>
+                            <p>
+                                $79.99
+                            </p>
+                        </div>
                     </div>
 
                     {/*----------- Credit Card Information ------------ */}
-                    <h3 className='text-2xl my-4 uppercase'>Credit Card Information</h3>
-                    <div className="max-w-sm">
-                        <div className='flex justify-between mb-2'>
-                            <p>
-                                <input type="radio" name="deliveryMethod" for="economy" /> <p className='inline'>Economy</p>
-                            </p>
-                            <p>
-                                $79.99
-                            </p>
-                        </div>
-                        <div className='flex justify-between mb-2'>
-                            <p>
-                                <input type="radio" name="deliveryMethod" for="standard" /> <p className='inline'>Standard</p>
-                            </p>
-                            <p>
-                                $79.99
-                            </p>
-                        </div>
-                        <div className='flex justify-between mb-2'>
-                            <p>
-                                <input type="radio" name="deliveryMethod" for="twoDay" /> <p className='inline'>Two Business Days</p>
-                            </p>
-                            <p>
-                                $79.99
-                            </p>
-                        </div>
-                    </div>
-
                     {/*----------- Credit Card ------------ */}
-                    <h3 className='text-2xl my-4 uppercase'>Pick a Shipping Option </h3>
+                    <h3 className='text-2xl my-4 uppercase'>Credit Card Information</h3>
                     {/*---------- Card Number ---------- */}
                     <div className="flex">
                         <div className='mb-6 mr-8 w-full'>
                             <p className='text-md font-semibold mb-2 uppercase'>Card Number</p>
-                            <input type="text" name="cardNumber" className=' w-full p-3 border' />
+                            <input onChange={(e) => { formChangeHandler(e) }} type="text" name="cardNumber" className=' w-full p-3 border' />
                         </div>
                         {/*---------- Card Security Code ---------- */}
                         <div className='mb-6 w-full'>
                             <p className='text-md font-semibold mb-2 uppercase'>Card Security Code</p>
-                            <input type="text" name="securtityCode" className=' w-full p-3 border' />
+                            <input onChange={(e) => { formChangeHandler(e) }} type="text" name="securityCode" className=' w-full p-3 border' />
                         </div>
                     </div>
                     {/*---------- Expiration Month---------- */}
                     <p className='text-md font-semibold mb-2 uppercase'>Expiration</p>
                     <div className='mb-6 flex'>
-                        <select type="text" name="expiration" className=' w-full p-3 mr-8 border' >
+                        <select onChange={(e) => { formChangeHandler(e) }} placeholder="Month" type="text" name="expirationMonth" className=' w-full p-3 mr-8 border' >
                             <option value="01">01-January</option>
                             <option value="02">02-February</option>
                             <option value="03">03-March</option>
@@ -177,7 +153,7 @@ const CheckoutForm = () => {
                             <option value="12">12-December</option>
                         </select>
                         {/*---------- Expiration Year---------- */}
-                        <select type="text" name="expiration" className=' w-full p-3 border' >
+                        <select onChange={(e) => { formChangeHandler(e) }} placeholder="Year" type="text" name="expirationYear" className=' w-full p-3 border' >
                             <option value="2023">2023</option>
                             <option value="2024">2024</option>
                             <option value="2025">2025</option>
@@ -210,17 +186,7 @@ const CheckoutForm = () => {
                             <p>$6,800</p>
                         </div>
                     </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Item Description</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <RedButton buttonText="Submit Your Order" />
                 </form>
             </div>
         </div>
