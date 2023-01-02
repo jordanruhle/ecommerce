@@ -1,7 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
-const RedButton = props => {
+const RedButton = (props) => {
     const buttonText = props.buttonText
 
   return (
@@ -9,6 +8,6 @@ const RedButton = props => {
   )
 }
 
-RedButton.propTypes = {}
+
 
 export default RedButton
