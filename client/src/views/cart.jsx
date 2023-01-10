@@ -5,11 +5,12 @@ import OrderSummary from '../components/ordersummary';
 
 
 export const Cart = () => {
+
+
     return (
         <>
             <Navbar />
             <form action="/checkout" className="max-w-screen-xl mx-auto grid  sm:grid-cols-3 lg:grid-cols-4 ">
-
                 {/* ------------ Shopping Cart ------------- */}
                 <ItemCard />
 
