@@ -17,6 +17,8 @@ function App() {
         <Route element={<ViewBike />} path='/:product' />
         <Route element={<Cart />} path='/cart' />
         <Route element={<Checkout />} path='/checkout' />
+        {/* <Route element={<Payment />} path="/payment" />
+        <Route element={<Completion />} path="/completion" /> */}
       </Routes>
     </div>
 

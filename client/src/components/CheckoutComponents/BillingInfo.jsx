@@ -6,7 +6,7 @@ const BillingInfo = (props) => {
     return (
         <div>
             {/*----------- Billing Address ------------ */}
-            <h3 className='text-2xl my-4 uppercase'>Biling Address </h3>
+            <h3 className='text-2xl my-4 uppercase'>Billing Address </h3>
             <p className=' mb-4 text-zinc-500'>Enter the billing information associated with your credit card.</p>
 
             {/*---------- Email ---------- */}
