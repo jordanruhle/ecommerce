@@ -4,7 +4,7 @@ import axios from 'axios'
 import CheckoutNav from './CheckoutNav';
 import BillingInfo from './BillingInfo';
 import ShippingAddressForm from './ShippingAddressForm';
-import RedButton from './RedButton';
+import RedButton from '../RedButton';
 
 const CheckoutForm = (props) => {
 
