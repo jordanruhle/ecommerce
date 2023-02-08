@@ -2,14 +2,14 @@ const express = require('express');
 const app = express();
 const { resolve } = require("path");
 const port = 8000;
-const DB = "authors"
+const DB = "ecommerce"
 const cors = require('cors')
 require('dotenv').config()
 
 
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY, {
-    apiVersion: "2022-08-01",
-});
+// const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY, {
+//     apiVersion: "2022-08-01",
+// });
 
 // middleware
 app.use(cors())

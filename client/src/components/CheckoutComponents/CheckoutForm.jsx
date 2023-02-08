@@ -40,13 +40,13 @@ const CheckoutForm = (props) => {
     const formChangeHandler = (e) => {
         setBillingInfo({
             ...billingInfo,
-            [e.target.name]: e.target.checked
+            [e.target.name]: e.target.value
         })
         console.log(billingInfo)
     }
     
     const boolCheckboxHandler = (e) => {
-        const bool = e.target.value == "true" ? true : false;
+        const bool = e.target.value === "true" ? true : false;
         setBillingInfo({
             ...billingInfo,
             [e.target.name]: bool
@@ -78,15 +78,15 @@ const CheckoutForm = (props) => {
                     {/*----------- Shipping Address Same as Billing? ------------ */}
                     <h3 className='text-2xl my-4 uppercase'>Shipping Address </h3>
                     <div className='mb-2'>
-                        <input onChange={(e) => { boolCheckboxHandler(e) }} type="checkbox" name="sameAddress" htmlFor="shippingSameAsBilling" value="true" checked={billingInfo.sameAddress == true} /> <p className='inline'>Ship to My Billing Address</p>
+                        <input onChange={(e) => { boolCheckboxHandler(e) }} type="checkbox" name="sameAddress" htmlFor="shippingSameAsBilling" value="true" checked={billingInfo.sameAddress === true} /> <p className='inline'>Ship to My Billing Address</p>
                     </div>
                     <div className='mb-2'>
-                        <input onChange={(e) => { boolCheckboxHandler(e) }} type="checkbox" name="sameAddress" htmlFor="shippingDifferentThenBilling" value="false" checked={billingInfo.sameAddress == false} /> <p className='inline'>Ship to Different Address</p>
+                        <input onChange={(e) => { boolCheckboxHandler(e) }} type="checkbox" name="sameAddress" htmlFor="shippingDifferentThenBilling" value="false" checked={billingInfo.sameAddress === false} /> <p className='inline'>Ship to Different Address</p>
                     </div>
 
 
                     {/*----------- Shipping Information Form ------------ */}
-                    { billingInfo.sameAddress == true ? <div></div>
+                    { billingInfo.sameAddress === true ? <div></div>
                         : <ShippingAddressForm formChangeHandler={formChangeHandler} />
                     }
 

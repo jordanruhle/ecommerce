@@ -7,6 +7,9 @@ import BikesView from './views/bikesview';
 import ViewBike from './views/viewbike';
 import Cart from './views/cart';
 import Checkout from './views/checkout';
+import AdminLogin from './views/AdminLogin';
+import AdminOrders from './views/AdminOrders';
+import AdminProducts from './views/AdminProducts';
 
 function App() {
   return (
@@ -17,6 +20,9 @@ function App() {
         <Route element={<ViewBike />} path='/:product' />
         <Route element={<Cart />} path='/cart' />
         <Route element={<Checkout />} path='/checkout' />
+        <Route element={<AdminLogin />} path='/admin' />
+        <Route element={<AdminOrders />} path='/dashboard/orders' />
+        <Route element={<AdminProducts />} path='/dashboard/products' />
         {/* <Route element={<Payment />} path="/payment" />
         <Route element={<Completion />} path="/completion" /> */}
       </Routes>
