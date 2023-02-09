@@ -21,7 +21,7 @@ function AdminLogin() {
     <div>
       <CheckoutNav />
       <div className='mx-auto bg-gradient-to-br from-slate-50 to-stone-300 h-screen'>
-        <form className='max-w-screen-md mx-auto bg-white p-10 ' action="/admins/dashboard">
+        <form className='max-w-screen-md mx-auto bg-white p-10 ' action="/dashboard/orders">
           <h3 className='text-2xl my-4 uppercase'>Admin Login</h3>
           {/*---------- Email ---------- */}
           <div className='mb-6'>
