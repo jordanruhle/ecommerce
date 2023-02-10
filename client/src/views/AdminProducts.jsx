@@ -2,13 +2,24 @@ import React from 'react'
 import AdminNavBar from '../components/AdminNavBar'
 import GrayButton from '../components/GrayButton'
 import RedButton from '../components/RedButton'
+import { FaSearch } from 'react-icons/fa'
+
 
 const AdminProducts = () => {
   return (
     <>
       <AdminNavBar />
       <div className='bg-gradient-to-br from-slate-50 to-stone-300 h-screen p-5'>
-        <table className="min-w-full table table-fixed bg-white mt-20 rounded shadow">
+        <div className='flex items-center justify-between'>
+          <form action="">
+            <input type="search" name="" id="" className=' p-3 border' />
+            <button className='p-5'><FaSearch className='fa-7x' /></button>
+          </form>
+          <form action='/products/create' className='w-48'>
+            <GrayButton buttonText="Add New Product" />
+          </form>
+        </div>
+        <table className="min-w-full table table-fixed bg-white rounded shadow">
           <thead>
             <tr className='bg-slate-300'>
               <th className='text-2xl font-normal py-4 px-5 uppercase text-left '>Picture</th>
@@ -36,10 +47,10 @@ const AdminProducts = () => {
               <td className='text-xl py-4 px-5'>19</td>
               <td className='text-xl py-4 px-5 flex gap-4'>
                 <form action="products/edit/34421">
-                  <GrayButton buttonText="Edit"/>
+                  <GrayButton buttonText="Edit" />
                 </form>
                 <form action="products/delete/34421">
-                  <RedButton buttonText="Delete"/>
+                  <RedButton buttonText="Delete" />
                 </form>
               </td>
             </tr>
@@ -55,10 +66,10 @@ const AdminProducts = () => {
               <td className='text-xl py-4 px-5'>19</td>
               <td className='text-xl py-4 px-5 flex gap-4'>
                 <form action="products/edit/34421">
-                  <GrayButton buttonText="Edit"/>
+                  <GrayButton buttonText="Edit" />
                 </form>
                 <form action="products/delete/34421">
-                  <RedButton buttonText="Delete"/>
+                  <RedButton buttonText="Delete" />
                 </form>
               </td>
             </tr>
@@ -74,10 +85,10 @@ const AdminProducts = () => {
               <td className='text-xl py-4 px-5'>19</td>
               <td className='text-xl py-4 px-5 flex gap-4'>
                 <form action="products/edit/34421">
-                  <GrayButton buttonText="Edit"/>
+                  <GrayButton buttonText="Edit" />
                 </form>
                 <form action="products/delete/34421">
-                  <RedButton buttonText="Delete"/>
+                  <RedButton buttonText="Delete" />
                 </form>
               </td>
             </tr>
