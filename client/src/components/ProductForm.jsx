@@ -1,7 +1,11 @@
 import React, { useState } from 'react'
 import RedButton from './RedButton'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const ProductForm = () => {
+
+    const navigate =useNavigate()
 
     const [productInfo, setProductInfo] = useState({
         name: "",
@@ -24,9 +28,28 @@ const ProductForm = () => {
         console.log(productInfo)
     }
 
+    const fileChangeHandler = (e) => {
+        setProductInfo({
+            ...productInfo,
+            [e.target.name]: e.target.files[0]
+        })
+    }
+
+    const createProduct = (e) => {
+        e.preventDefault();
+        axios.post("http://localhost:8000/api/product", productInfo)
+            .then(res => {
+                console.log(res.data)
+                navigate('/dashboard/products')
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
     return (
         <div className='max-w-screen-md mx-auto '>
-            <form className='bg-white p-10 ' action="">
+            <form className='bg-white p-10 ' onSubmit={createProduct}>
                 {/*----------- Product Form ------------ */}
                 <h3 className='text-2xl my-4 uppercase'>New Product Form</h3>
                 <p className=' mb-4 text-zinc-500'>Create a new product</p>
@@ -40,7 +63,7 @@ const ProductForm = () => {
                 {/*---------- Brand ---------- */}
                 <div className='mb-6'>
                     <p className='text-md font-semibold mb-2 uppercase'>Brand</p>
-                    <input onChange={(e) => { formChangeHandler(e) }} type="text" name="Brand" className=' w-full p-3 border' />
+                    <input onChange={(e) => { formChangeHandler(e) }} type="text" name="brand" className=' w-full p-3 border' />
                 </div>
 
                 {/*---------- Description ---------- */}
@@ -53,7 +76,7 @@ const ProductForm = () => {
                 <div className="md:flex">
                 <div className='mb-6 mr-8 w-full'>
                     <p className='text-md font-semibold mb-2 uppercase'>Main Category</p>
-                    <input onChange={(e) => { formChangeHandler(e) }} type="text" name="Brand" className=' w-full p-3 border' />
+                    <input onChange={(e) => { formChangeHandler(e) }} type="text" name="mainCategory" className=' w-full p-3 border' />
                 </div>
                 
                 {/*---------- Sub Category ---------- */}
@@ -80,7 +103,7 @@ const ProductForm = () => {
                 {/*---------- Image ---------- */}
                 <div className='mb-6'>
                     <p className='text-md font-semibold mb-2 uppercase'>Image</p>
-                    <input onChange={(e) => { formChangeHandler(e) }} type="file" name="image" className=' w-full p-3 border' />
+                    <input onChange={(e) => { fileChangeHandler(e) }} type="file" name="image" className=' w-full p-3 border' />
                 </div>
                 
                 {/*---------- Color ---------- */}
