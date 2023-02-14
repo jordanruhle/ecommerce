@@ -6,7 +6,7 @@ const ProductCreateOne = () => {
   return (
     <div className='bg-gradient-to-br from-slate-50 to-stone-300 min-h-screen'>
         <AdminNavBar />
-        <ProductForm />
+        <ProductForm title="Create New Product" subTitle="Enter product info" buttonText="Add Product"/>
     </div>
   )
 }

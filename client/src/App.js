@@ -11,6 +11,7 @@ import AdminLogin from './views/AdminLogin';
 import AdminOrders from './views/AdminOrders';
 import AdminProducts from './views/AdminProducts';
 import ProductCreateOne from './views/ProductCreateOne';
+import ProductEdit from './views/ProductEdit'
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route element={<AdminOrders />} path='/dashboard/orders' />
         <Route element={<AdminProducts />} path='/dashboard/products' />
         <Route element={<ProductCreateOne />} path='/products/create' />
+        <Route element={<ProductEdit />} path='/products/edit' />
         {/* <Route element={<Payment />} path="/payment" />
         <Route element={<Completion />} path="/completion" /> */}
       </Routes>
