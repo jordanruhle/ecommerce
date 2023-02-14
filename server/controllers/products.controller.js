@@ -17,12 +17,33 @@ module.exports.findoneSingleProduct = (req, res) => {
 }
 
 //  Create
-module.exports.createNewProduct = (req, res) => {
-    console.log(req.body)
-    Products.create(req.body)
-        .then(newlyCreatedProduct => res.json({ product: newlyCreatedProduct }))
-        .catch(err => res.json({ message: 'Something went wrong', error: err }));
-}
+module.exports.createNewProduct =  (req, res) => {
+    console.log(req.body, req.file)
+    const newProduct = new Products({
+      name: req.body.name,
+      brand: req.body.brand,
+      description: req.body.description,
+      mainCategory: req.body.mainCategory,
+      subCategory: req.body.subCategory,
+      price: req.body.price,
+      quantity: req.body.quantity,
+      color: req.body.color,
+      size: req.body.size,
+      image: req.file
+    });
+  
+    newProduct.save((err, product) => {
+      if (err) {
+        return res.status(500).json({
+          error: err
+        });
+      }
+      res.status(201).json({
+        message: 'Product created successfully',
+        product
+      });
+    });
+  }
 
 // Update
 module.exports.updateExistingProduct = (req, res) => {
