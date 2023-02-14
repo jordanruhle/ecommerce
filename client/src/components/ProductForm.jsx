@@ -15,7 +15,7 @@ const ProductForm = () => {
         subCategory: "",
         price: 0.00,
         quantity: 0,
-        images: "",
+        image: "",
         color: "",
         size: ""
     })
@@ -37,7 +37,11 @@ const ProductForm = () => {
 
     const createProduct = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:8000/api/product", productInfo)
+        const formData = new FormData();
+        for (let key in productInfo) {
+            formData.append(key, productInfo[key]);
+        }
+        axios.post("http://localhost:8000/api/product", formData, { headers: {'Content-Type': 'multipart/form-data'}})
             .then(res => {
                 console.log(res.data)
                 navigate('/dashboard/products')
@@ -49,7 +53,7 @@ const ProductForm = () => {
 
     return (
         <div className='max-w-screen-md mx-auto '>
-            <form className='bg-white p-10 ' onSubmit={createProduct}>
+            <form className='bg-white p-10 ' enctype="multipart/form-data" onSubmit={createProduct}>
                 {/*----------- Product Form ------------ */}
                 <h3 className='text-2xl my-4 uppercase'>New Product Form</h3>
                 <p className=' mb-4 text-zinc-500'>Create a new product</p>

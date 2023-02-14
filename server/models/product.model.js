@@ -48,14 +48,10 @@ const ProductSchema = new mongoose.Schema(
             required: [true, '{PATH} is required.'],
             minLength: [1, '{PATH} must be at least {MINLENGTH} characters.']
         },
-        image: {
-            data: Buffer,
-            contentType: String,
-        },
+        image: {}
     },
     { timestamps: true });
 
-    ProductSchema.path('image.data').required(true);
 
 const Products = mongoose.model('Products', ProductSchema);
 
