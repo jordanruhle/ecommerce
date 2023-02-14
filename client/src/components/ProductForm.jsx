@@ -3,9 +3,11 @@ import RedButton from './RedButton'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-const ProductForm = () => {
+const ProductForm = (props) => {
 
-    const navigate =useNavigate()
+    const { title, subTitle, buttonText } = props;
+
+    const navigate = useNavigate()
 
     const [productInfo, setProductInfo] = useState({
         name: "",
@@ -51,8 +53,8 @@ const ProductForm = () => {
         <div className='max-w-screen-md mx-auto '>
             <form className='bg-white p-10 ' onSubmit={createProduct}>
                 {/*----------- Product Form ------------ */}
-                <h3 className='text-2xl my-4 uppercase'>New Product Form</h3>
-                <p className=' mb-4 text-zinc-500'>Create a new product</p>
+                <h3 className='text-2xl my-4 uppercase'>{title}</h3>
+                <p className=' mb-4 text-zinc-500'>{subTitle}</p>
 
                 {/*---------- Name ---------- */}
                 <div className='mb-6'>
@@ -74,60 +76,59 @@ const ProductForm = () => {
 
                 {/*---------- Main Category ---------- */}
                 <div className="md:flex">
-                <div className='mb-6 mr-8 w-full'>
-                    <p className='text-md font-semibold mb-2 uppercase'>Main Category</p>
-                    <input onChange={(e) => { formChangeHandler(e) }} type="text" name="mainCategory" className=' w-full p-3 border' />
+                    <div className='mb-6 mr-8 w-full'>
+                        <p className='text-md font-semibold mb-2 uppercase'>Main Category</p>
+                        <input onChange={(e) => { formChangeHandler(e) }} type="text" name="mainCategory" className=' w-full p-3 border' />
+                    </div>
+
+                    {/*---------- Sub Category ---------- */}
+                    <div className='mb-6 w-full'>
+                        <p className='text-md font-semibold mb-2 uppercase'>Sub Category</p>
+                        <input onChange={(e) => { formChangeHandler(e) }} type="text" name="subCategory" className=' w-full p-3 border' />
+                    </div>
                 </div>
-                
-                {/*---------- Sub Category ---------- */}
-                <div className='mb-6 w-full'>
-                    <p className='text-md font-semibold mb-2 uppercase'>Sub Category</p>
-                    <input onChange={(e) => { formChangeHandler(e) }} type="text" name="subCategory" className=' w-full p-3 border' />
-                </div>
-                </div>
-                
+
                 {/*---------- Price ---------- */}
                 <div className="md:flex">
-                <div className='mb-6 mr-8 w-full'>
-                    <p className='text-md font-semibold mb-2 uppercase'>Price</p>
-                    <input onChange={(e) => { formChangeHandler(e) }} type="text" pattern="[0-9]+([.][0-9]{2})?" placeholder='0.00' name="price" className='w-full p-3 border' />
+                    <div className='mb-6 mr-8 w-full'>
+                        <p className='text-md font-semibold mb-2 uppercase'>Price</p>
+                        <input onChange={(e) => { formChangeHandler(e) }} type="text" pattern="[0-9]+([.][0-9]{2})?" placeholder='0.00' name="price" className='w-full p-3 border' />
+                    </div>
+
+                    {/*---------- Quantity ---------- */}
+                    <div className='mb-6 w-full'>
+                        <p className='text-md font-semibold mb-2 uppercase'>Quantity</p>
+                        <input onChange={(e) => { formChangeHandler(e) }} type="number" name="quantity" className=' w-full p-3 border' />
+                    </div>
                 </div>
-                
-                {/*---------- Quantity ---------- */}
-                <div className='mb-6 w-full'>
-                    <p className='text-md font-semibold mb-2 uppercase'>Quantity</p>
-                    <input onChange={(e) => { formChangeHandler(e) }} type="number" name="quantity" className=' w-full p-3 border' />
-                </div>
-                </div>
-                
+
                 {/*---------- Image ---------- */}
                 <div className='mb-6'>
                     <p className='text-md font-semibold mb-2 uppercase'>Image</p>
                     <input onChange={(e) => { fileChangeHandler(e) }} type="file" name="image" className=' w-full p-3 border' />
                 </div>
-                
+
                 {/*---------- Color ---------- */}
                 <div className="md:flex">
-                <div className='mb-6 mr-8 w-full'>
-                    <p className='text-md font-semibold mb-2 uppercase'>Color</p>
-                    <input onChange={(e) => { formChangeHandler(e) }} type="color" name="color" className=' w-full p-3 border' />
+                    <div className='mb-6 mr-8 w-full'>
+                        <p className='text-md font-semibold mb-2 uppercase'>Color</p>
+                        <input onChange={(e) => { formChangeHandler(e) }} type="color" name="color" className=' w-full p-3 border' />
+                    </div>
+
+                    {/*---------- Size ---------- */}
+                    <div className='mb-6 w-full'>
+                        <p className='text-md font-semibold mb-2 uppercase' >Size</p>
+                        <select onChange={(e) => { formChangeHandler(e) }} name="size" className=' w-full p-3 border' >
+                            <option value="xsm">X-Small</option>
+                            <option value="sm">Small</option>
+                            <option value="med">Medium</option>
+                            <option value="Lg">Large</option>
+                            <option value="XL">X-Large</option>
+                            <option value="XXL">2X-Large</option>
+                        </select>
+                    </div>
                 </div>
-                
-                {/*---------- Size ---------- */}
-                <div className='mb-6 w-full'>
-                    <p className='text-md font-semibold mb-2 uppercase' >Size</p>
-                    <select onChange={(e) => { formChangeHandler(e) }} name="size" className=' w-full p-3 border' >
-                        <option value="xsm">X-Small</option>
-                        <option value="sm">Small</option>
-                        <option value="med">Medium</option>
-                        <option value="Lg">Large</option>
-                        <option value="XL">X-Large</option>
-                        <option value="XXL">2X-Large</option>
-                    </select>
-                </div>
-                   
-                </div>
-                <RedButton buttonText="Create" />
+                <RedButton buttonText={buttonText} />
 
 
             </form>
