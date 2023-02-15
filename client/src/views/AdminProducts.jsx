@@ -19,11 +19,15 @@ const AdminProducts = () => {
       .catch(err => console(err));
   }, [])
 
+  const removeFromDom = productId => {
+    setAllProducts(allProducts.filter(product => product._id !== productId));
+}
+
   return (
     <>
       <AdminNavBar />
       {/* {loaded && console.log(allProducts)} */}
-      {loaded && <AdminProductTable allProducts={allProducts} />}
+      {loaded && <AdminProductTable removeFromDom={removeFromDom} allProducts={allProducts} />}
     </>
   )
 }

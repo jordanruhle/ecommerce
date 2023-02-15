@@ -26,7 +26,7 @@ function App() {
         <Route element={<AdminOrders />} path='/dashboard/orders' />
         <Route element={<AdminProducts />} path='/dashboard/products' />
         <Route element={<ProductCreateOne />} path='/products/create' />
-        <Route element={<ProductEdit />} path='/products/edit' />
+        <Route element={<ProductEdit />} path='/products/:id/edit' />
         {/* <Route element={<Payment />} path="/payment" />
         <Route element={<Completion />} path="/completion" /> */}
       </Routes>
