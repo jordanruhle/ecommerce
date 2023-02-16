@@ -1,83 +1,73 @@
-import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import axios from 'axios';
-import GrayButton from './GrayButton';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import GrayButton from "./GrayButton";
 
 const ProductGrid = (props) => {
+  const [allProducts, setAllProducts] = useState([]);
+  const [loaded, setLoaded] = useState(false);
 
-    // useEffect(async() => {
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/product")
+      .then((res) => {
+        // console.log(res.data.product);
+        setAllProducts(res.data.product);
+        setLoaded(true);
+        // console.log(mongoose.Types.ObjectId.isValid(product[0[-]]))
+      })
+      .catch((err) => console(err));
+  }, []);
 
+  return (
+    // Body
+    <div className="bg-gradient-to-br from-slate-50 to-stone-300 h-screen">
+      <div className="max-w-screen-xl mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 p-8 ">
         
-    //     const pageUrl = new URL('https://api.99spokes.com/v1/bikes');
-    //     pageUrl.searchParams.set('year', 2021);
-    //     pageUrl.searchParams.set('subcategory', 'trail');
-    //     // pageUrl.searchParams.set('limit', 100);
-    //     // pageUrl.searchParams.set('include', '*');
-        
-    //     let cursor = 'start';
-        
-
-        // Create .env file set auth key var in file and gitignore .env folder
-    //     while (cursor) {
-    //         pageUrl.searchParams.set('cursor', cursor);
-            
-    //         const response = await fetch(pageUrl.href, {
-    //             headers: {
-    //                 accept: 'application/json',
-    //                 Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50TmFtZSI6ImpvcmRhbnJ1aGxlIiwidmVyc2lvbiI6MSwiaWF0IjoxNjY4NzM0OTQ2fQ.SgSg3jjm7VTGXKDqcikEckeU0_AwX2dVNNlR2KSOZ10"}`,
-    //             },
-    //         });
-            
-    //         if (!response.ok) {
-    //             throw new Error(`Error ${response.status}`);
-    //         }
-            
-    //         const page = await response.json();
-            
-    //         // updating the paging cursor
-    //         cursor = page.nextCursor;
-            
-    //         for (const bike of page.items) {
-    //             console.log(bike.id);
-    //         }
-    //     }
-    // }, [])
-
-
-
-    return (
-        // Body
-        <div className='bg-gradient-to-br from-slate-50 to-stone-300 h-screen'>
-            <div className='max-w-screen-xl mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 p-8 '>
-                <div className='bg-white flex flex-col items-center rounded shadow p-4'>
-                    <img src="https://jnsn.imgix.net/globalassets/digizuite/24639-en-bi003581-charcoal.jpg?w=1000&auto=format&q=70&fit=max" alt="bike" />
-                    <p className='text-center my-4' >Brand Bike Name</p>
-                    <p className='text-center my-4' >$7,999.99</p>
-                    <GrayButton buttonText="View" />
-                </div>
-                <div className='bg-white flex flex-col items-center rounded shadow p-4'>
-                    <img src="https://jnsn.imgix.net/globalassets/digizuite/26185-en-bi003591-satin-smoke~arctic-blue.jpg?w=1000&auto=format&q=70&fit=max" alt="bike" />
-                    <p className='text-center my-4' >Brand Bike Name</p>
-                    <p className='text-center my-4' >$7,999.99</p>
-                    <GrayButton buttonText="View" />
-                </div>
-                <div className='bg-white flex flex-col items-center rounded shadow p-4'>
-                    <img src="https://jnsn.imgix.net/globalassets/digizuite/12295-en-bi002184-green~black~orange.jpg?w=1000&auto=format&q=70&fit=max" alt="bike" />
-                    <p className='text-center my-4' >Brand Bike Name</p>
-                    <p className='text-center my-4' >$7,999.99</p>
-                    <GrayButton buttonText="View" />
-                </div>
-                <div className='bg-white flex flex-col items-center rounded shadow p-4'>
-                    <img src="https://jnsn.imgix.net/globalassets/product-images---all-assets/yeti-2021/bi002772-turquoise.jpg?w=1000&auto=format&q=70&fit=max" alt="bike" />
-                    <p className='text-center my-4' >Brand Bike Name</p>
-                    <p className='text-center my-4' >$7,999.99</p>
-                    <Link className='w-full' to={'/product'}>
-                        <GrayButton buttonText="View" />
-                    </Link>
-                </div>
-            </div>
+        {/* ------------Loop through all products-------------- */}
+        {loaded && allProducts.map((product, key) => 
+        //   const imagePath = `../../../server/uploads/${product.image.filename}`;
+          <div className="bg-white flex flex-col items-center rounded shadow p-4" key={key}>
+            <img src={`../../../server/uploads/${product.image.filename}`} alt={product.name} />
+            <p className="text-center my-4">{product.brand} {product.name}</p>
+            <p className="text-center my-4">${product.price.$numberDecimal}</p>
+            <form className="w-full" action={`/products/${product._id}`}>
+                <GrayButton buttonText="View" />
+            </form>
+          </div>
+        )}
+        <div className="bg-white flex flex-col items-center rounded shadow p-4">
+          <img
+            src="https://jnsn.imgix.net/globalassets/digizuite/26185-en-bi003591-satin-smoke~arctic-blue.jpg?w=1000&auto=format&q=70&fit=max"
+            alt="bike"
+          />
+          <p className="text-center my-4">Brand Bike Name</p>
+          <p className="text-center my-4">$7,999.99</p>
+          <GrayButton buttonText="View" />
         </div>
-    )
-}
+        <div className="bg-white flex flex-col items-center rounded shadow p-4">
+          <img
+            src="https://jnsn.imgix.net/globalassets/digizuite/12295-en-bi002184-green~black~orange.jpg?w=1000&auto=format&q=70&fit=max"
+            alt="bike"
+          />
+          <p className="text-center my-4">Brand Bike Name</p>
+          <p className="text-center my-4">$7,999.99</p>
+          <GrayButton buttonText="View" />
+        </div>
+        <div className="bg-white flex flex-col items-center rounded shadow p-4">
+          <img
+            src="https://jnsn.imgix.net/globalassets/product-images---all-assets/yeti-2021/bi002772-turquoise.jpg?w=1000&auto=format&q=70&fit=max"
+            alt="bike"
+          />
+          <p className="text-center my-4">Brand Bike Name</p>
+          <p className="text-center my-4">$7,999.99</p>
+          <Link className="w-full" to={"/product"}>
+            <GrayButton buttonText="View" />
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-export default ProductGrid
+export default ProductGrid;

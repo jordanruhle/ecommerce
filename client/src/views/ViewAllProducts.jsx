@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from '../components/navbar';
 import ProductGrid from '../components/productgrid';
 
-const BikesView = () => {
+const ViewAllProducts = () => {
     return (
         <>
         <Navbar />
@@ -11,4 +11,4 @@ const BikesView = () => {
     )
 }
 
-export default BikesView
+export default ViewAllProducts
