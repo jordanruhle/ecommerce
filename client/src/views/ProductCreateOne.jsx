@@ -16,6 +16,7 @@ const ProductCreateOne = () => {
     subCategory: "",
     price: 0.00,
     quantity: 0,
+    quantitySold: 0,
     image: "",
     color: "",
     size: "xsm"

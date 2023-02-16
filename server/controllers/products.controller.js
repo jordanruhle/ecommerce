@@ -19,18 +19,11 @@ module.exports.findoneSingleProduct = (req, res) => {
 //  Create
 module.exports.createNewProduct =  (req, res) => {
     console.log(req.body, req.file)
-    const newProduct = new Products({
-      name: req.body.name,
-      brand: req.body.brand,
-      description: req.body.description,
-      mainCategory: req.body.mainCategory,
-      subCategory: req.body.subCategory,
-      price: req.body.price,
-      quantity: req.body.quantity,
-      color: req.body.color,
-      size: req.body.size,
-      image: req.file
-    });
+      const product = {
+        ...req.body,
+        image: req.file
+      }
+      const newProduct = new Products(product);
   
     newProduct.save((err, product) => {
       if (err) {
@@ -47,6 +40,10 @@ module.exports.createNewProduct =  (req, res) => {
 
 // Update
 module.exports.updateExistingProduct = (req, res) => {
+  req.body = {
+    ...req.body,
+    image: req.file,
+  }
     Products.findOneAndUpdate(
         { _id: req.params.id },
         req.body,
