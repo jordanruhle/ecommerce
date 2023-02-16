@@ -50,7 +50,7 @@ const AdminProductTable = ({ allProducts, removeFromDom }) => {
               return (
                 <tr className='border-b hover:bg-neutral-50' key={i}>
                   <td className='text-xl py-4 px-5 w-10'>
-                    <img src={imagePath} alt="product image" />
+                    <img src={imagePath} alt={product.name} />
                   </td>
                   <td className='text-xl py-4 px-5 underline text-blue-700 '>
                     <a href={'/orders/show/' + product._id}>{product._id}</a>

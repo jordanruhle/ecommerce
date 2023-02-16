@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from '../components/navbar'
 import ViewOne from '../components/viewone'
 
-const ViewBike = () => {
+const ProductDetails = () => {
   return (
     <>
         <Navbar />
@@ -11,4 +11,4 @@ const ViewBike = () => {
   )
 }
 
-export default ViewBike
+export default ProductDetails

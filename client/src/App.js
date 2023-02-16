@@ -3,8 +3,9 @@ import "./index.css";
 import { Routes, Route } from 'react-router-dom'
 
 
-import BikesView from './views/bikesview';
-import ViewBike from './views/viewbike';
+
+import ViewAllProducts from './views/ViewAllProducts';
+import ProductDetails from './views/ProductDetails';
 import Cart from './views/cart';
 import Checkout from './views/checkout';
 import AdminLogin from './views/AdminLogin';
@@ -13,13 +14,14 @@ import AdminProducts from './views/AdminProducts';
 import ProductCreateOne from './views/ProductCreateOne';
 import ProductEdit from './views/ProductEdit'
 
+
 function App() {
   return (
     <div className="h-full">
       <Routes>
-        <Route element={<BikesView />} path='/' />
-        <Route element={<BikesView />} path='/bikes/:type' />
-        <Route element={<ViewBike />} path='/:product' />
+        <Route element={<ViewAllProducts />} path='/' />
+        <Route element={<ViewAllProducts />} path='/bikes/:type' />
+        <Route element={<ProductDetails />} path='/products/:id' />
         <Route element={<Cart />} path='/cart' />
         <Route element={<Checkout />} path='/checkout' />
         <Route element={<AdminLogin />} path='/admin' />
