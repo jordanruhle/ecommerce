@@ -61,7 +61,7 @@ const AdminProductTable = ({ allProducts, removeFromDom }) => {
                   <td className='text-xl py-4 px-5'>{product.mainCategory}</td>
                   <td className='text-xl py-4 px-5'>{product.subCategory}</td>
                   <td className='text-xl py-4 px-5'>{product.quantity}</td>
-                  <td className='text-xl py-4 px-5'>19</td>
+                  <td className='text-xl py-4 px-5'>{product.quantitySold}</td>
                   <td className='text-xl py-4 px-5 flex gap-4'>
                     <form action={`/products/${product._id}/edit`}>
                       <GrayButton buttonText="Edit" />

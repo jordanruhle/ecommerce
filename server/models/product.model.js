@@ -31,9 +31,14 @@ const ProductSchema = new mongoose.Schema(
         price: {
             type: mongoose.Decimal128,
             required: [true, '{PATH} is required.'],
-            min: [0.01, '{PATH} must be more than $.01']
+            min: [0.00, '{PATH} must be more than $0.00']
         },
         quantity: {
+            type: Number,
+            required: [true, '{PATH} is required.'],
+            min: [0, '{PATH} must be 0 or greater.']
+        },
+        quantitySold: {
             type: Number,
             required: [true, '{PATH} is required.'],
             min: [0, '{PATH} must be 0 or greater.']
