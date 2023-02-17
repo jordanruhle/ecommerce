@@ -8,5 +8,5 @@ module.exports = app => {
     app.post('/api/product',  upload.single('image'),  ProductController.createNewProduct);
     app.put('/api/product/:id', upload.single('image'), ProductController.updateExistingProduct);
     app.delete('/api/product/:id', ProductController.deleteAnExistingProduct);
-    app.get('/categories', ProductController.getCategories);
+    app.get('/api/categories', ProductController.getCategories);
 }
