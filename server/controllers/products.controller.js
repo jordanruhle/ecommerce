@@ -61,7 +61,7 @@ module.exports.deleteAnExistingProduct = (req, res) => {
         .catch(err => res.json({ message: 'Something went wrong', error: err }));
 }
 
-// Get Categories
+// Get mainCategory and subCategories
 module.exports.getCategories = (req, res) => {
   productQueries.getCategories()
     .then(results => {
@@ -71,3 +71,29 @@ module.exports.getCategories = (req, res) => {
       res.status(500).send(error);
     });
 };
+
+// Get products by category or subcategory
+module.exports.getByMainOrSubCategory = (req, res) => {
+  const type = req.params.type;
+  const name = req.params.name;
+  
+  if (type === 'category') {
+    Products.find({ mainCategory: name })
+      .then(products => {
+        res.json(products);
+      })
+      .catch(error => {
+        res.status(500).send(error);
+      });
+  } else if (type === 'subcategory') {
+    Products.find({ subCategory: name })
+      .then(products => {
+        res.json(products);
+      })
+      .catch(error => {
+        res.status(500).send(error);
+      });
+  } else {
+    res.status(400).send('Invalid type parameter');
+  }
+}
