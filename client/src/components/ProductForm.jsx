@@ -1,4 +1,4 @@
-import React, { useState }  from 'react'
+import React, { useState } from 'react'
 import RedButton from './RedButton'
 
 
@@ -19,6 +19,39 @@ const ProductForm = ({ title, subTitle, buttonText, submitFunction, productInfo,
         })
     }
 
+    const subcategoryFilter = (category) => {
+        if (category === "bikes") {
+            return (
+                <select onChange={(e) => { formChangeHandler(e) }} name="subCategory" value={productInfo.subCategory} className=' w-full p-3 border' >
+                    <option value="trail">Trail</option>
+                    <option value="allmountain">All Mountain</option>
+                    <option value="enduro">Enduro</option>
+                    <option value="downhill">Downhill</option>
+                </select>
+            )
+        }
+        if (category === "components") {
+            return (
+                <select onChange={(e) => { formChangeHandler(e) }} name="subCategory" value={productInfo.subCategory} className=' w-full p-3 border' >
+                    <option value="drivetrain">Drivetrain</option>
+                    <option value="suspension">Suspension</option>
+                    <option value="brakes">Brakes</option>
+                    <option value="tires">Tires</option>
+                    <option value="wheels">Wheels</option>
+                </select>
+            )
+        }
+        if (category === "accessories") {
+            return (
+                <select onChange={(e) => { formChangeHandler(e) }} name="subCategory" value={productInfo.subCategory} className=' w-full p-3 border' >
+                    <option value="bags">Bags</option>
+                    <option value="tools">Tools</option>
+                    <option value="hydration">Hydration</option>
+                </select>
+            )
+        }
+    }
+
     return (
         <div className='max-w-screen-md mx-auto '>
             <form className='bg-white p-10' encType="multipart/form-data" onSubmit={submitFunction}>
@@ -29,7 +62,7 @@ const ProductForm = ({ title, subTitle, buttonText, submitFunction, productInfo,
                 {/*---------- Name ---------- */}
                 <div className='mb-6'>
                     <p className='text-md font-semibold mb-2 uppercase'>Name</p>
-                    <input onChange={(e) => { formChangeHandler(e) }} type="text" name="name" value={productInfo.name}  className=' w-full p-3 border' />
+                    <input onChange={(e) => { formChangeHandler(e) }} type="text" name="name" value={productInfo.name} className=' w-full p-3 border' />
                 </div>
 
                 {/*---------- Brand ---------- */}
@@ -41,20 +74,24 @@ const ProductForm = ({ title, subTitle, buttonText, submitFunction, productInfo,
                 {/*---------- Description ---------- */}
                 <div className=' mb-6'>
                     <p className='text-md font-semibold mb-2 uppercase focus:bg-slate-50'>Description</p>
-                    <textarea onChange={(e) => { formChangeHandler(e) }} type="textarea" name="description" value={productInfo.description}  className='h-36 w-full text-start p-3 border ' />
+                    <textarea onChange={(e) => { formChangeHandler(e) }} type="textarea" name="description" value={productInfo.description} className='h-36 w-full text-start p-3 border ' />
                 </div>
 
                 {/*---------- Main Category ---------- */}
                 <div className="md:flex">
                     <div className='mb-6 mr-8 w-full'>
-                        <p className='text-md font-semibold mb-2 uppercase'>Main Category</p>
-                        <input onChange={(e) => { formChangeHandler(e) }} type="text" name="mainCategory" value={productInfo.mainCategory}  className=' w-full p-3 border' />
+                        <p className='text-md font-semibold mb-2 uppercase' >Main Category</p>
+                        <select onChange={(e) => { formChangeHandler(e) }} name="mainCategory" value={productInfo.mainCategory} className=' w-full p-3 border' >
+                            <option value="bikes">Bikes</option>
+                            <option value="components">Components</option>
+                            <option value="accessories">Accessories</option>
+                        </select>
                     </div>
 
                     {/*---------- Sub Category ---------- */}
                     <div className='mb-6 w-full'>
-                        <p className='text-md font-semibold mb-2 uppercase'>Sub Category</p>
-                        <input onChange={(e) => { formChangeHandler(e) }} type="text" name="subCategory" value={productInfo.subCategory}  className=' w-full p-3 border' />
+                        <p className='text-md font-semibold mb-2 uppercase' >Sub Category</p>
+                        {subcategoryFilter(productInfo.mainCategory)}
                     </div>
                 </div>
 
@@ -62,13 +99,13 @@ const ProductForm = ({ title, subTitle, buttonText, submitFunction, productInfo,
                 <div className="md:flex">
                     <div className='mb-6 mr-8 w-full'>
                         <p className='text-md font-semibold mb-2 uppercase'>Price</p>
-                        <input onChange={(e) => { formChangeHandler(e) }} type="text" pattern="[0-9]+([.][0-9]{2})?" placeholder='0.00' name="price" value={productInfo.price}  className='w-full p-3 border' />
+                        <input onChange={(e) => { formChangeHandler(e) }} type="text" pattern="[0-9]+([.][0-9]{2})?" placeholder='0.00' name="price" value={productInfo.price} className='w-full p-3 border' />
                     </div>
 
                     {/*---------- Quantity ---------- */}
                     <div className='mb-6 w-full'>
                         <p className='text-md font-semibold mb-2 uppercase'>Quantity</p>
-                        <input onChange={(e) => { formChangeHandler(e) }} type="number" name="quantity" value={productInfo.quantity}  className=' w-full p-3 border' />
+                        <input onChange={(e) => { formChangeHandler(e) }} type="number" name="quantity" value={productInfo.quantity} className=' w-full p-3 border' />
                     </div>
                 </div>
 
@@ -82,13 +119,14 @@ const ProductForm = ({ title, subTitle, buttonText, submitFunction, productInfo,
                 <div className="md:flex">
                     <div className='mb-6 mr-8 w-full'>
                         <p className='text-md font-semibold mb-2 uppercase'>Color</p>
-                        <input onChange={(e) => { formChangeHandler(e) }} type="color" name="color" value={productInfo.color}  className=' w-full p-3 border' />
+                        <input onChange={(e) => { formChangeHandler(e) }} type="color" name="color" value={productInfo.color} className=' w-full p-3 border' />
                     </div>
 
                     {/*---------- Size ---------- */}
                     <div className='mb-6 w-full'>
                         <p className='text-md font-semibold mb-2 uppercase' >Size</p>
-                        <select onChange={(e) => { formChangeHandler(e) }} name="size" value={productInfo.size}  className=' w-full p-3 border' >
+                        <select onChange={(e) => { formChangeHandler(e) }} name="size" value={productInfo.size} className=' w-full p-3 border' >
+                            <option value="One Size">One Size</option>
                             <option value="XS">X-Small</option>
                             <option value="S">Small</option>
                             <option value="M">Medium</option>
