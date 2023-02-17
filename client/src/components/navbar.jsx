@@ -11,7 +11,7 @@ function classNames(...classes) {
 
 const Navbar = () => {
     return (
-        <div className='w-full flex justify-center sm:justify-between items-center py-2 px-8 2xl:px-72 text-white bg-stone-800 font-body flex-wrap'>
+        <div className='w-full flex justify-center sm:justify-between items-center py-2 px-8  text-white bg-stone-800 font-body flex-wrap'>
 
             {/*----------- Company Logo ------------ */}
 
