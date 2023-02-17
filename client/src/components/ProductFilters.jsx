@@ -8,9 +8,7 @@ const ProductFilters = () => {
   useEffect(() => {
     axios.get('http://localhost:8000/api/categories')
       .then((res) => {
-        console.log(res.data)
         setCategories(res.data)
-        console.log(categories)
         setFiltersLoaded(true)
       })
       .catch((err) => console(err));
@@ -22,9 +20,9 @@ const ProductFilters = () => {
             categories.map(category => {
               return (
                 <div key={category.category}>
-                  <p className="text-2xl my-3">{category.category}</p>
+                  <a href={`/category/${category.category}`}className="block text-2xl my-3">{category.category}</a>
                   {category.subcategories.map(subcategory => {
-                    return <p className="text-xl my-3 ml-6" key={subcategory}>{subcategory}</p>;
+                    return <a href={`/subcategory/${subcategory}`} className="block text-xl my-3 ml-6 " key={subcategory}>{subcategory}</a>;
                   })}
                 </div>
               );

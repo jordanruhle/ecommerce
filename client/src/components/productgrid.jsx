@@ -4,21 +4,7 @@ import axios from "axios";
 import GrayButton from "./GrayButton";
 import ProductFilters from "./ProductFilters";
 
-const ProductGrid = (props) => {
-  const [allProducts, setAllProducts] = useState([]);
-  const [loaded, setLoaded] = useState(false);
-  
-  useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/product")
-      .then((res) => {
-        // console.log(res.data.product);
-        setAllProducts(res.data.product);
-        setLoaded(true);
-        // console.log(mongoose.Types.ObjectId.isValid(product[0[-]]))
-      })
-      .catch((err) => console(err));
-  }, []);
+const ProductGrid = ({allProducts, loaded}) => {
   
   return (
     // Body
