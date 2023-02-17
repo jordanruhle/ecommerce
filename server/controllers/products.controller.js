@@ -1,4 +1,5 @@
 const Products = require("../models/product.model")
+const productQueries = require('../queries/product.queries')
 
 
 // call back functions separated from routes
@@ -59,3 +60,14 @@ module.exports.deleteAnExistingProduct = (req, res) => {
         .then(result => res.json({ result: result }))
         .catch(err => res.json({ message: 'Something went wrong', error: err }));
 }
+
+// Get Categories
+module.exports.getCategories = (req, res) => {
+  productQueries.getCategories()
+    .then(results => {
+      res.json(results);
+    })
+    .catch(error => {
+      res.status(500).send(error);
+    });
+};
