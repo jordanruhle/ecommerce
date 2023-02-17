@@ -13,14 +13,14 @@ const ProductEdit = () => {
     name: "",
     brand: "",
     description: "",
-    mainCategory: "",
+    mainCategory: "bikes",
     subCategory: "",
     price: 0.0,
     quantity: 0,
     quantitySold: 0,
     image: "",
     color: "",
-    size: "xsm",
+    size: "One Size",
   });
 
   useEffect(() => {
