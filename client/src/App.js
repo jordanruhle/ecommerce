@@ -13,6 +13,7 @@ import AdminOrders from './views/AdminOrders';
 import AdminProducts from './views/AdminProducts';
 import ProductCreateOne from './views/ProductCreateOne';
 import ProductEdit from './views/ProductEdit'
+import FilteredProductsList from './views/FilteredProductsList';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route element={<ViewAllProducts />} path='/' />
         <Route element={<ViewAllProducts />} path='/bikes/:type' />
+        <Route element={<FilteredProductsList />} path='/:type/:name' />
         <Route element={<ProductDetails />} path='/products/:id' />
         <Route element={<Cart />} path='/cart' />
         <Route element={<Checkout />} path='/checkout' />
