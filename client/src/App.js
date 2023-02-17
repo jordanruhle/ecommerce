@@ -22,7 +22,7 @@ function App() {
       <Routes>
         <Route element={<ViewAllProducts />} path='/' />
         <Route element={<ViewAllProducts />} path='/bikes/:type' />
-        <Route element={<FilteredProductsList />} path='/:type/:name' />
+        <Route element={<FilteredProductsList />} path='/products/:type/:name' />
         <Route element={<ProductDetails />} path='/products/:id' />
         <Route element={<Cart />} path='/cart' />
         <Route element={<Checkout />} path='/checkout' />
