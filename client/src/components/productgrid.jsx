@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import GrayButton from "./GrayButton";
+import ProductFilters from "./ProductFilters";
 
 const ProductGrid = (props) => {
   const [allProducts, setAllProducts] = useState([]);
   const [loaded, setLoaded] = useState(false);
-
+  
   useEffect(() => {
     axios
       .get("http://localhost:8000/api/product")
@@ -18,30 +19,12 @@ const ProductGrid = (props) => {
       })
       .catch((err) => console(err));
   }, []);
-
+  
   return (
     // Body
     <div className="bg-gradient-to-br from-slate-50 to-stone-300 min-h-screen">
-      <div className="max-w-screen-xl mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-rows-5 gap-10 p-8 ">
-        <div className="bg-white rounded shadow p-4 row-span-full">
-          <p>BIKES</p>
-          <p>Trail</p>
-          <p>All Mountain</p>
-          <p>Enduro</p>
-          <p>Downhill</p>
-          <p>COMPONENTS</p>
-          <p>DriveTrain</p>
-          <p>Suspension</p>
-          <p>Brakes</p>
-          <p>Saddles</p>
-          <p>Tires</p>
-          <p>Wheels</p>
-          <p>ACCESSORIES</p>
-          <p>Bags</p>
-          <p>Tools</p>
-          <p>Hydration</p>
-          <p>Racks</p>
-        </div>
+      <div className="max-w-screen-xl mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-rows-3 gap-10 p-8 ">
+        <ProductFilters />
         {/* ------------Loop through all products-------------- */}
         {loaded && allProducts.map((product, key) =>
           //   const imagePath = `../../../server/uploads/${product.image.filename}`;
