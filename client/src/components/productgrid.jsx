@@ -21,18 +21,36 @@ const ProductGrid = (props) => {
 
   return (
     // Body
-    <div className="bg-gradient-to-br from-slate-50 to-stone-300 h-screen">
-      <div className="max-w-screen-xl mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 p-8 ">
-        
+    <div className="bg-gradient-to-br from-slate-50 to-stone-300 min-h-screen">
+      <div className="max-w-screen-xl mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-rows-5 gap-10 p-8 ">
+        <div className="bg-white rounded shadow p-4 row-span-full">
+          <p>BIKES</p>
+          <p>Trail</p>
+          <p>All Mountain</p>
+          <p>Enduro</p>
+          <p>Downhill</p>
+          <p>COMPONENTS</p>
+          <p>DriveTrain</p>
+          <p>Suspension</p>
+          <p>Brakes</p>
+          <p>Saddles</p>
+          <p>Tires</p>
+          <p>Wheels</p>
+          <p>ACCESSORIES</p>
+          <p>Bags</p>
+          <p>Tools</p>
+          <p>Hydration</p>
+          <p>Racks</p>
+        </div>
         {/* ------------Loop through all products-------------- */}
-        {loaded && allProducts.map((product, key) => 
-        //   const imagePath = `../../../server/uploads/${product.image.filename}`;
-          <div className="bg-white flex flex-col items-center rounded shadow p-4" key={key}>
+        {loaded && allProducts.map((product, key) =>
+          //   const imagePath = `../../../server/uploads/${product.image.filename}`;
+          <div className="bg-white flex flex-col justify-between items-center rounded shadow p-4" key={key}>
             <img src={`../../../server/uploads/${product.image.filename}`} alt={product.name} />
             <p className="text-center my-4">{product.brand} {product.name}</p>
             <p className="text-center my-4">${product.price.$numberDecimal}</p>
             <form className="w-full" action={`/products/${product._id}`}>
-                <GrayButton buttonText="View" />
+              <GrayButton buttonText="View" />
             </form>
           </div>
         )}
