@@ -2,17 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const ProductFilters = () => {
-  const [categories, setCategories] = useState();
-  const [filtersLoaded, setFiltersLoaded] = useState(false);
 
-  useEffect(() => {
-    axios.get('http://localhost:8000/api/categories')
-      .then((res) => {
-        setCategories(res.data)
-        setFiltersLoaded(true)
-      })
-      .catch((err) => console(err));
-  }, [])
 
   return (
     <div className="bg-white rounded shadow p-4 row-span-full">
