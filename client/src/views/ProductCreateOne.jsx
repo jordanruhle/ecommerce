@@ -18,7 +18,7 @@ const ProductCreateOne = () => {
     quantity: 0,
     quantitySold: 0,
     image: "",
-    color: "",
+    color: "#000000",
     size: "One Size"
 })
 
