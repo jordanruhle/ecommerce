@@ -75,8 +75,7 @@ const ViewOne = () => {
               {/*  Size */}
               <p className="font-semibold">Size:</p>
               <div className="flex">
-                <div className="h-10 w-10 m-2 border-2 flex justify-center items-center">{productInfo.size}</div>
-                
+                <div className="h-10 w-10 m-2 border-2 flex justify-center items-center p-6">{productInfo.size}</div>
               </div>
               <button className="bg-red-600 hover:bg-slate-500 text-white text-lg font-semibold py-2 px-4 my-4 border w-full">
                 ADD TO CART
