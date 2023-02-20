@@ -5,6 +5,8 @@ import RedButton from './RedButton'
 const ProductForm = ({ title, subTitle, buttonText, submitFunction, productInfo, setProductInfo }) => {
 
     const formChangeHandler = (e) => {
+        // Let's use an arrow function to access previousState in setProductInfo
+        // Instead of spreading productInfp
         setProductInfo({
             ...productInfo,
             [e.target.name]: e.target.value
@@ -13,6 +15,8 @@ const ProductForm = ({ title, subTitle, buttonText, submitFunction, productInfo,
     }
 
     const fileChangeHandler = (e) => {
+        // Let's use an arrow function to access previousState in setProductInfo
+        // Instead of spreading productInfp
         setProductInfo({
             ...productInfo,
             [e.target.name]: e.target.files[0]
@@ -62,12 +66,14 @@ const ProductForm = ({ title, subTitle, buttonText, submitFunction, productInfo,
                 {/*---------- Name ---------- */}
                 <div className='mb-6'>
                     <p className='text-md font-semibold mb-2 uppercase'>Name</p>
+                    {/* Can we reduce code in the onChange handler for these inputs? */}
                     <input onChange={(e) => { formChangeHandler(e) }} type="text" name="name" value={productInfo.name} className=' w-full p-3 border' />
                 </div>
 
                 {/*---------- Brand ---------- */}
                 <div className='mb-6'>
                     <p className='text-md font-semibold mb-2 uppercase'>Brand</p>
+                    {/* Can we reduce code in the onChange handler for these inputs? */}
                     <input onChange={(e) => { formChangeHandler(e) }} type="text" name="brand" value={productInfo.brand} className=' w-full p-3 border' />
                 </div>
 
@@ -91,6 +97,8 @@ const ProductForm = ({ title, subTitle, buttonText, submitFunction, productInfo,
                     {/*---------- Sub Category ---------- */}
                     <div className='mb-6 w-full'>
                         <p className='text-md font-semibold mb-2 uppercase' >Sub Category</p>
+                        {/* Let's make this a component to remove all the extra logic up top */}
+                        {/* <SubCategoryFilters category={productInfo.mainCategory}/> */}
                         {subcategoryFilter(productInfo.mainCategory)}
                     </div>
                 </div>

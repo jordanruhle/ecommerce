@@ -27,6 +27,8 @@ const ViewOne = () => {
             let product = res.data.product
                console.log(res.data.product);
 
+               // Use arrow function to access previous state
+               // Is there a way we can reduce this code?
             setProductInfo({
                 ...productInfo,
                 name: res.data.product.name,

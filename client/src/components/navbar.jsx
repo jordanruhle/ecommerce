@@ -4,10 +4,10 @@ import { FaShoppingCart, FaMountain } from 'react-icons/fa'
 
 import React from 'react'
 
+// See line 47, rewrite code so we can remove this function.
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
-
 
 const Navbar = () => {
     return (
@@ -43,10 +43,9 @@ const Navbar = () => {
                                         {({ active }) => (
                                             <a
                                                 href="/products/subcategory/trail"
-                                                className={classNames(
-                                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                    'block px-4 py-2 text-sm'
-                                                )}
+                                                // I removed use of classNames function in favor of string interpolation
+                                                // Let's apply this to all other classes below and remove classNames() function
+                                                className={`block px-4 py-2 text-sm ${active ? "bg-gray-100 text-gray-900" : "ext-gray-700"}`}
                                             >
                                                 Trail
                                             </a>

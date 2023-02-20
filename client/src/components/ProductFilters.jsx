@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const ProductFilters = () => {
-
-
   return (
     <div className="bg-white rounded shadow p-4 row-span-full">
       <div>

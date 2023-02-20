@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import Navbar from '../components/navbar';
 import ProductGrid from '../components/productgrid';
+import { useParams } from 'react-router-dom';
 
 const ViewAllProducts = () => {
     const [allProducts, setAllProducts] = useState([]);
@@ -15,7 +16,7 @@ const ViewAllProducts = () => {
             setAllProducts(res.data.product);
             setLoaded(true);
           })
-          .catch((err) => console(err));
+          .catch((err) => console.log(err));
       }, []);
 
     return (

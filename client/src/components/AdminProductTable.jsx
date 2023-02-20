@@ -14,7 +14,6 @@ const AdminProductTable = ({ allProducts, removeFromDom }) => {
       .catch(err => console.error(err));
   }
 
-
   return (
     <div className='bg-gradient-to-br from-slate-50 to-stone-300 h-screen p-5'>
       <div className='flex items-center justify-between'>
@@ -29,6 +28,7 @@ const AdminProductTable = ({ allProducts, removeFromDom }) => {
       <table className="min-w-full table table-fixed bg-white rounded shadow">
         <thead>
           <tr className='bg-slate-300'>
+            {/* We could move this to an object and map over these items to produce this html */}
             <th className='text-2xl font-normal py-4 px-5 uppercase text-left '>Picture</th>
             <th className='text-2xl font-normal py-4 px-5 uppercase text-left '>Id</th>
             <th className='text-2xl font-normal py-4 px-5 uppercase text-left '>Brand</th>
