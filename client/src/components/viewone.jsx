@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import ProductDescription from "./ProductDescription";
+import RedButton from "./RedButton";
 
-const ViewOne = () => {
+const ViewOne = ({cart, setCart}) => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [loaded, setLoaded] = useState(false);
+  const [quantity, setQuantity] = useState(1)
   const [productInfo, setProductInfo] = useState({
     name: "",
     brand: "",
@@ -19,6 +22,19 @@ const ViewOne = () => {
     color: "",
     size: "xsm",
   });
+
+  const addProduct = (e) => {
+    e.preventDefault()
+    setCart((previousState) => ([
+      ...previousState,
+      {
+        product_id: id,
+        quantity: quantity
+      }
+    ]))
+    console.log(cart)
+    navigate('/cart')
+  }
 
   useEffect(() => {
     axios.get(`http://localhost:8000/api/product/${id}`)
@@ -64,7 +80,7 @@ const ViewOne = () => {
             <p className="text-xl my-4">${productInfo.price}</p>
 
             {/* Color Picker */}
-            <form action="/cart">
+            <form onSubmit={addProduct}>
               <p className="font-semibold">Color:</p>
               <div className="flex">
                 <div className="h-10 w-10 m-2 border-2 flex justify-center items-center" style={{backgroundColor: productInfo.color}}></div>
@@ -75,9 +91,7 @@ const ViewOne = () => {
               <div className="flex">
                 <div className="h-10 w-10 m-2 border-2 flex justify-center items-center p-6">{productInfo.size}</div>
               </div>
-              <button className="bg-red-600 hover:bg-slate-500 text-white text-lg font-semibold py-2 px-4 my-4 border w-full">
-                ADD TO CART
-              </button>
+              <RedButton buttonText="Add to Cart" />
             </form>
           </div>
 

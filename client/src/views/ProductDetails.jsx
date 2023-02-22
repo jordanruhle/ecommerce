@@ -2,11 +2,11 @@ import React from 'react'
 import Navbar from '../components/navbar'
 import ViewOne from '../components/viewone'
 
-const ProductDetails = () => {
+const ProductDetails = ({cart, setCart}) => {
   return (
     <>
         <Navbar />
-        <ViewOne />
+        <ViewOne cart={cart} setCart={setCart} />
     </>
   )
 }

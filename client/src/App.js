@@ -14,17 +14,8 @@ import FilteredProductsList from './views/FilteredProductsList';
 
 
 function App() {
-  // Here is a good set up for state-managed cart.
-  const [cart, setCart] = useState([
-    // {
-    //   product_id: "",
-    //   quantity: 0
-    // }
-  ]);
+  const [cart, setCart] = useState([]);
 
-  const addProduct = (product) => {
-    // ...
-  }
   const updateProduct = (product) => {
     // ...
   }
@@ -35,11 +26,11 @@ function App() {
   return (
     <div className="h-full">
       <Routes>
-        <Route element={<ViewAllProducts cart={cart} addProduct={addProduct} />} path='/' />
+        <Route element={<ViewAllProducts />} path='/' />
         <Route element={<ViewAllProducts />} path='/bikes/:type' />
         <Route element={<FilteredProductsList />} path='/products/:type/:name' />
-        <Route element={<ProductDetails />} path='/products/:id' />
-        <Route element={<Cart />} path='/cart' />
+        <Route element={<ProductDetails cart={cart} setCart={setCart} />} path='/products/:id' />
+        <Route element={<Cart cart={cart} removeProduct={removeProduct} updateProduct={updateProduct} />} path='/cart' />
         <Route element={<Checkout />} path='/checkout' />
         <Route element={<AdminLogin />} path='/admin' />
         <Route element={<AdminOrders />} path='/dashboard/orders' />

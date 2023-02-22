@@ -4,7 +4,7 @@ import Navbar from '../components/navbar';
 import OrderSummary from '../components/ordersummary';
 
 
-export const Cart = () => {
+export const Cart = ({cart, setCart}) => {
 
 
     return (
