@@ -12,14 +12,14 @@ const ProductCreateOne = () => {
     name: "",
     brand: "",
     description: "",
-    mainCategory: "",
+    mainCategory: "bikes",
     subCategory: "",
     price: 0.00,
     quantity: 0,
     quantitySold: 0,
     image: "",
-    color: "",
-    size: "xsm"
+    color: "#000000",
+    size: "One Size"
 })
 
   const createProduct = (e) => {

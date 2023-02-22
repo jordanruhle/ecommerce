@@ -24,22 +24,20 @@ const ViewOne = () => {
     axios.get(`http://localhost:8000/api/product/${id}`)
         .then(res => {
             console.log(res.data);
-            let product = res.data.product
-               console.log(res.data.product);
-
-            setProductInfo({
-                ...productInfo,
-                name: res.data.product.name,
-                brand: res.data.product.brand,
-                description: res.data.product.description,
-                mainCategory: res.data.product.mainCategory,
-                subCategory: res.data.product.subCategory,
-                price: res.data.product.price.$numberDecimal,
-                quantity: res.data.product.quantity,
-                quantitySold: res.data.product.quantitySold,
-                color: res.data.product.color,
-                size: res.data.product.size,
-            });
+            let {product} = res.data
+            setProductInfo((previousState) => ({
+                ...previousState,
+                name: product.name,
+                brand: product.brand,
+                description: product.description,
+                mainCategory: product.mainCategory,
+                subCategory: product.subCategory,
+                price: product.price.$numberDecimal,
+                quantity: product.quantity,
+                quantitySold: product.quantitySold,
+                color: product.color,
+                size: product.size,
+            }));
             setLoaded(true);
         })
         .catch(err => console.log(err));
@@ -75,8 +73,7 @@ const ViewOne = () => {
               {/*  Size */}
               <p className="font-semibold">Size:</p>
               <div className="flex">
-                <div className="h-10 w-10 m-2 border-2 flex justify-center items-center">{productInfo.size}</div>
-                
+                <div className="h-10 w-10 m-2 border-2 flex justify-center items-center p-6">{productInfo.size}</div>
               </div>
               <button className="bg-red-600 hover:bg-slate-500 text-white text-lg font-semibold py-2 px-4 my-4 border w-full">
                 ADD TO CART

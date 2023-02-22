@@ -13,38 +13,34 @@ const ProductEdit = () => {
     name: "",
     brand: "",
     description: "",
-    mainCategory: "",
+    mainCategory: "bikes",
     subCategory: "",
     price: 0.0,
     quantity: 0,
     quantitySold: 0,
     image: "",
-    color: "",
-    size: "xsm",
+    color: "#000000",
+    size: "One Size",
   });
 
   useEffect(() => {
     axios.get(`http://localhost:8000/api/product/${id}`).then((res) => {
-      console.log(res.data.product);
-      // let product = res.data.product
-      console.log(res.data.product.name);
-      
-      setProductInfo({
-        ...productInfo,
-        name: res.data.product.name,
-        brand: res.data.product.brand,
-        description: res.data.product.description,
-        mainCategory: res.data.product.mainCategory,
-        subCategory: res.data.product.subCategory,
-        price: res.data.product.price.$numberDecimal,
-        quantity: res.data.product.quantity,
-        quantitySold: res.data.product.quantitySold,
-        color: res.data.product.color,
-        size: res.data.product.size,
-      });
+      const { product } = res.data;
+      setProductInfo((previousState) => ({
+        ...previousState,
+        name: product.name,
+        brand: product.brand,
+        description: product.description,
+        mainCategory: product.mainCategory,
+        subCategory: product.subCategory,
+        price: product.price.$numberDecimal,
+        quantity: product.quantity,
+        quantitySold: product.quantitySold,
+        color: product.color,
+        size: product.size,
+      }));
       setLoaded(true);
-      
-    });
+    }).catch(err => console.error(err));
   }, []);
 
   const updateProduct = (e) => {
@@ -59,8 +55,17 @@ const ProductEdit = () => {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then((res) => {
+        // Not critical right now.
+        // Let's add some error checking here
+        // What if res.data is null,
+        // Waht if there is a validation error
         console.log(res.data);
-        navigate("/dashboard/products");
+        if (res.data.errors) {
+          // set errors in state,
+          // render in UI
+        } else {
+          navigate("/dashboard/products");
+        }
       })
       .catch((err) => {
         console.log(err);

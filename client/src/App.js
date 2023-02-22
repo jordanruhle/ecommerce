@@ -1,9 +1,6 @@
-import React from 'react';
 import "./index.css";
+import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom'
-
-
-
 import ViewAllProducts from './views/ViewAllProducts';
 import ProductDetails from './views/ProductDetails';
 import Cart from './views/cart';
@@ -17,10 +14,28 @@ import FilteredProductsList from './views/FilteredProductsList';
 
 
 function App() {
+  // Here is a good set up for state-managed cart.
+  const [cart, setCart] = useState([
+    // {
+    //   product_id: "",
+    //   quantity: 0
+    // }
+  ]);
+
+  const addProduct = (product) => {
+    // ...
+  }
+  const updateProduct = (product) => {
+    // ...
+  }
+  const removeProduct = (product) => {
+    // ...
+  }
+
   return (
     <div className="h-full">
       <Routes>
-        <Route element={<ViewAllProducts />} path='/' />
+        <Route element={<ViewAllProducts cart={cart} addProduct={addProduct} />} path='/' />
         <Route element={<ViewAllProducts />} path='/bikes/:type' />
         <Route element={<FilteredProductsList />} path='/products/:type/:name' />
         <Route element={<ProductDetails />} path='/products/:id' />
@@ -31,8 +46,8 @@ function App() {
         <Route element={<AdminProducts />} path='/dashboard/products' />
         <Route element={<ProductCreateOne />} path='/products/create' />
         <Route element={<ProductEdit />} path='/products/:id/edit' />
-        {/* <Route element={<Payment />} path="/payment" />
-        <Route element={<Completion />} path="/completion" /> */}
+          {/* <Route element={<Payment />} path="/payment" />
+          <Route element={<Completion />} path="/completion" /> */}
       </Routes>
     </div>
 

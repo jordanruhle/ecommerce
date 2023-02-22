@@ -9,13 +9,11 @@ function AdminLogin() {
     password: ""
   })
 
-  const formChangeHandler = (e) => {
-    setLoginInfo({
-        ...loginInfo,
-        [e.target.name]: e.target.value
-    })
-    console.log(loginInfo)
-}
+  const handleChange = (e) => 
+    setLoginInfo((previousState) => ({
+      ...previousState,
+      [e.target.name]: e.target.value
+    }))
 
   return (
     <div>
@@ -26,12 +24,12 @@ function AdminLogin() {
           {/*---------- Email ---------- */}
           <div className='mb-6'>
             <p className='text-md font-semibold mb-2 uppercase'>Email</p>
-            <input onChange={(e) => { formChangeHandler(e) }} type="email" name="email" className=' w-full p-3 border' />
+            <input onChange={handleChange} type="email" name="email" className=' w-full p-3 border' />
           </div>
           {/*---------- Password ---------- */}
           <div className=' mb-6'>
             <p className='text-md font-semibold mb-2 uppercase focus:bg-slate-50'>Password</p>
-            <input onChange={(e) => { formChangeHandler(e) }} type="text" name="password" className=' w-full p-3 border' />
+            <input onChange={handleChange} type="text" name="password" className=' w-full p-3 border' />
           </div>
           <RedButton buttonText="Login" />  
         </form>

@@ -4,11 +4,6 @@ import { FaShoppingCart, FaMountain } from 'react-icons/fa'
 
 import React from 'react'
 
-function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
-}
-
-
 const Navbar = () => {
     return (
         <div className='w-full flex justify-center sm:justify-between items-center py-2 px-8  text-white bg-stone-800 font-body flex-wrap'>
@@ -43,10 +38,7 @@ const Navbar = () => {
                                         {({ active }) => (
                                             <a
                                                 href="/products/subcategory/trail"
-                                                className={classNames(
-                                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                    'block px-4 py-2 text-sm'
-                                                )}
+                                                className={`block px-4 py-2 text-sm ${active ? "bg-gray-100 text-gray-900" : "text-gray-700"}`}
                                             >
                                                 Trail
                                             </a>
@@ -56,10 +48,7 @@ const Navbar = () => {
                                         {({ active }) => (
                                             <a
                                                 href="/products/subcategory/allmountain"
-                                                className={classNames(
-                                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                    'block px-4 py-2 text-sm'
-                                                )}
+                                                className={`block px-4 py-2 text-sm ${active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'}`}
                                             >
                                                 All Mountain
                                             </a>
@@ -69,10 +58,7 @@ const Navbar = () => {
                                         {({ active }) => (
                                             <a
                                                 href="/products/subcategory/enduro"
-                                                className={classNames(
-                                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                    'block px-4 py-2 text-sm'
-                                                )}
+                                                className={`block px-4 py-2 text-sm ${active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'}`}
                                             >
                                                 Enduro
                                             </a>
@@ -82,10 +68,7 @@ const Navbar = () => {
                                         {({ active }) => (
                                             <a
                                                 href="/products/subcategory/downhill"
-                                                className={classNames(
-                                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                    'block px-4 py-2 text-sm'
-                                                )}
+                                                className={`block px-4 py-2 text-sm ${active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'}`}
                                             >
                                                 Downhill
                                             </a>
@@ -119,10 +102,7 @@ const Navbar = () => {
                                         {({ active }) => (
                                             <a
                                                 href="/products/subcategory/drivetrain"
-                                                className={classNames(
-                                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                    'block px-4 py-2 text-sm'
-                                                )}
+                                                className={`block px-4 py-2 text-sm ${active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'}`}
                                             >
                                                 Drivetrain
                                             </a>
@@ -132,10 +112,7 @@ const Navbar = () => {
                                         {({ active }) => (
                                             <a
                                                 href="/products/subcategory/suspension"
-                                                className={classNames(
-                                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                    'block px-4 py-2 text-sm'
-                                                )}
+                                                className={`block px-4 py-2 text-sm ${active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'}`}
                                             >
                                                 Suspension
                                             </a>
@@ -145,10 +122,7 @@ const Navbar = () => {
                                         {({ active }) => (
                                             <a
                                                 href="/products/subcategory/brakes"
-                                                className={classNames(
-                                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                    'block px-4 py-2 text-sm'
-                                                )}
+                                                className={`block px-4 py-2 text-sm ${active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'}`}
                                             >
                                                 Brakes
                                             </a>
@@ -158,10 +132,7 @@ const Navbar = () => {
                                         {({ active }) => (
                                             <a
                                                 href="/products/subcategory/saddles"
-                                                className={classNames(
-                                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                    'block px-4 py-2 text-sm'
-                                                )}
+                                                className={`block px-4 py-2 text-sm ${active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'}`}
                                             >
                                                 Saddles
                                             </a>
@@ -171,10 +142,7 @@ const Navbar = () => {
                                         {({ active }) => (
                                             <a
                                                 href="/products/subcategory/tires"
-                                                className={classNames(
-                                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                    'block px-4 py-2 text-sm'
-                                                )}
+                                                className={`block px-4 py-2 text-sm ${active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'}`}
                                             >
                                                 Tires
                                             </a>
@@ -184,10 +152,7 @@ const Navbar = () => {
                                         {({ active }) => (
                                             <a
                                                 href="/products/subcategory/wheels"
-                                                className={classNames(
-                                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                    'block px-4 py-2 text-sm'
-                                                )}
+                                                className={`block px-4 py-2 text-sm ${active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'}`}
                                             >
                                                 Wheels
                                             </a>
@@ -221,10 +186,7 @@ const Navbar = () => {
                                         {({ active }) => (
                                             <a
                                                 href="/products/subcategory/bags"
-                                                className={classNames(
-                                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                    'block px-4 py-2 text-sm'
-                                                )}
+                                                className={`block px-4 py-2 text-sm ${active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'}`}
                                             >
                                                 Bags
                                             </a>
@@ -234,10 +196,7 @@ const Navbar = () => {
                                         {({ active }) => (
                                             <a
                                                 href="/products/subcategory/tools"
-                                                className={classNames(
-                                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                    'block px-4 py-2 text-sm'
-                                                )}
+                                                className={`block px-4 py-2 text-sm ${active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'}`}
                                             >
                                                 Tools
                                             </a>
@@ -247,10 +206,7 @@ const Navbar = () => {
                                         {({ active }) => (
                                             <a
                                                 href="/products/subcategory/hydration"
-                                                className={classNames(
-                                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                    'block px-4 py-2 text-sm'
-                                                )}
+                                                className={`block px-4 py-2 text-sm ${active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'}`}
                                             >
                                                 Hydration
                                             </a>
@@ -260,10 +216,7 @@ const Navbar = () => {
                                         {({ active }) => (
                                             <a
                                                 href="/products/subcategory/racks"
-                                                className={classNames(
-                                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                    'block px-4 py-2 text-sm'
-                                                )}
+                                                className={`block px-4 py-2 text-sm ${active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'}`}
                                             >
                                                 Racks
                                             </a>
