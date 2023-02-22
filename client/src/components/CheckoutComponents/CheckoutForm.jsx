@@ -78,10 +78,10 @@ const CheckoutForm = (props) => {
                     {/*----------- Shipping Address Same as Billing? ------------ */}
                     <h3 className='text-2xl my-4 uppercase'>Shipping Address </h3>
                     <div className='mb-2'>
-                        <input onChange={(e) => { boolCheckboxHandler(e) }} type="checkbox" name="sameAddress" htmlFor="shippingSameAsBilling" value="true" checked={billingInfo.sameAddress === true} /> <p className='inline'>Ship to My Billing Address</p>
+                        <input onChange={boolCheckboxHandler} type="checkbox" name="sameAddress" htmlFor="shippingSameAsBilling" value="true" checked={billingInfo.sameAddress === true} /> <p className='inline'>Ship to My Billing Address</p>
                     </div>
                     <div className='mb-2'>
-                        <input onChange={(e) => { boolCheckboxHandler(e) }} type="checkbox" name="sameAddress" htmlFor="shippingDifferentThenBilling" value="false" checked={billingInfo.sameAddress === false} /> <p className='inline'>Ship to Different Address</p>
+                        <input onChange={boolCheckboxHandler} type="checkbox" name="sameAddress" htmlFor="shippingDifferentThenBilling" value="false" checked={billingInfo.sameAddress === false} /> <p className='inline'>Ship to Different Address</p>
                     </div>
 
 
@@ -96,7 +96,7 @@ const CheckoutForm = (props) => {
                     <div className="max-w-sm">
                         <div className='flex justify-between mb-2'>
                             <div>
-                                <input onChange={(e) => { changeHandler(e) }} type="radio" name="deliveryMethod" htmlFor="economy" value="economy" /> <p className='inline'>Economy</p>
+                                <input onChange={changeHandler} type="radio" name="deliveryMethod" htmlFor="economy" value="economy" /> <p className='inline'>Economy</p>
                             </div>
                             <p>
                                 $79.99
@@ -104,7 +104,7 @@ const CheckoutForm = (props) => {
                         </div>
                         <div className='flex justify-between mb-2'>
                             <div>
-                                <input onChange={(e) => { changeHandler(e) }} type="radio" name="deliveryMethod" htmlFor="standard" value="standard" defaultChecked/> <p className='inline'>Standard</p>
+                                <input onChange={changeHandler} type="radio" name="deliveryMethod" htmlFor="standard" value="standard" defaultChecked/> <p className='inline'>Standard</p>
                             </div>
                             <p>
                                 $79.99
@@ -112,7 +112,7 @@ const CheckoutForm = (props) => {
                         </div>
                         <div className='flex justify-between mb-2'>
                             <div>
-                                <input onChange={(e) => { changeHandler(e) }} type="radio" name="deliveryMethod" htmlFor="twoDay" value="twoDay" /> <p className='inline'>Two Business Days</p>
+                                <input onChange={changeHandler} type="radio" name="deliveryMethod" htmlFor="twoDay" value="twoDay" /> <p className='inline'>Two Business Days</p>
                             </div>
                             <p>
                                 $79.99
@@ -127,18 +127,18 @@ const CheckoutForm = (props) => {
                     <div className="flex">
                         <div className='mb-6 mr-8 w-full'>
                             <p className='text-md font-semibold mb-2 uppercase'>Card Number</p>
-                            <input onChange={(e) => { changeHandler(e) }} type="text" name="cardNumber" className=' w-full p-3 border' />
+                            <input onChange={changeHandler} type="text" name="cardNumber" className=' w-full p-3 border' />
                         </div>
                         {/*---------- Card Security Code ---------- */}
                         <div className='mb-6 w-full'>
                             <p className='text-md font-semibold mb-2 uppercase'>Card Security Code</p>
-                            <input onChange={(e) => { changeHandler(e) }} type="text" name="securityCode" className=' w-full p-3 border' />
+                            <input onChange={changeHandler} type="text" name="securityCode" className=' w-full p-3 border' />
                         </div>
                     </div>
                     {/*---------- Expiration Month---------- */}
                     <p className='text-md font-semibold mb-2 uppercase'>Expiration</p>
                     <div className='mb-6 flex'>
-                        <select onChange={(e) => { changeHandler(e) }} placeholder="Month" type="text" name="expirationMonth" className=' w-full p-3 mr-8 border' >
+                        <select onChange={changeHandler} placeholder="Month" type="text" name="expirationMonth" className=' w-full p-3 mr-8 border' >
                             <option value="01">01-January</option>
                             <option value="02">02-February</option>
                             <option value="03">03-March</option>
@@ -153,7 +153,7 @@ const CheckoutForm = (props) => {
                             <option value="12">12-December</option>
                         </select>
                         {/*---------- Expiration Year---------- */}
-                        <select onChange={(e) => { changeHandler(e) }} placeholder="Year" type="text" name="expirationYear" className=' w-full p-3 border' >
+                        <select onChange={changeHandler} placeholder="Year" type="text" name="expirationYear" className=' w-full p-3 border' >
                             <option value="2023">2023</option>
                             <option value="2024">2024</option>
                             <option value="2025">2025</option>
