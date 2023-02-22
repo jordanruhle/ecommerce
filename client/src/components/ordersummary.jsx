@@ -4,9 +4,7 @@ import RedButton from './RedButton'
 
 const OrderSummary = () => {
     return (
-        // <form action="/checkout" className='className="max-w-screen-xl mx-auto grid  sm:grid-cols-4 lg:grid-cols-5'>
-        //     <ItemCard />
-            <div className='bg-white flex flex-col  p-4'>
+            <form action="/checkout" className='bg-white flex flex-col row-span-2  p-4'>
 
                 {/* ----------- Order Summary --------------- */}
                 <h2 className='text-2xl my-4' >Order Summary</h2>
@@ -36,8 +34,8 @@ const OrderSummary = () => {
                 </div>
                 <RedButton buttonText="Checkout" />
 
-            </div>
-        // </form>
+            </form>
+
     )
 }
 

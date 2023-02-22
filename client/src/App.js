@@ -1,5 +1,5 @@
 import "./index.css";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom'
 import ViewAllProducts from './views/ViewAllProducts';
 import ProductDetails from './views/ProductDetails';
@@ -16,12 +16,16 @@ import FilteredProductsList from './views/FilteredProductsList';
 function App() {
   const [cart, setCart] = useState([]);
 
-  const updateProduct = (product) => {
-    // ...
-  }
-  const removeProduct = (product) => {
-    // ...
-  }
+  useEffect(() => {
+    const data = localStorage.getItem('cart');
+    if (data) {
+      setCart(JSON.parse(data));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
 
   return (
     <div className="h-full">
@@ -30,7 +34,7 @@ function App() {
         <Route element={<ViewAllProducts />} path='/bikes/:type' />
         <Route element={<FilteredProductsList />} path='/products/:type/:name' />
         <Route element={<ProductDetails cart={cart} setCart={setCart} />} path='/products/:id' />
-        <Route element={<Cart cart={cart} removeProduct={removeProduct} updateProduct={updateProduct} />} path='/cart' />
+        <Route element={<Cart cart={cart} setCart={setCart} />} path='/cart' />
         <Route element={<Checkout />} path='/checkout' />
         <Route element={<AdminLogin />} path='/admin' />
         <Route element={<AdminOrders />} path='/dashboard/orders' />

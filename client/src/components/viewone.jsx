@@ -25,13 +25,24 @@ const ViewOne = ({cart, setCart}) => {
 
   const addProduct = (e) => {
     e.preventDefault()
-    setCart((previousState) => ([
-      ...previousState,
-      {
-        product_id: id,
-        quantity: quantity
-      }
-    ]))
+    // Check if the product already exists in the cart
+    const productIndex = cart.findIndex(item => item.product_id === id)
+    if (productIndex !== -1) {
+      // If the product exists, update the quantity
+      const updatedCart = [...cart]
+      updatedCart[productIndex].quantity += quantity
+      setCart(updatedCart)
+    } else {
+      // If the product does not exist, add it to the cart
+      setCart(previousState => [
+        ...previousState,
+        {
+          product_id: id,
+          quantity: quantity
+        }
+      ])
+    }
+  
     console.log(cart)
     navigate('/cart')
   }
@@ -39,7 +50,8 @@ const ViewOne = ({cart, setCart}) => {
   useEffect(() => {
     axios.get(`http://localhost:8000/api/product/${id}`)
         .then(res => {
-            console.log(res.data);
+            // console.log(res.data);
+            console.log(cart)
             let {product} = res.data
             setProductInfo((previousState) => ({
                 ...previousState,
