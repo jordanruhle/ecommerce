@@ -18,8 +18,6 @@ const FilteredProductsList = () => {
         setLoaded(true)
       })
       .catch((err) => console.log(err));
-      // I've added the two params used to the dependancy array.
-      // Any time these ChannelMergerNode, fire off this request again
   }, [type, name]);
 
   return (

@@ -9,15 +9,6 @@ function AdminLogin() {
     password: ""
   })
 
-  // See below, I've shortened up the code.
-//   const handleChange = (e) => {
-//     setLoginInfo({
-//         ...loginInfo,
-//         [e.target.name]: e.target.value
-//     })
-//     console.log(loginInfo)
-// }
-
   const handleChange = (e) => 
     setLoginInfo((previousState) => ({
       ...previousState,
@@ -33,7 +24,6 @@ function AdminLogin() {
           {/*---------- Email ---------- */}
           <div className='mb-6'>
             <p className='text-md font-semibold mb-2 uppercase'>Email</p>
-            {/* I've shorted this code by a few characters that were un needed */}
             <input onChange={handleChange} type="email" name="email" className=' w-full p-3 border' />
           </div>
           {/*---------- Password ---------- */}

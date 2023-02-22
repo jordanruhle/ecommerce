@@ -25,18 +25,9 @@ const ProductEdit = () => {
 
   useEffect(() => {
     axios.get(`http://localhost:8000/api/product/${id}`).then((res) => {
-
       const { product } = res.data;
-
-      console.log(res.data.product);
-      // let product = res.data.product
-      console.log(res.data.product.name);
-      
-      // Let's change this to an arrow function so we can
-      // access react's previousState
-      // setProductInfo(previousState => ({...}))
-      setProductInfo({
-        ...productInfo,
+      setProductInfo((previousState) => ({
+        ...previousState,
         name: product.name,
         brand: product.brand,
         description: product.description,
@@ -47,7 +38,7 @@ const ProductEdit = () => {
         quantitySold: product.quantitySold,
         color: product.color,
         size: product.size,
-      });
+      }));
       setLoaded(true);
     }).catch(err => console.error(err));
   }, []);

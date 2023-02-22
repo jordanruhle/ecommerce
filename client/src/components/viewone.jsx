@@ -24,24 +24,20 @@ const ViewOne = () => {
     axios.get(`http://localhost:8000/api/product/${id}`)
         .then(res => {
             console.log(res.data);
-            let product = res.data.product
-               console.log(res.data.product);
-
-               // Use arrow function to access previous state
-               // Is there a way we can reduce this code?
-            setProductInfo({
-                ...productInfo,
-                name: res.data.product.name,
-                brand: res.data.product.brand,
-                description: res.data.product.description,
-                mainCategory: res.data.product.mainCategory,
-                subCategory: res.data.product.subCategory,
-                price: res.data.product.price.$numberDecimal,
-                quantity: res.data.product.quantity,
-                quantitySold: res.data.product.quantitySold,
-                color: res.data.product.color,
-                size: res.data.product.size,
-            });
+            let {product} = res.data
+            setProductInfo((previousState) => ({
+                ...previousState,
+                name: product.name,
+                brand: product.brand,
+                description: product.description,
+                mainCategory: product.mainCategory,
+                subCategory: product.subCategory,
+                price: product.price.$numberDecimal,
+                quantity: product.quantity,
+                quantitySold: product.quantitySold,
+                color: product.color,
+                size: product.size,
+            }));
             setLoaded(true);
         })
         .catch(err => console.log(err));
