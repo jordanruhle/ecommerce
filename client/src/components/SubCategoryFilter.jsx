@@ -1,6 +1,8 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 
 const SubCategoryFilter = ({changeHandler, productInfo}) => {
+
+    
       if (productInfo.mainCategory === "bikes") {
           return (
               <select onChange={ changeHandler } name="subCategory" value={productInfo.subCategory} className=' w-full p-3 border' >

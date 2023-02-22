@@ -10,6 +10,7 @@ const ProductForm = ({ title, subTitle, buttonText, submitFunction, productInfo,
             ...previousState,
             [e.target.name]: e.target.value
         }))
+        console.log(productInfo)
     }
 
     const fileChangeHandler = (e) => {
@@ -58,7 +59,7 @@ const ProductForm = ({ title, subTitle, buttonText, submitFunction, productInfo,
                     {/*---------- Sub Category ---------- */}
                     <div className='mb-6 w-full'>
                         <p className='text-md font-semibold mb-2 uppercase' >Sub Category</p>
-                        <SubCategoryFilter changeHandler={changeHandler} productInfo={productInfo}/>
+                        <SubCategoryFilter changeHandler={changeHandler} productInfo={productInfo} setProductInfo={setProductInfo} />
                     </div>
                 </div>
 
