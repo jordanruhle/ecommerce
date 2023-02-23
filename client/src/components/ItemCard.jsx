@@ -13,7 +13,6 @@ const ItemCard = ({ id, cart, setCart, removeProduct, updateProduct, quantity })
                 let { product } = res.data
                 setProductInfo((previousState) => ({
                     ...previousState,
-                    _id: product._id,
                     name: product.name,
                     brand: product.brand,
                     description: product.description,
@@ -47,18 +46,27 @@ const ItemCard = ({ id, cart, setCart, removeProduct, updateProduct, quantity })
         console.log(cart)
     }
 
+    const removeItem = () => {
+        const productIndex = cart.findIndex(item => item.product_id === id)
+        if (productIndex !== -1) {
+            // If the product exists, update the quantity
+            const updatedCart = [...cart]
+            updatedCart.splice(productIndex, 1)
+            setCart(updatedCart)
+          } 
+        }
     return (
         <>
             {
                 loaded ?
-                    <div className="flex justify-between h-60 gap-2 col-span-1 sm:col-span-2 items-center p-4">
+                    <div className="flex justify-between h-60 gap-2 lg:gap-8 col-span-1 sm:col-span-2 items-center p-4">
                         <img src="https://content.backcountry.com/images/items/1200/YTI/YTIR1DG/TUR.jpg" alt="cart item" className=' h-60' />
-                        <div>
+                        <div className='grow shrink-0 basis-1/3'>
                             <p>{productInfo.brand} {productInfo.name}</p>
                             <p>Turquoise</p>
                             <p>{productInfo.size}</p>
                         </div>
-                        <div>
+                        <div className='shrink'>
                             <div className="flex flex-row h-10 w-32 rounded-lg relative bg-transparent mt-1">
                                 <form onSubmit={decrementProductQuantity}>
                                     <button className=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 cursor-pointer outline-none">
@@ -72,7 +80,9 @@ const ItemCard = ({ id, cart, setCart, removeProduct, updateProduct, quantity })
                                     </button>
                                 </form>
                             </div>
-                            <a href="/">Remove</a>
+                            <form onSubmit={removeItem}>
+                                <button>Remove</button>
+                            </form>
                             <p className='text-lg my-4 font-bold'>${productInfo.price}</p>
                         </div>
                     </div>
