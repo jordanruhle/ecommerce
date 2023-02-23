@@ -5,8 +5,9 @@ import CheckoutNav from './CheckoutNav';
 import BillingInfo from './BillingInfo';
 import ShippingAddressForm from './ShippingAddressForm';
 import RedButton from '../RedButton';
+import CheckoutItemCard from './CheckoutItemCard';
 
-const CheckoutForm = (props) => {
+const CheckoutForm = ({ cart }) => {
 
     const [billingInfo, setBillingInfo] = useState({
         email: "",
@@ -44,7 +45,7 @@ const CheckoutForm = (props) => {
         })
         console.log(billingInfo)
     }
-    
+
     const boolCheckboxHandler = (e) => {
         const bool = e.target.value === "true" ? true : false;
         setBillingInfo({
@@ -86,7 +87,7 @@ const CheckoutForm = (props) => {
 
 
                     {/*----------- Shipping Information Form ------------ */}
-                    { billingInfo.sameAddress === true ? <div></div>
+                    {billingInfo.sameAddress === true ? <div></div>
                         : <ShippingAddressForm changeHandler={changeHandler} />
                     }
 
@@ -104,7 +105,7 @@ const CheckoutForm = (props) => {
                         </div>
                         <div className='flex justify-between mb-2'>
                             <div>
-                                <input onChange={changeHandler} type="radio" name="deliveryMethod" htmlFor="standard" value="standard" defaultChecked/> <p className='inline'>Standard</p>
+                                <input onChange={changeHandler} type="radio" name="deliveryMethod" htmlFor="standard" value="standard" defaultChecked /> <p className='inline'>Standard</p>
                             </div>
                             <p>
                                 $79.99
@@ -172,20 +173,11 @@ const CheckoutForm = (props) => {
                             <p className='uppercase font-semibold'>Quantity</p>
                             <p className='uppercase font-semibold'>Total</p>
                         </div>
-                        <div className="col-span-3 flex gap-8 h-24">
-                            <img src="https://content.backcountry.com/images/items/1200/YTI/YTIR1DG/TUR.jpg" alt="cart item" />
-                            <div>
-                                <p className='uppercase font-semibold'>Yeti Cycles SB150 Turq T1 XT Mountain Bike</p>
-                                <p>Turquoise</p>
-                                <p>XL</p>
-                            </div>
-                        </div>
-                        <div className='col-span-2 flex justify-between'>
-                            <p>$6,800</p>
-                            <p>1</p>
-                            <p>$6,800</p>
-                        </div>
                     </div>
+                    {cart.map((product, i) => (
+                    // console.log(product.product_id)
+                    <CheckoutItemCard key={i} id={product.product_id} />
+                ))}
                     <RedButton buttonText="Submit Your Order" />
                 </form>
             </div>

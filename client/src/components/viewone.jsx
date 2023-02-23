@@ -50,8 +50,6 @@ const ViewOne = ({cart, setCart}) => {
   useEffect(() => {
     axios.get(`http://localhost:8000/api/product/${id}`)
         .then(res => {
-            // console.log(res.data);
-            console.log(cart)
             let {product} = res.data
             setProductInfo((previousState) => ({
                 ...previousState,
