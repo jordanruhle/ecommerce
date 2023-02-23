@@ -19,7 +19,7 @@ export const Cart = ({ cart, setCart }) => {
     return (
         <>
             <Navbar />
-            <div className="max-w-screen-xl mx-auto grid  sm:grid-cols-3  gap-x-14 grid-flow-row-dense ">
+            <div className="max-w-screen-xl mx-auto grid sm:grid-cols-2 md:grid-cols-3  gap-x-14 grid-flow-row-dense ">
                 {/* ------------ Shopping Cart ------------- */}
                 {cart.map((product, i) => (
                     // console.log(product.product_id)
