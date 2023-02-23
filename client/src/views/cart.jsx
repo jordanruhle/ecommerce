@@ -27,7 +27,7 @@ export const Cart = ({ cart, setCart }) => {
                 ))}
 
                 {/* ------------ Order Summary ------------- */}
-                    <OrderSummary />
+                    <OrderSummary cart={cart}/>
             </div>
         </>
     )

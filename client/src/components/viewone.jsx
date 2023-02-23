@@ -38,7 +38,8 @@ const ViewOne = ({cart, setCart}) => {
         ...previousState,
         {
           product_id: id,
-          quantity: quantity
+          quantity: quantity,
+          price: productInfo.price
         }
       ])
     }
