@@ -1,7 +1,6 @@
 import React from 'react'
 
-const GrayButton = (props) => {
-    const buttonText = props.buttonText
+const GrayButton = ({buttonText}) => {
   
 
   return (
