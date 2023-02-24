@@ -63,6 +63,11 @@ const OrderSchema = new mongoose.Schema(
       required: [true, '{PATH} is required.'],
       min: [0, '{PATH} must be at least ${MIN}.']
     },
+    shippingMethod: {
+      type: Array,
+      required: [true, '{PATH} is required.'],
+      min: [1, '{PATH} must have at least {MINLENGTH} product to purchase.']
+    },
     shippingCost: {
       type: mongoose.Decimal128,
       required: [true, '{PATH} is required.'],

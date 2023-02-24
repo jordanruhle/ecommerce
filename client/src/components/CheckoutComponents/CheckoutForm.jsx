@@ -1,14 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-
 import CheckoutNav from './CheckoutNav';
 import BillingInfo from './BillingInfo';
 import ShippingAddressForm from './ShippingAddressForm';
 import RedButton from '../RedButton';
 import CheckoutItemCard from './CheckoutItemCard';
 
-const CheckoutForm = ({ cart }) => {
 
+const CheckoutForm = ({ cart }) => {
+    const [orderInfo, setOrderInfo] = useState({
+        name: "",
+        email: "",
+        shipping: {},
+        billing: {},
+        status: 'pending',
+        products: [],
+        subTotal: 0.00,
+        deliveryMethod: 'standard',
+        shippingCost: 0.00,
+        taxes: 0.00,
+        total: 0.00
+    })
+    
     const [billingInfo, setBillingInfo] = useState({
         email: "",
         firstName: "",
@@ -20,31 +33,77 @@ const CheckoutForm = ({ cart }) => {
         zip: 0,
         phone: 0,
         sameAddress: true,
-        shippingFirstName: "",
-        shippingLastName: "",
-        shippingCompany: "",
-        shippingAddress: "",
-        shippingAddress2: "",
-        shippingCity: "",
-        shippingZip: 0,
-        shippingPhone: 0,
-        deliveryMethod: "standard",
+    });
+
+    const [stripeInfo, setStripeInfo] = useState({
         cardNumber: 0,
         securityCode: 0,
         expirationMonth: "01",
         expirationYear: 2023
     });
+    
+    const [shippingInfo, setShippingInfo] = useState({
+        firstName: "",
+        lastName: "",
+        company: "",
+        address: "",
+        address2: "",
+        city: "",
+        zip: 0,
+        phone: 0,
+    });
 
     const [shippingForm, setShippingForm] = useState(false);
     const [errors, setErrors] = useState([]);
 
+    // const changeHandler = (e) => {
+    //     // if billing form then do this:
+    //     // if sameAddress === true then
+    //     // check for e.target.name in shippingInfo
+    //     // if name exist update billing and shipping
+
+    //     setBillingInfo({
+    //         ...billingInfo,
+    //         [e.target.name]: e.target.value
+    //     })
+    //     console.log(billingInfo)
+    // }
+
+    const lowercaseFirstLetter = (string) => {
+        return string.charAt(0).toLowerCase() + string.slice(1);
+      }
+
     const changeHandler = (e) => {
-        setBillingInfo({
-            ...billingInfo,
-            [e.target.name]: e.target.value
-        })
+        const { name, value } = e.target;
+    
+        // Update the appropriate object based on the input name
+        if (name.startsWith('billing')) {
+          setBillingInfo(prevState => ({ 
+            ...prevState, 
+            [lowercaseFirstLetter((name.substring(7)))]: value 
+        }));
+          if (billingInfo.sameAddress && shippingInfo.hasOwnProperty(lowercaseFirstLetter(name.substring(7)))) {
+            setShippingInfo(prevState => ({ 
+                ...prevState,
+                [lowercaseFirstLetter((name.substring(7)))]: value }));
+          }
+        } else if (name.startsWith('shipping')) {
+          setShippingInfo(prevState => ({ 
+            ...prevState,
+            [lowercaseFirstLetter((name.substring(8)))]: value }));
+        } else if (name.startsWith('stripe')) {
+          setStripeInfo(prevState => ({ 
+            ...prevState,
+            [lowercaseFirstLetter((name.substring(6)))]: value }));
+        } else {
+          setOrderInfo(prevState => ({
+            ...prevState,
+            [name]: value }));
+        }
         console.log(billingInfo)
-    }
+        console.log(shippingInfo)
+        console.log(stripeInfo)
+      };
 
     const boolCheckboxHandler = (e) => {
         const bool = e.target.value === "true" ? true : false;
@@ -128,18 +187,18 @@ const CheckoutForm = ({ cart }) => {
                     <div className="flex">
                         <div className='mb-6 mr-8 w-full'>
                             <p className='text-md font-semibold mb-2 uppercase'>Card Number</p>
-                            <input onChange={changeHandler} type="text" name="cardNumber" className=' w-full p-3 border' />
+                            <input onChange={changeHandler} type="text" name="stripeCardNumber" className=' w-full p-3 border' />
                         </div>
                         {/*---------- Card Security Code ---------- */}
                         <div className='mb-6 w-full'>
                             <p className='text-md font-semibold mb-2 uppercase'>Card Security Code</p>
-                            <input onChange={changeHandler} type="text" name="securityCode" className=' w-full p-3 border' />
+                            <input onChange={changeHandler} type="text" name="stripeSecurityCode" className=' w-full p-3 border' />
                         </div>
                     </div>
                     {/*---------- Expiration Month---------- */}
                     <p className='text-md font-semibold mb-2 uppercase'>Expiration</p>
                     <div className='mb-6 flex'>
-                        <select onChange={changeHandler} placeholder="Month" type="text" name="expirationMonth" className=' w-full p-3 mr-8 border' >
+                        <select onChange={changeHandler} placeholder="Month" type="text" name="stripeExpirationMonth" className=' w-full p-3 mr-8 border' >
                             <option value="01">01-January</option>
                             <option value="02">02-February</option>
                             <option value="03">03-March</option>
@@ -154,7 +213,7 @@ const CheckoutForm = ({ cart }) => {
                             <option value="12">12-December</option>
                         </select>
                         {/*---------- Expiration Year---------- */}
-                        <select onChange={changeHandler} placeholder="Year" type="text" name="expirationYear" className=' w-full p-3 border' >
+                        <select onChange={changeHandler} placeholder="Year" type="text" name="stripeExpirationYear" className=' w-full p-3 border' >
                             <option value="2023">2023</option>
                             <option value="2024">2024</option>
                             <option value="2025">2025</option>

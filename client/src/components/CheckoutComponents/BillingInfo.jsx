@@ -12,47 +12,47 @@ const BillingInfo = (props) => {
             {/*---------- Email ---------- */}
             <div className='mb-6'>
                 <p className='text-md font-semibold mb-2 uppercase'>Email*</p>
-                <input onChange={changeHandler} type="email" name="email" className=' w-full p-3 border' />
+                <input onChange={changeHandler} type="email" name="billingEmail" className=' w-full p-3 border' />
             </div>
             {/*---------- First Name ---------- */}
             <div className=' mb-6'>
                 <p className='text-md font-semibold mb-2 uppercase focus:bg-slate-50'>Frist Name*</p>
-                <input onChange={changeHandler} type="text" name="firstName" className=' w-full p-3 border' />
+                <input onChange={changeHandler} type="text" name="billingFirstName" className=' w-full p-3 border' />
             </div>
             {/*---------- Last Name ---------- */}
             <div className='mb-6'>
                 <p className='text-md font-semibold mb-2 uppercase'>Last Name*</p>
-                <input onChange={changeHandler} type="text" name="lastName" className=' w-full p-3 border' />
+                <input onChange={changeHandler} type="text" name="billingLastName" className=' w-full p-3 border' />
             </div>
             {/*---------- Company ---------- */}
             <div className='mb-6'>
                 <p className='text-md font-semibold mb-2 uppercase'>Company</p>
-                <input onChange={changeHandler} type="text" name="company" className=' w-full p-3 border' />
+                <input onChange={changeHandler} type="text" name="billingCompany" className=' w-full p-3 border' />
             </div>
             {/*---------- Address ---------- */}
             <div className='mb-6'>
                 <p className='text-md font-semibold mb-2 uppercase'>Address*</p>
-                <input onChange={changeHandler} type="text" name="address" className=' w-full p-3 border' />
+                <input onChange={changeHandler} type="text" name="billingAddress" className=' w-full p-3 border' />
             </div>
             {/*---------- Address Line 2 ---------- */}
             <div className='mb-6'>
                 <p className='text-md font-semibold mb-2 uppercase'>Address Line 2 (Optional)</p>
-                <input onChange={changeHandler} type="text" name="address2" className=' w-full p-3 border' />
+                <input onChange={changeHandler} type="text" name="billingAddress2" className=' w-full p-3 border' />
             </div>
             {/*---------- City ---------- */}
             <div className='mb-6'>
                 <p className='text-md font-semibold mb-2 uppercase'>City*</p>
-                <input onChange={changeHandler} type="text" name="city" className=' w-full p-3 border' />
+                <input onChange={changeHandler} type="text" name="billingCity" className=' w-full p-3 border' />
             </div>
             {/*---------- Zip/Postal Code ---------- */}
             <div className='mb-6'>
                 <p className='text-md font-semibold mb-2 uppercase'>Zip/Postal Code*</p>
-                <input onChange={changeHandler} type="text" name="zip" className=' w-full p-3 border' />
+                <input onChange={changeHandler} type="text" name="billingZip" className=' w-full p-3 border' />
             </div>
             {/*---------- Phone ---------- */}
             <div className='mb-6'>
                 <p className='text-md font-semibold mb-2 uppercase'>Phone*</p>
-                <input onChange={changeHandler} type="text" name="phone" className=' w-full p-3 border' />
+                <input onChange={changeHandler} type="text" name="billingPhone" className=' w-full p-3 border' />
             </div>
         </div>
     )
