@@ -5,6 +5,7 @@ import BillingInfo from './BillingInfo';
 import ShippingAddressForm from './ShippingAddressForm';
 import RedButton from '../RedButton';
 import CheckoutItemCard from './CheckoutItemCard';
+import { DeliveryMethod } from './DeliveryMethod';
 
 
 const CheckoutForm = ({ cart }) => {
@@ -49,33 +50,18 @@ const CheckoutForm = ({ cart }) => {
         address: "",
         address2: "",
         city: "",
-        zip: 0,
-        phone: 0,
+        zip: 0
     });
 
     const [shippingForm, setShippingForm] = useState(false);
     const [errors, setErrors] = useState([]);
 
-    // const changeHandler = (e) => {
-    //     // if billing form then do this:
-    //     // if sameAddress === true then
-    //     // check for e.target.name in shippingInfo
-    //     // if name exist update billing and shipping
-
-    //     setBillingInfo({
-    //         ...billingInfo,
-    //         [e.target.name]: e.target.value
-    //     })
-    //     console.log(billingInfo)
-    // }
-
     const lowercaseFirstLetter = (string) => {
         return string.charAt(0).toLowerCase() + string.slice(1);
       }
 
-    const changeHandler = (e) => {
+    const CheckoutChangeHandler = (e) => {
         const { name, value } = e.target;
-    
         // Update the appropriate object based on the input name
         if (name.startsWith('billing')) {
           setBillingInfo(prevState => ({ 
@@ -100,9 +86,7 @@ const CheckoutForm = ({ cart }) => {
             ...prevState,
             [name]: value }));
         }
-        console.log(billingInfo)
-        console.log(shippingInfo)
-        console.log(stripeInfo)
+        console.log(orderInfo)
       };
 
     const boolCheckboxHandler = (e) => {
@@ -111,6 +95,28 @@ const CheckoutForm = ({ cart }) => {
             ...billingInfo,
             [e.target.name]: bool
         })
+        if(bool === true){
+            setShippingInfo({
+                firstName: billingInfo.firstName,
+                lastName: billingInfo.lastName,
+                company: billingInfo.company,
+                address: billingInfo.address,
+                address2: billingInfo.address2,
+                city: billingInfo.city,
+                zip: billingInfo.zip
+            })
+        } 
+        if(bool === false){
+            setShippingInfo({
+                firstName: "",
+                lastName: "",
+                company: "",
+                address: "",
+                address2: "",
+                city: "",
+                zip: 0
+            })
+        }
         console.log(billingInfo)
     }
 
@@ -132,14 +138,16 @@ const CheckoutForm = ({ cart }) => {
                 <form className='bg-white p-10 ' action="">
 
                     {/*----------- Billing Information Form ------------ */}
-                    <BillingInfo changeHandler={changeHandler} />
+                    <BillingInfo CheckoutChangeHandler={CheckoutChangeHandler} />
 
 
                     {/*----------- Shipping Address Same as Billing? ------------ */}
                     <h3 className='text-2xl my-4 uppercase'>Shipping Address </h3>
+                    {/* True */}
                     <div className='mb-2'>
                         <input onChange={boolCheckboxHandler} type="checkbox" name="sameAddress" htmlFor="shippingSameAsBilling" value="true" checked={billingInfo.sameAddress === true} /> <p className='inline'>Ship to My Billing Address</p>
                     </div>
+                    {/* False */}
                     <div className='mb-2'>
                         <input onChange={boolCheckboxHandler} type="checkbox" name="sameAddress" htmlFor="shippingDifferentThenBilling" value="false" checked={billingInfo.sameAddress === false} /> <p className='inline'>Ship to Different Address</p>
                     </div>
@@ -147,38 +155,11 @@ const CheckoutForm = ({ cart }) => {
 
                     {/*----------- Shipping Information Form ------------ */}
                     {billingInfo.sameAddress === true ? <div></div>
-                        : <ShippingAddressForm changeHandler={changeHandler} />
+                        : <ShippingAddressForm CheckoutChangeHandler={CheckoutChangeHandler} />
                     }
 
-
                     {/*----------- Shipping Type ------------ */}
-                    <h3 className='text-2xl my-4 uppercase'>Pick a Shipping Option</h3>
-                    <div className="max-w-sm">
-                        <div className='flex justify-between mb-2'>
-                            <div>
-                                <input onChange={changeHandler} type="radio" name="deliveryMethod" htmlFor="economy" value="economy" /> <p className='inline'>Economy</p>
-                            </div>
-                            <p>
-                                $79.99
-                            </p>
-                        </div>
-                        <div className='flex justify-between mb-2'>
-                            <div>
-                                <input onChange={changeHandler} type="radio" name="deliveryMethod" htmlFor="standard" value="standard" defaultChecked /> <p className='inline'>Standard</p>
-                            </div>
-                            <p>
-                                $79.99
-                            </p>
-                        </div>
-                        <div className='flex justify-between mb-2'>
-                            <div>
-                                <input onChange={changeHandler} type="radio" name="deliveryMethod" htmlFor="twoDay" value="twoDay" /> <p className='inline'>Two Business Days</p>
-                            </div>
-                            <p>
-                                $79.99
-                            </p>
-                        </div>
-                    </div>
+                    <DeliveryMethod CheckoutChangeHandler={CheckoutChangeHandler} />
 
                     {/*----------- Credit Card Information ------------ */}
                     {/*----------- Credit Card ------------ */}
@@ -187,18 +168,18 @@ const CheckoutForm = ({ cart }) => {
                     <div className="flex">
                         <div className='mb-6 mr-8 w-full'>
                             <p className='text-md font-semibold mb-2 uppercase'>Card Number</p>
-                            <input onChange={changeHandler} type="text" name="stripeCardNumber" className=' w-full p-3 border' />
+                            <input onChange={CheckoutChangeHandler} type="text" name="stripeCardNumber" className=' w-full p-3 border' />
                         </div>
                         {/*---------- Card Security Code ---------- */}
                         <div className='mb-6 w-full'>
                             <p className='text-md font-semibold mb-2 uppercase'>Card Security Code</p>
-                            <input onChange={changeHandler} type="text" name="stripeSecurityCode" className=' w-full p-3 border' />
+                            <input onChange={CheckoutChangeHandler} type="text" name="stripeSecurityCode" className=' w-full p-3 border' />
                         </div>
                     </div>
                     {/*---------- Expiration Month---------- */}
                     <p className='text-md font-semibold mb-2 uppercase'>Expiration</p>
                     <div className='mb-6 flex'>
-                        <select onChange={changeHandler} placeholder="Month" type="text" name="stripeExpirationMonth" className=' w-full p-3 mr-8 border' >
+                        <select onChange={CheckoutChangeHandler} placeholder="Month" type="text" name="stripeExpirationMonth" className=' w-full p-3 mr-8 border' >
                             <option value="01">01-January</option>
                             <option value="02">02-February</option>
                             <option value="03">03-March</option>
@@ -213,7 +194,7 @@ const CheckoutForm = ({ cart }) => {
                             <option value="12">12-December</option>
                         </select>
                         {/*---------- Expiration Year---------- */}
-                        <select onChange={changeHandler} placeholder="Year" type="text" name="stripeExpirationYear" className=' w-full p-3 border' >
+                        <select onChange={CheckoutChangeHandler} placeholder="Year" type="text" name="stripeExpirationYear" className=' w-full p-3 border' >
                             <option value="2023">2023</option>
                             <option value="2024">2024</option>
                             <option value="2025">2025</option>
