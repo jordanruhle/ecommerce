@@ -14,7 +14,7 @@ const CheckoutOrderSummary = ({cart}) => {
             </div>
             {cart.map((product, i) => (
                 // console.log(product.product_id)
-                <CheckoutItemCard key={i} id={product.product_id} />
+                <CheckoutItemCard key={i} id={product.product_id} quantity={product.quantity} />
             ))}
         </>
     )

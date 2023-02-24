@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
-const CheckoutItemCard = ({id}) => {
+const CheckoutItemCard = ({id, quantity}) => {
   const [loaded, setLoaded] = useState(false);
   const [productInfo, setProductInfo] = useState({})
   useEffect(() => {
@@ -32,16 +32,15 @@ const CheckoutItemCard = ({id}) => {
         <img src="https://content.backcountry.com/images/items/1200/YTI/YTIR1DG/TUR.jpg" alt="cart item" />
         <div>
           <p className='uppercase font-semibold'>{productInfo.brand} {productInfo.name}</p>
+          {/* eventually generate color productInfo.color? */}
           <p>Turquoise</p>
           <p>{productInfo.size}</p>
         </div>
       </div>
       <div className='col-span-2 flex justify-between'>
         <p>${productInfo.price}</p>
-        {/* needs to be cart.quantity */}
-        <p>1</p>
-        {/* eventually needs to be product.price * cart.quantity */}
-        <p>$6,800</p>
+        <p>{quantity}</p>
+        <p>${productInfo.price * quantity}</p>
       </div>
     </div>
   )
