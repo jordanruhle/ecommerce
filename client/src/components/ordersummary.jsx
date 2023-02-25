@@ -10,12 +10,12 @@ const OrderSummary = ({ cart }) => {
 
     useEffect(() => {
         let cartTotal = 0;
-        for (let i = 0; i < cart.length; i++) {
-            cartTotal += cart[i]['quantity'] * cart[i]['price'];
+        for (let product of cart) {
+            cartTotal += product['quantity'] * product['price'];
         }
-        setSubTotal(cartTotal)
-        console.log(cartTotal)
-    }, [cart])
+        setSubTotal(cartTotal);
+        console.log(cartTotal);
+    }, [cart]);
 
     return (
         <form action="/checkout" className='bg-white flex flex-col row-span-2  p-4'>
