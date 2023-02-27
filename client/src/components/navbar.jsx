@@ -10,7 +10,7 @@ const Navbar = () => {
         <div className='w-full flex justify-center sm:justify-between items-center py-2 px-8  text-white bg-stone-800 font-body flex-wrap'>
 
             {/*----------- Company Logo ------------ */}
-            <CompanyLogo linkRoute='/'/>
+            <CompanyLogo linkRoute='/' />
             {/* ------------- Links ----------------- */}
 
             <ul className='flex items-center '>
@@ -227,7 +227,7 @@ const Navbar = () => {
                     </Menu>
                 </li>
                 <li>
-                    <FaShoppingCart size="1.2em" />
+                    <a href='/cart'><FaShoppingCart size="1.2em" /></a>
                 </li>
             </ul>
         </div >
