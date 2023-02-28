@@ -49,8 +49,9 @@ const AdminOrders = () => {
             </tr>
           </thead>
           <tbody>
-            {loaded
-              ? allOrders.map((order) => (
+            {
+              loaded ?
+                allOrders.map((order) => (
                   <tr className="border-b hover:bg-neutral-50" key={order._id}>
                     <td className="text-xl py-4 px-4 underline text-blue-700 ">
                       <a href={`/orders/show/${order._id}`}>{order._id}</a>
@@ -58,13 +59,10 @@ const AdminOrders = () => {
                     <td className="text-xl py-4 px-4">
                       {order.billing.firstName} {order.billing.lastName}
                     </td>
-                    <td className="text-xl py-4 px-4">{order.createdAt}</td>
+                    <td className="text-xl py-4 px-4">{new Date(order.createdAt).toLocaleDateString()}</td>
                     <td className="text-xl py-4 px-4">{order.billing.email}</td>
                     <td className="text-xl py-4 px-4">
-                      {order.shipping.address}
-                      {order.shipping.address2}
-                      {order.shipping.city},{/* {order.shipping.state}  */}
-                      {order.shipping.zip}
+                      {order.shipping.address} {order.shipping.address2} {order.shipping.city}, {order.shipping.state}  {order.shipping.zip}
                     </td>
                     <td className="text-xl py-4 px-4">
                       {Number(order.total.$numberDecimal).toLocaleString(
@@ -75,7 +73,8 @@ const AdminOrders = () => {
                     <td className="text-xl py-4 px-4">{order.status}</td>
                   </tr>
                 ))
-              : null}
+                : null
+            }
           </tbody>
         </table>
       </div>

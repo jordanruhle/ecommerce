@@ -36,6 +36,11 @@ const OrderSchema = new mongoose.Schema(
         required: [true, '{PATH} is required.'],
         minLength: [3, '{PATH} must be at least {MINLENGTH} characters.']
       },
+      state: {
+        type: String,
+        required: [true, '{PATH} is required.'],
+        minLength: [2, '{PATH} must be at least {MINLENGTH} characters.']
+      },
       zip: {
         type: String,
         required: [true, '{PATH} is required.'],
@@ -76,6 +81,11 @@ const OrderSchema = new mongoose.Schema(
         type: String,
         required: [true, '{PATH} is required.'],
         minLength: [3, '{PATH} must be at least {MINLENGTH} characters.']
+      },
+      state: {
+        type: String,
+        required: [true, '{PATH} is required.'],
+        minLength: [2, '{PATH} must be at least {MINLENGTH} characters.']
       },
       zip: {
         type: String,

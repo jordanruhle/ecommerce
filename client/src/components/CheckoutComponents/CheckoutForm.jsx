@@ -23,6 +23,7 @@ const CheckoutForm = ({ cart }) => {
             address: "",
             address2: "",
             city: "",
+            state: "",
             zip: 0,
             phone: 0,
             sameAddress: true
@@ -34,6 +35,7 @@ const CheckoutForm = ({ cart }) => {
             address: "",
             address2: "",
             city: "",
+            state: "",
             zip: 0
         },
         status: 'pending',
@@ -136,6 +138,7 @@ const boolCheckboxHandler = (e) => {
                 address: orderInfo.billing.address,
                 address2: orderInfo.billing.address2,
                 city: orderInfo.billing.city,
+                state: orderInfo.billing.state,
                 zip: orderInfo.billing.zip
             }
         }))
@@ -150,6 +153,7 @@ const boolCheckboxHandler = (e) => {
                 address: "",
                 address2: "",
                 city: "",
+                state: "",
                 zip: 0
             }
         }))
