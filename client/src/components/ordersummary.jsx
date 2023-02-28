@@ -5,8 +5,6 @@ import RedButton from './RedButton'
 
 const OrderSummary = ({ cart }) => {
     const [subTotal, setSubTotal] = useState(0);
-    console.log(cart)
-    // console.log(cart[0].quantity)
 
     useEffect(() => {
         let cartTotal = 0;
@@ -14,7 +12,6 @@ const OrderSummary = ({ cart }) => {
             cartTotal += product['quantity'] * product['price'];
         }
         setSubTotal(cartTotal);
-        console.log(cartTotal);
     }, [cart]);
 
     return (
@@ -23,16 +20,21 @@ const OrderSummary = ({ cart }) => {
             {/* ----------- Order Summary --------------- */}
             <h2 className='text-2xl my-4' >Order Summary</h2>
 
-            {/* ----------- Shipping -------------- */}
-            <div className='flex justify-between'>
-                <p className='text-lg my-4'>Shipping</p>
-                <p className='text-lg my-4' >FREE!</p>
-            </div>
 
             {/* ----------- Subtotal -------------- */}
             <div className='flex justify-between'>
                 <p className='text-lg my-4'>Subtotal</p>
                 <p className='text-lg my-4' >${subTotal}</p>
+            </div>
+          
+            {/* ----------- Shipping -------------- */}
+            <div className='flex justify-between'>
+                <p className='text-lg my-4'>Shipping</p>
+                <p className='text-lg my-4' >{
+                    subTotal > 2000 ?
+                        "FREE!"
+                        : Number(subTotal * 0.013).toLocaleString('en-US', { style: 'currency', currency: 'USD' })
+                }</p>
             </div>
 
             {/* ----------- Tax -------------- */}
