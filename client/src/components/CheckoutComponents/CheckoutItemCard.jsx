@@ -22,8 +22,6 @@ const CheckoutItemCard = ({ id, quantity }) => {
           size: product.size,
         }));
         setLoaded(true);
-        console.log(typeof productInfo.price)
-
       })
       .catch(err => console.log(err));
   }, []);

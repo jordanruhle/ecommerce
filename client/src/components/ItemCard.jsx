@@ -9,7 +9,6 @@ const ItemCard = ({ id, cart, setCart, removeProduct, updateProduct, quantity })
     useEffect(() => {
         axios.get(`http://localhost:8000/api/product/${id}`)
             .then(res => {
-                console.log(res.data);
                 let { product } = res.data
                 setProductInfo((previousState) => ({
                     ...previousState,

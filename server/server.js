@@ -24,22 +24,6 @@ app.post('/uploads', upload.single('image'), function (req, res, next) {
     console.log('request file: ', req.file , 'request body: ' + req.body)
   })
 
-//  Multer Errors
-// app.post('/uploads', function (req, res) {
-//     upload(req, res, function (err) {
-//       if (err instanceof multer.MulterError) {
-//         // A Multer error occurred when uploading.
-//         console.log(`Multer error: ${err} occured`)
-//       } else if (err) {
-//         // An unknown error occurred when uploading.
-//         console.log(`Unknown error: ${err} occured when uploading image`)
-//       }
-  
-//       // Everything went fine.
-//     })
-//   })
-
-
 
 // middleware
 app.use(cors())
@@ -52,5 +36,6 @@ require("./config/mongoose.config")(DB)
 
 // modularize routes
 require("./routes/product.routes")(app)
+require("./routes/order.routes")(app)
 
 app.listen(port, () => console.log(`Listening on port: ${port}`) );
