@@ -39,7 +39,7 @@ const CheckoutForm = ({ cart }) => {
             zip: 0
         },
         status: 'pending',
-        products: {},
+        products: [],
         deliveryMethod: 'standard',
         shippingCost: 0.00,
         subTotal: 0.00,
