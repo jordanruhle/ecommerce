@@ -10,10 +10,18 @@ module.exports.getAllOrders = (req, res) => {
 }
 
 // Find one
-module.exports.findoneSingleOrder = (req, res) => {
-    Orders.findOne({ _id: req.params.id })
-        .then(oneSingleOrder => res.json({ order: oneSingleOrder }))
-        .catch(err => res.json({ message: 'Something went wrong', error: err }));
+module.exports.findOneSingleOrder = (req, res) => {
+    Orders.find()
+    .then(allOrders => res.json({order: allOrders} ))
+    .catch(err => res.json({ message: 'Something went wrong', error: err }));
+    // const id = req.params.id;
+    // console.log(id)
+    // if (!mongoose.Types.ObjectId.isValid(id)) {
+    //     return res.json({ message: id });
+    // }
+    // Orders.find(req.params.id)
+    //     .then(oneSingleOrder => res.json({ order: oneSingleOrder }))
+    //     .catch(err => res.json({ message: 'Something went wrong', error: err }));
 }
 
 //  Create

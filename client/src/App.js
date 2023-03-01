@@ -11,6 +11,7 @@ import AdminProducts from './views/AdminProducts';
 import ProductCreateOne from './views/ProductCreateOne';
 import ProductEdit from './views/ProductEdit'
 import FilteredProductsList from './views/FilteredProductsList';
+import AdminViewOneOrder from "./views/AdminViewOneOrder";
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
         <Route element={<AdminLogin />} path='/admin' />
         <Route element={<AdminOrders />} path='/dashboard/orders' />
         <Route element={<AdminProducts />} path='/dashboard/products' />
+        <Route element={<AdminViewOneOrder />} path='/orders/show/:id' />
         <Route element={<ProductCreateOne />} path='/products/create' />
         <Route element={<ProductEdit />} path='/products/:id/edit' />
           {/* <Route element={<Payment />} path="/payment" />
