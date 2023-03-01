@@ -11,9 +11,11 @@ const AdminViewOneOrder = () => {
   const [order, setOrder] = useState({})
   const [loaded, setLoaded] = useState()
   const { id } = useParams();
-
+  console.log(id)
+  
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/order/63fe51892ae557838f9870d2`)
+    console.log(id)
+    axios.get(`http://localhost:8000/order/${id}`)
       .then(res => {
         let { order } = res.data
         let { billing, shipping } = res.data.order
@@ -53,23 +55,27 @@ const AdminViewOneOrder = () => {
         }));
         setLoaded(true);
       })
-      .catch(err => console.log(err));
-  }, []);
+      .catch(error =>{
+        console.log('Error:', error);
+        console.log('Request payload:', error.config.data);
+        console.log('Endpoint:', error.config.url);
+        });
+}, []);
 
-  return (
-    <>
-      <AdminNavBar />
-      {
-        loaded ?
-          <>
-            <OrderAddressCard order={order} />
-            <ItemizedOrderTable order={order} />
-            <OrderSummary order={order} />
-          </>
-          : null
-      }
-    </>
-  )
+return (
+  <>
+    <AdminNavBar />
+    {
+      loaded ?
+        <>
+          <OrderAddressCard order={order} />
+          <ItemizedOrderTable order={order} />
+          <OrderSummary order={order} />
+        </>
+        : null
+    }
+  </>
+)
 }
 
 export default AdminViewOneOrder
