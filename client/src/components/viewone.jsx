@@ -31,6 +31,7 @@ const ViewOne = ({cart, setCart}) => {
       // If the product exists, update the quantity
       const updatedCart = [...cart]
       updatedCart[productIndex].quantity += quantity
+      updatedCart[productIndex].total = updatedCart[productIndex].quantity * productInfo.price
       setCart(updatedCart)
     } else {
       // If the product does not exist, add it to the cart
@@ -38,8 +39,12 @@ const ViewOne = ({cart, setCart}) => {
         ...previousState,
         {
           product_id: id,
+          name: productInfo.name,
+          price: productInfo.price,
+          color: productInfo.color,
+          size: productInfo.size,
           quantity: quantity,
-          price: productInfo.price
+          total: quantity * productInfo.price
         }
       ])
     }
