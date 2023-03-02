@@ -37,5 +37,6 @@ require("./config/mongoose.config")(DB)
 // modularize routes
 require("./routes/product.routes")(app)
 require("./routes/order.routes")(app)
+require("./routes/stripe.routes")(app)
 
 app.listen(port, () => console.log(`Listening on port: ${port}`) );

@@ -9,33 +9,33 @@ const CreditCardForm = ({CheckoutChangeHandler}) => {
             <div className="flex">
                 <div className='mb-6 mr-8 w-full'>
                     <p className='text-md font-semibold mb-2 uppercase'>Card Number</p>
-                    <input onChange={CheckoutChangeHandler} type="text" name="stripeCardNumber" className=' w-full p-3 border' />
+                    <input onChange={CheckoutChangeHandler} type="text" name="stripeNumber" className=' w-full p-3 border' />
                 </div>
                 {/*---------- Card Security Code ---------- */}
                 <div className='mb-6 w-full'>
                     <p className='text-md font-semibold mb-2 uppercase'>Card Security Code</p>
-                    <input onChange={CheckoutChangeHandler} type="text" name="stripeSecurityCode" className=' w-full p-3 border' />
+                    <input onChange={CheckoutChangeHandler} type="text" name="stripeCvc" className=' w-full p-3 border' />
                 </div>
             </div>
             {/*---------- Expiration Month---------- */}
             <p className='text-md font-semibold mb-2 uppercase'>Expiration</p>
             <div className='mb-6 flex'>
-                <select onChange={CheckoutChangeHandler} placeholder="Month" type="text" name="stripeExpirationMonth" className=' w-full p-3 mr-8 border' >
-                    <option value="01">01-January</option>
-                    <option value="02">02-February</option>
-                    <option value="03">03-March</option>
-                    <option value="04">04-April</option>
-                    <option value="05">05-May</option>
-                    <option value="06">06-June</option>
-                    <option value="07">07-July</option>
-                    <option value="08">08-August</option>
-                    <option value="09">09-September</option>
+                <select onChange={CheckoutChangeHandler} placeholder="Month" type="text" name="stripeExp_month" className=' w-full p-3 mr-8 border' >
+                    <option value="1">01-January</option>
+                    <option value="2">02-February</option>
+                    <option value="3">03-March</option>
+                    <option value="4">04-April</option>
+                    <option value="5">05-May</option>
+                    <option value="6">06-June</option>
+                    <option value="7">07-July</option>
+                    <option value="8">08-August</option>
+                    <option value="9">09-September</option>
                     <option value="10">10-October</option>
                     <option value="11">11-November</option>
                     <option value="12">12-December</option>
                 </select>
                 {/*---------- Expiration Year---------- */}
-                <select onChange={CheckoutChangeHandler} placeholder="Year" type="text" name="stripeExpirationYear" className=' w-full p-3 border' >
+                <select onChange={CheckoutChangeHandler} placeholder="Year" type="text" name="stripeExp_year" className=' w-full p-3 border' >
                     <option value="2023">2023</option>
                     <option value="2024">2024</option>
                     <option value="2025">2025</option>
