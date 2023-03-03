@@ -70,7 +70,7 @@ const AdminOrders = () => {
                         { style: "currency", currency: "USD" }
                       )}
                     </td>
-                    <td className="text-xl py-4 px-4">{order.status}</td>
+                    <td className="text-xl py-4 px-4">{order.status.charAt(0).toUpperCase() + order.status.slice(1)}</td>
                   </tr>
                 ))
                 : null
