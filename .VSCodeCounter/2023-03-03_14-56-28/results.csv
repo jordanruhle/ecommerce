@@ -1,0 +1,47 @@
+"filename", "language", "JavaScript", "JavaScript JSX", "CSS", "comment", "blank", "total"
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\App.js", "JavaScript", 49, 0, 0, 0, 8, 57
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\components\AdminComponents\ItemizedOrderTable.jsx", "JavaScript JSX", 0, 35, 0, 0, 4, 39
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\components\AdminComponents\OrderBillingAddressCard.jsx", "JavaScript JSX", 0, 54, 0, 10, 4, 68
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\components\AdminComponents\OrderShippingAddressCard.jsx", "JavaScript JSX", 0, 46, 0, 8, 4, 58
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\components\AdminComponents\OrderSummary.jsx", "JavaScript JSX", 0, 25, 0, 5, 5, 35
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\components\AdminNavBar.jsx", "JavaScript JSX", 0, 25, 0, 5, 13, 43
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\components\AdminProductTable.jsx", "JavaScript JSX", 0, 70, 0, 1, 6, 77
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\components\Alert.jsx", "JavaScript JSX", 0, 19, 0, 1, 4, 24
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\components\CheckoutComponents\BillingInfo.jsx", "JavaScript JSX", 0, 104, 0, 11, 4, 119
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\components\CheckoutComponents\CheckoutForm.jsx", "JavaScript JSX", 0, 233, 0, 8, 26, 267
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\components\CheckoutComponents\CheckoutItemCard.jsx", "JavaScript JSX", 0, 51, 0, 1, 3, 55
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\components\CheckoutComponents\CheckoutNav.jsx", "JavaScript JSX", 0, 11, 0, 1, 3, 15
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\components\CheckoutComponents\CheckoutOrderSummary.jsx", "JavaScript JSX", 0, 20, 0, 1, 2, 23
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\components\CheckoutComponents\CreditCardForm.jsx", "JavaScript JSX", 0, 47, 0, 5, 2, 54
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\components\CheckoutComponents\DeliveryMethod.jsx", "JavaScript JSX", 0, 50, 0, 0, 5, 55
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\components\CheckoutComponents\SameAddressCheckbox.jsx", "JavaScript JSX", 0, 15, 0, 2, 2, 19
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\components\CheckoutComponents\ShippingAddressForm.jsx", "JavaScript JSX", 0, 95, 0, 8, 5, 108
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\components\CheckoutComponents\StripePaymentForm.jsx", "JavaScript JSX", 0, 18, 0, 1, 5, 24
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\components\CompanyLogo.jsx", "JavaScript JSX", 0, 8, 0, 0, 2, 10
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\components\GrayButton.jsx", "JavaScript JSX", 0, 7, 0, 0, 6, 13
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\components\ItemCard.jsx", "JavaScript JSX", 0, 86, 0, 1, 6, 93
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\components\ProductDescription.jsx", "JavaScript JSX", 0, 12, 0, 0, 2, 14
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\components\ProductFilters.jsx", "JavaScript JSX", 0, 30, 0, 0, 2, 32
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\components\ProductForm.jsx", "JavaScript JSX", 0, 86, 0, 11, 18, 115
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\components\RedButton.jsx", "JavaScript JSX", 0, 7, 0, 0, 5, 12
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\components\StripeComponents\StripeProviderWrapper.jsx", "JavaScript JSX", 0, 14, 0, 0, 4, 18
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\components\SubCategoryFilter.jsx", "JavaScript JSX", 0, 34, 0, 0, 5, 39
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\components\navbar.jsx", "JavaScript JSX", 0, 221, 0, 5, 11, 237
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\components\ordersummary.jsx", "JavaScript JSX", 0, 40, 0, 5, 13, 58
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\components\productgrid.jsx", "JavaScript JSX", 0, 54, 0, 3, 4, 61
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\components\viewone.jsx", "JavaScript JSX", 0, 107, 0, 9, 11, 127
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\index.css", "CSS", 0, 0, 4, 0, 1, 5
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\index.js", "JavaScript", 11, 0, 0, 3, 5, 19
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\views\AdminLogin.jsx", "JavaScript JSX", 0, 34, 0, 2, 5, 41
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\views\AdminOrders.jsx", "JavaScript JSX", 0, 80, 0, 0, 6, 86
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\views\AdminProducts.jsx", "JavaScript JSX", 0, 26, 0, 2, 7, 35
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\views\AdminViewOneOrder.jsx", "JavaScript JSX", 0, 88, 0, 1, 5, 94
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\views\FilteredProductsList.jsx", "JavaScript JSX", 0, 26, 0, 0, 5, 31
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\views\OrderConfirmation.jsx", "JavaScript JSX", 0, 89, 0, 1, 5, 95
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\views\ProductCreateOne.jsx", "JavaScript JSX", 0, 43, 0, 0, 6, 49
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\views\ProductDetails.jsx", "JavaScript JSX", 0, 12, 0, 0, 2, 14
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\views\ProductEdit.jsx", "JavaScript JSX", 0, 83, 0, 6, 6, 95
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\views\ViewAllProducts.jsx", "JavaScript JSX", 0, 25, 0, 0, 4, 29
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\views\cart.jsx", "JavaScript JSX", 0, 22, 0, 8, 6, 36
+"c:\Users\Bem\Desktop\ReactApps\ecommerce\client\src\views\checkout.jsx", "JavaScript JSX", 0, 11, 0, 1, 2, 14
+"Total", "-", 60, 2163, 4, 126, 259, 2612

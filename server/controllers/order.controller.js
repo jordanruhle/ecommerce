@@ -37,11 +37,15 @@ module.exports.findoneSingleOrder = (req, res) => {
 }
 
 //  Create
-module.exports.createNewOrder = (req, res) => {
+module.exports.createNewOrder = async (req, res) => {
     console.log(req.body)
-    Orders.create(req.body)
-        .then(newlyCreatedOrder => res.json({ order: newlyCreatedOrder }))
-        .catch(err => res.status(400).json({ message: 'Something went wrong', error: err }));
+    try {
+        const newOrder = await new Orders(req.body).save()
+        res.status(201).json({message: "order created", orderId: newOrder._id})
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: 'Server error'})
+    }
 }
 
 // Update

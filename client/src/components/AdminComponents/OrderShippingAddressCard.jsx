@@ -5,8 +5,8 @@ const OrderShippingAddressCard = ({ order }) => {
   return (
     <div className='bg-white rounded shadow p-4 col-span-1 flex flex-col'>
 
-      {/* ----------- Shipping Info --------------- */}
-      <p className='text-xl mb-2 uppercase font-semibold'>Shipping Info:</p>
+      {/* ----------- Shipping Address --------------- */}
+      <p className='text-xl mb-2 uppercase font-semibold'>Shipping Address:</p>
 
       {/* ----------- Name -------------- */}
       <div className='flex justify-between'>

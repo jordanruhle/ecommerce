@@ -4,7 +4,7 @@ import CheckoutItemCard from './CheckoutItemCard'
 const CheckoutOrderSummary = ({cart}) => {
     return (
         <>
-            <div className="grid grid-cols-5">
+            <div className="grid grid-cols-5 col-span-2">
                 <p className='col-span-3 uppercase font-semibold'>Item Description</p>
                 <div className='col-span-2 flex justify-between'>
                     <p className='uppercase font-semibold'>Each</p>
