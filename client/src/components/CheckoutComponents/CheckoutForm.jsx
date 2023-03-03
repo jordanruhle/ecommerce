@@ -200,7 +200,12 @@ const CheckoutForm = ({ cart, stripe }) => {
                 status: "received"
             }));
 
-            const res = await axios.post("http://localhost:8000/api/order", orderInfo);
+            const updatedOrderInfo = {
+                ...orderInfo,
+                status: "recieved"
+            }
+
+            const res = await axios.post("http://localhost:8000/api/order", updatedOrderInfo);
             console.log(res.data);
             navigate(`/order-confirmation/${res.data.id}`);
         } catch (error) {
