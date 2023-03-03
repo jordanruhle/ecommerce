@@ -37,7 +37,7 @@ function App() {
         <Route element={<FilteredProductsList />} path='/products/:type/:name' />
         <Route element={<ProductDetails cart={cart} setCart={setCart} />} path='/products/:id' />
         <Route element={<Cart cart={cart} setCart={setCart} />} path='/cart' />
-        <Route element={<Checkout cart={cart} />} path='/checkout' />
+        <Route element={<Checkout cart={cart} setCart={setCart} />} path='/checkout' />
         <Route element={<AdminLogin />} path='/admin' />
         <Route element={<AdminOrders />} path='/dashboard/orders' />
         <Route element={<AdminProducts />} path='/dashboard/products' />

@@ -14,7 +14,7 @@ import StripeProviderWrapper from '../StripeComponents/StripeProviderWrapper';
 import Alert from '../Alert';
 
 
-const CheckoutForm = ({ cart, stripe }) => {
+const CheckoutForm = ({ cart, setCart }) => {
     const navigate = useNavigate()
     const [orderInfo, setOrderInfo] = useState({
         billing: {
@@ -206,8 +206,14 @@ const CheckoutForm = ({ cart, stripe }) => {
             }
 
             const res = await axios.post("http://localhost:8000/api/order", updatedOrderInfo);
+            console.log(res);
             console.log(res.data);
-            navigate(`/order-confirmation/${res.data.id}`);
+            const orderId = res.data.orderId
+            console.log(orderId);
+
+            setCart([])
+
+            navigate(`/order-confirmation/${orderId}`);
         } catch (error) {
             console.error(error);
             setErrors([error.response.data.error]);

@@ -5,8 +5,8 @@ const OrderBillingAddressCard = ({ order }) => {
   return (
     <div className='bg-white rounded shadow p-4 col-span-1 flex flex-col'>
 
-      {/* ----------- Billing Info --------------- */}
-      <p className='text-xl mb-2 uppercase font-semibold'>Billing Info:</p>
+      {/* ----------- Billing Address --------------- */}
+      <p className='text-xl mb-2 uppercase font-semibold'>Billing Address:</p>
 
       {/* ----------- Name -------------- */}
       <div className='flex justify-between'>
