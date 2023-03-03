@@ -16,7 +16,7 @@ const AdminProducts = () => {
         setAllProducts(res.data.product);
         setLoaded(true);
       })
-      .catch(err => console(err));
+      .catch(err => console.log(err));
   }, [])
 
   const removeFromDom = productId => {

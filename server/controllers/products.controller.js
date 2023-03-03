@@ -18,7 +18,7 @@ module.exports.findoneSingleProduct = (req, res) => {
 }
 
 //  Create
-module.exports.createNewProduct =  (req, res) => {
+module.exports.createNewProduct =  async (req, res) => {
     console.log(req.body, req.file)
       const product = {
         ...req.body,
@@ -26,17 +26,15 @@ module.exports.createNewProduct =  (req, res) => {
       }
       const newProduct = new Products(product);
   
-    newProduct.save((err, product) => {
-      if (err) {
-        return res.status(500).json({
-          error: err
-        });
-      }
+    try {
+      newProduct.save()
       res.status(201).json({
         message: 'Product created successfully',
         product
-      });
-    });
+      })
+    } catch (error) {
+      console.error(error);
+    }
   }
 
 // Update
