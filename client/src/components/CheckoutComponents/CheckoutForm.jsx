@@ -10,17 +10,12 @@ import CreditCardForm from './CreditCardForm';
 import CheckoutOrderSummary from './CheckoutOrderSummary';
 import SameAddressCheckbox from './SameAddressCheckbox';
 import { Elements } from 'react-stripe-elements';
-// import Stripe from 'stripe';
 import StripeProviderWrapper from '../StripeComponents/StripeProviderWrapper';
 import Alert from '../Alert';
 
 
 const CheckoutForm = ({ cart, stripe }) => {
     const navigate = useNavigate()
-    // const stripePublishableKey = process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY;
-    // console.log(stripePublishableKey)
-    // const stripe = new Stripe("pk_test_51MHTgFGFfTw6RF3uWrhP1hKUizTSJPzDP3vr61wlx1pbHiMSztxjjeZIxYaK0oKw7K8Psx8Kx1iQgeHvcJJseDHj00f1TAS0oX");
-
     const [orderInfo, setOrderInfo] = useState({
         billing: {
             email: "",
@@ -194,7 +189,7 @@ const CheckoutForm = ({ cart, stripe }) => {
         try {
             // Creating Payment Method using Card Element
             const { data } = await axios.post('http://localhost:8000/charge', {
-                amount: orderInfo.total * 100, // convert total to cents
+                amount: Math.round(orderInfo.total * 100), // convert total to cents
                 currency: "usd",
                 cardElement: stripeInfo
             });
