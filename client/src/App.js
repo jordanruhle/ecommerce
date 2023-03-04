@@ -39,7 +39,7 @@ function App() {
         <Route element={<Cart cart={cart} setCart={setCart} />} path='/cart' />
         <Route element={<Checkout cart={cart} setCart={setCart} />} path='/checkout' />
         <Route element={<AdminLogin />} path='/admin' />
-        <Route element={<AdminOrders />} path='/dashboard/orders' />
+        <Route element={<AdminOrders setCart={setCart}  />} path='/dashboard/orders' />
         <Route element={<AdminProducts />} path='/dashboard/products' />
         <Route element={<AdminViewOneOrder />} path='/orders/show/:id' />
         <Route element={<ProductCreateOne />} path='/products/create' />
