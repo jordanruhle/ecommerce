@@ -53,18 +53,18 @@ const AdminProductTable = ({ allProducts, removeFromDom }) => {
                     <td className='text-base py-4 px-5 underline text-blue-700 '>
                       <a href={'/orders/show/' + product._id}>{product._id}</a>
                     </td>
-                    <td className='text-base py-4 px-5'>{product.name}</td>
-                    <td className='text-base py-4 px-5'>{product.brand}</td>
+                    <td className='text-base py-4 px-5 truncate '>{product.name}</td>
+                    <td className='text-base py-4 px-5 truncate '>{product.brand}</td>
                     <td className='text-base py-4 px-5'>{product.price.$numberDecimal}</td>
                     <td className='text-base py-4 px-5'>{product.mainCategory}</td>
                     <td className='text-base py-4 px-5'>{product.subCategory}</td>
                     {/* <td className='text-base py-4 px-5'>{product.quantity}</td>
                     <td className='text-base py-4 px-5'>{product.quantitySold}</td> */}
-                    <td className='text-base py-4 px-5 flex gap-4'>
-                      <form action={`/products/${product._id}/edit`}>
+                    <td className='text-base h-full py-4 px-5 flex items-center gap-4'>
+                      <form className='h-full' action={`/products/${product._id}/edit`}>
                         <GrayButton buttonText="Edit" />
                       </form>
-                      <form onClick={(e) => { deleteProduct(product._id) }}>
+                      <form className='h-full' onClick={(e) => { deleteProduct(product._id) }}>
                         <RedButton buttonText="Delete" />
                       </form>
                     </td>

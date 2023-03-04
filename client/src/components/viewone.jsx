@@ -104,7 +104,7 @@ const ViewOne = ({cart, setCart}) => {
 
               {/*  Size */}
               <p className="font-semibold">Size:</p>
-              <div className="flex">
+              <div className="flex mb-4">
                 <div className="h-10 w-10 m-2 border-2 flex justify-center items-center p-6">{productInfo.size}</div>
               </div>
               <RedButton buttonText="Add to Cart" />

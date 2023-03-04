@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { FaSearch } from "react-icons/fa";
+import RedButton from "../components/RedButton";
 
 import AdminNavBar from "../components/AdminNavBar";
 
-const AdminOrders = () => {
+const AdminOrders = ({setCart}) => {
   const [allOrders, setAllOrders] = useState([]);
   const [loaded, setLoaded] = useState(false);
 
@@ -19,6 +20,11 @@ const AdminOrders = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  const clearCart = (e) => {
+    e.preventDefault()
+    setCart([]);
+  }
+
   return (
     <div>
       <AdminNavBar />
@@ -29,6 +35,9 @@ const AdminOrders = () => {
               <input type="search" name="" id="" className='p-2 border' />
               <button className='p-2'><FaSearch className='fa-7x' /></button>
             </form>
+            <form onSubmit={clearCart} className='p-0 w-48'>
+            <RedButton buttonText="Clear Cart" />
+          </form>
           </div>
           <table className="table-auto bg-white rounded shadow">
             <thead>
