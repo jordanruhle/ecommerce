@@ -8,34 +8,36 @@ function classNames(...classes) {
 
 const AdminNavBar = () => {
   return (
-    <div className='w-full flex justify-center sm:justify-between items-center py-2 px-8 2xl:px-72 text-white bg-stone-800 font-body flex-wrap'>
+    <div className=' w-full text-white bg-stone-800'>
+      <div className=' mx-auto max-w-screen-xl w-full flex justify-center sm:justify-between items-center py-2 px-4  text-white bg-stone-800 font-body flex-wrap'>
 
-      {/*----------- Company Logo ------------ */}
-      <CompanyLogo linkRoute='/dashboard/orders'/>
+        {/*----------- Company Logo ------------ */}
+        <CompanyLogo linkRoute='/dashboard/orders' />
 
-      {/* ------------- Links ----------------- */}
+        {/* ------------- Links ----------------- */}
 
-      <ul className='flex items-center '>
+        <ul className='flex items-center gap-4 '>
 
-        {/* -------------- Orders Link --------------- */}
+          {/* -------------- Orders Link --------------- */}
 
-        <li className='p-4 text-white'>
-          <a href="/dashboard/orders">Orders</a>
-        </li>
+          <li className='py-4 text-white'>
+            <a href="/dashboard/orders">Orders</a>
+          </li>
 
-        {/* ----------- Products Link -------------- */}
+          {/* ----------- Products Link -------------- */}
 
-        <li className='p-4 text-white'>
-          <a href="/dashboard/products">Products</a>
-        </li>
+          <li className='py-4 text-white'>
+            <a href="/dashboard/products">Products</a>
+          </li>
 
-        {/* ------------- Logout Link ------------- */}
+          {/* ------------- Logout Link ------------- */}
 
-        <li className='p-4 text-white'>
-          <a href="/admins/logout">Logout</a>
-        </li>
+          <li className='py-4 text-white'>
+            <a href="/admins/logout">Logout</a>
+          </li>
 
-      </ul>
+        </ul>
+      </div>
     </div >
   )
 }

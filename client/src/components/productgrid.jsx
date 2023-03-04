@@ -9,7 +9,7 @@ const ProductGrid = ({allProducts, loaded}) => {
   return (
     // Body
     <div className="bg-gradient-to-br from-slate-50 to-stone-300 min-h-screen">
-      <div className="max-w-screen-xl mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-rows-3 gap-10 p-8 ">
+      <div className="max-w-screen-xl mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-rows-3 gap-10 p-4 ">
         <ProductFilters />
         {/* ------------Loop through all products-------------- */}
         {loaded && allProducts.map((product, key) =>
