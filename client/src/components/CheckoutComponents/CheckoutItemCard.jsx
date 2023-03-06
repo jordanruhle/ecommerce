@@ -19,12 +19,17 @@ const CheckoutItemCard = ({ id, quantity }) => {
           quantity: product.quantity,
           quantitySold: product.quantitySold,
           color: product.color,
+          colorName: product.colorName,
           size: product.size,
         }));
         setLoaded(true);
       })
       .catch(err => console.log(err));
   }, []);
+
+  const capitalizeFirstLetter = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
 
   return (
     <div className="grid grid-cols-5">
@@ -36,7 +41,7 @@ const CheckoutItemCard = ({ id, quantity }) => {
               <div>
                 <p className='uppercase font-semibold'>{productInfo.brand} {productInfo.name}</p>
                 {/* eventually generate color productInfo.color? */}
-                <p>Turquoise</p>
+                <p>{capitalizeFirstLetter(productInfo.colorName)}</p>
                 <p>{productInfo.size}</p>
               </div>
             </div>

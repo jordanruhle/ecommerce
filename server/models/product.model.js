@@ -48,6 +48,11 @@ const ProductSchema = new mongoose.Schema(
             required: [true, '{PATH} is required.'],
             minLength: [1, '{PATH} must be at least {MINLENGTH} characters.']
         },
+        colorName: {
+            type: String,
+            required: [true, '{PATH} is required.'],
+            minLength: [3, '{PATH} must be at least {MINLENGTH} characters.']
+        },
         size: {
             type: String,
             required: [true, '{PATH} is required.'],
