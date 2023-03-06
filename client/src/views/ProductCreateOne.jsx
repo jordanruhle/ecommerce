@@ -14,11 +14,12 @@ const ProductCreateOne = () => {
     description: "",
     mainCategory: "bikes",
     subCategory: "",
-    price: 0.00,
+    price: '$0.00',
     quantity: 0,
     quantitySold: 0,
     image: "",
     color: "#000000",
+    colorName: "",
     size: "One Size"
 })
 

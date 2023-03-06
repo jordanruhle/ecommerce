@@ -22,6 +22,7 @@ const ItemCard = ({ id, cart, setCart, removeProduct, updateProduct, quantity })
                     quantity: product.quantity,
                     quantitySold: product.quantitySold,
                     color: product.color,
+                    colorName: product.colorName,
                     size: product.size,
                 }));
                 setLoaded(true);
@@ -55,6 +56,10 @@ const ItemCard = ({ id, cart, setCart, removeProduct, updateProduct, quantity })
             setCart(updatedCart)
         }
     }
+
+    const capitalizeFirstLetter = (str) => {
+        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    }
     return (
         <>
             {
@@ -63,7 +68,7 @@ const ItemCard = ({ id, cart, setCart, removeProduct, updateProduct, quantity })
                         <img src="https://content.backcountry.com/images/items/1200/YTI/YTIR1DG/TUR.jpg" alt="cart item" className=' h-60' />
                         <div className='grow shrink-0 basis-1/3'>
                             <p>{productInfo.brand} {productInfo.name}</p>
-                            <p>Turquoise</p>
+                            <p>{capitalizeFirstLetter(productInfo.colorName)}</p>
                             <p>{productInfo.size}</p>
                         </div>
                         <div className='shrink'>
