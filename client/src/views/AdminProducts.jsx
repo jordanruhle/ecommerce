@@ -27,7 +27,7 @@ const AdminProducts = () => {
     <>
       <AdminNavBar />
       {/* {loaded && console.log(allProducts)} */}
-      {loaded && <AdminProductTable removeFromDom={removeFromDom} allProducts={allProducts} />}
+      {loaded ? <AdminProductTable removeFromDom={removeFromDom} allProducts={allProducts} /> : null}
     </>
   )
 }
