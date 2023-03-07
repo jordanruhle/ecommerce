@@ -3,7 +3,7 @@ import RedButton from './RedButton'
 import SubCategoryFilter from './SubCategoryFilter'
 
 
-const ProductForm = ({ title, subTitle, buttonText, submitFunction, productInfo, setProductInfo }) => {
+const ProductForm = ({ title, subTitle, buttonText, submitFunction, productInfo, setProductInfo, errors}) => {
     const [inputValue, setInputValue] = useState('$0.00')
 
     const changeHandler = (e) => {
@@ -51,9 +51,16 @@ const ProductForm = ({ title, subTitle, buttonText, submitFunction, productInfo,
                 {/*----------- Product Form ------------ */}
                 <h3 className='text-2xl my-4 uppercase'>{title}</h3>
                 <p className=' mb-4 text-zinc-500'>{subTitle}</p>
+                {
+                    errors ?
+                    errors.map((error) => (
+                        <p className='text-red-600'>{error}</p>
+                    ))
+                    : null
+                }
 
                 {/*---------- Name ---------- */}
-                <div className='mb-6'>
+                <div className='mt-4 mb-6'>
                     <p className='text-md font-semibold mb-2 uppercase'>Name</p>
                     <input onChange={changeHandler} type="text" name="name" value={productInfo.name} className=' w-full p-3 border' />
                 </div>
