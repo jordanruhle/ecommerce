@@ -55,7 +55,8 @@ const AdminProductTable = ({ allProducts, removeFromDom }) => {
                     </td>
                     <td className='text-base py-4 px-5 truncate '>{product.name}</td>
                     <td className='text-base py-4 px-5 truncate '>{product.brand}</td>
-                    <td className='text-base py-4 px-5'>{product.price.$numberDecimal}</td>
+                    <td className='text-base py-4 px-5'>{Number(product.price.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
+                    {console.log(product.price.$numberDecimal)}
                     <td className='text-base py-4 px-5'>{product.mainCategory}</td>
                     <td className='text-base py-4 px-5'>{product.subCategory}</td>
                     {/* <td className='text-base py-4 px-5'>{product.quantity}</td>
