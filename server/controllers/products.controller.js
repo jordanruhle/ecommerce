@@ -27,13 +27,18 @@ module.exports.createNewProduct =  async (req, res) => {
       const newProduct = new Products(product);
   
     try {
-      newProduct.save()
+      newProduct.validateSync(); 
+      await newProduct.save()
       res.status(201).json({
         message: 'Product created successfully',
         product
       })
     } catch (error) {
       console.error(error);
+      res.status(400).json({
+        message: 'Validation failed',
+        errors: error.errors
+      });
     }
   }
 
