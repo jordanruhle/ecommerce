@@ -12,7 +12,7 @@ const ProductGrid = ({allProducts, loaded}) => {
       <div className="max-w-screen-xl mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-rows-3 gap-10 p-4 ">
         <ProductFilters />
         {/* ------------Loop through all products-------------- */}
-        {loaded && allProducts.map((product, key) =>
+        {loaded ? allProducts.map((product, key) =>
           //   const imagePath = `../../../server/uploads/${product.image.filename}`;
           <div className="bg-white flex flex-col justify-between items-center rounded shadow p-4" key={key}>
             <img src={`../../../server/uploads/${product.image.filename}`} alt={product.name} />
@@ -22,7 +22,7 @@ const ProductGrid = ({allProducts, loaded}) => {
               <GrayButton buttonText="View" />
             </form>
           </div>
-        )}
+        ) : null }
         <div className="bg-white flex flex-col items-center rounded shadow p-4">
           <img
             src="https://jnsn.imgix.net/globalassets/digizuite/26185-en-bi003591-satin-smoke~arctic-blue.jpg?w=1000&auto=format&q=70&fit=max"
