@@ -5,9 +5,10 @@ import RedButton from "../components/RedButton";
 
 import AdminNavBar from "../components/AdminNavBar";
 
-const AdminOrders = ({setCart}) => {
+const AdminOrders = ({ setCart }) => {
   const [allOrders, setAllOrders] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [getAllTrigger, setGetAllTrigger] = useState(false)
 
   useEffect(() => {
     axios
@@ -18,17 +19,31 @@ const AdminOrders = ({setCart}) => {
         setLoaded(true);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [getAllTrigger]);
 
   const clearCart = (e) => {
     e.preventDefault()
     setCart([]);
   }
 
+  const onStatusUpdate = (e) => {
+    const updatedOrderStatus = { status: e.target.value }
+    const id = e.target.id
+    console.log(id);
+    axios
+      .put(`http://localhost:8000/api/order/${id}`, updatedOrderStatus)
+      .then((res) => {
+        console.log(res.data);
+        getAllTrigger ? setGetAllTrigger(false) : setGetAllTrigger(true)
+      })
+      .catch((err) => console.log(err));
+  }
+
+
   return (
     <div>
       <AdminNavBar />
-      <div className="bg-gradient-to-br from-slate-50 to-stone-300 h-screen p-4">
+      <div className="bg-gradient-to-br from-slate-50 to-stone-300 min-h-screen p-4">
         <div className="max-w-screen-xl mx-auto ">
           <div className='flex items-center justify-between pb-4'>
             <form action="" className='p-0'>
@@ -36,8 +51,8 @@ const AdminOrders = ({setCart}) => {
               <button className='p-2'><FaSearch className='fa-7x' /></button>
             </form>
             <form onSubmit={clearCart} className='p-0 w-48'>
-            <RedButton buttonText="Clear Cart" />
-          </form>
+              <RedButton buttonText="Clear Cart" />
+            </form>
           </div>
           <table className="table-auto bg-white rounded shadow">
             <thead>
@@ -87,7 +102,17 @@ const AdminOrders = ({setCart}) => {
                           { style: "currency", currency: "USD" }
                         )}
                       </td>
-                      <td className="text-xl py-4 px-4">{order.status.charAt(0).toUpperCase() + order.status.slice(1)}</td>
+                      <td className="text-xl py-4 px-4">
+                        <form>
+                          <select onChange={onStatusUpdate} value={order.status} id={order._id} name="status" >
+                            <option value="pending">Pending</option>
+                            <option value="received">Received</option>
+                            <option value="shipped">Shipped</option>
+                            <option value="delivered">Delivered</option>
+                            <option value="cancelled">Cancelled</option>
+                          </select>
+                        </form>
+                      </td>
                     </tr>
                   ))
                   : null
@@ -96,7 +121,7 @@ const AdminOrders = ({setCart}) => {
           </table>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

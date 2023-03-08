@@ -41,22 +41,29 @@ module.exports.createNewOrder = async (req, res) => {
     console.log(req.body)
     try {
         const newOrder = await new Orders(req.body).save()
-        res.status(201).json({message: "order created", orderId: newOrder._id})
+        res.status(201).json({ message: "order created", orderId: newOrder._id })
     } catch (err) {
         console.log(err);
-        res.status(500).json({ message: 'Server error'})
+        res.status(500).json({ message: 'Server error' })
     }
 }
 
 // Update
-module.exports.updateExistingOrder = (req, res) => {
-    Orders.findOneAndUpdate(
-        { _id: req.params.id },
-        req.body,
-        { new: true, runValidators: true }
-    )
-        .then(updatedOrder => res.json({ order: updatedOrder }))
-        .catch(err => res.status(400).json({ message: 'Something went wrong', error: err }));
+module.exports.updateExistingOrder = async (req, res, next) => {
+    try {
+        console.log(req.body);
+        const { status } = req.body;
+        const { id } = req.params
+        console.log(id)
+        const updatedOrder = await Orders.findByIdAndUpdate(
+            id,
+            { status },
+            { new: true }
+        )
+        res.status(200).json(updatedOrder)
+    } catch (err) {
+        next(err)
+    }
 }
 
 // Delete

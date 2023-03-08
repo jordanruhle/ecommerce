@@ -202,7 +202,7 @@ const CheckoutForm = ({ cart, setCart }) => {
 
             const updatedOrderInfo = {
                 ...orderInfo,
-                status: "recieved"
+                status: "received"
             }
 
             const res = await axios.post("http://localhost:8000/api/order", updatedOrderInfo);
