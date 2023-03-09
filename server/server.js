@@ -8,6 +8,7 @@ const port = 8000;
 const DB = "ecommerce"
 const cors = require('cors')
 require('dotenv').config()
+const jwt = require("jsonwebtoken");
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -38,5 +39,7 @@ require("./config/mongoose.config")(DB)
 require("./routes/product.routes")(app)
 require("./routes/order.routes")(app)
 require("./routes/stripe.routes")(app)
+require("./routes/Admin.routes")(app)
+
 
 app.listen(port, () => console.log(`Listening on port: ${port}`) );
