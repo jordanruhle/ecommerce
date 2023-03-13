@@ -9,14 +9,11 @@ const DB = "ecommerce"
 const cors = require('cors')
 require('dotenv').config()
 const jwt = require("jsonwebtoken");
+const cookieParser = require('cookie-parser');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-
-
-// const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY, {
-//     apiVersion: "2022-08-01",
-// });
+app.use(cookieParser());
 
 // Multer
 app.post('/uploads', upload.single('image'), function (req, res, next) {
@@ -27,7 +24,7 @@ app.post('/uploads', upload.single('image'), function (req, res, next) {
 
 
 // middleware
-app.use(cors())
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 app.use(express.json(), express.urlencoded({extended:true}));
 app.use(express.static(process.env.STATIC_DIR));
 

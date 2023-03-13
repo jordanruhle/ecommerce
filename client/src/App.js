@@ -13,6 +13,7 @@ import ProductEdit from './views/ProductEdit'
 import FilteredProductsList from './views/FilteredProductsList';
 import AdminViewOneOrder from "./views/AdminViewOneOrder";
 import OrderConfirmation from "./views/OrderConfirmation";
+import ProtectedRoute from "./views/ProtectedRoute";
 
 
 function App() {
@@ -39,14 +40,14 @@ function App() {
         <Route element={<Cart cart={cart} setCart={setCart} />} path='/cart' />
         <Route element={<Checkout cart={cart} setCart={setCart} />} path='/checkout' />
         <Route element={<AdminLogin />} path='/admin' />
-        <Route element={<AdminOrders setCart={setCart}  />} path='/dashboard/orders' />
+        <Route element={<ProtectedRoute element={AdminOrders} setCart={setCart} />} path='/dashboard/orders' /> 
+        {/* <ProtectedRoute element={AdminOrders} setCart={setCart} path='/dashboard/orders' /> */}
+        {/* <Route element={<AdminOrders setCart={setCart}  />} path='/dashboard/orders' /> */}
         <Route element={<AdminProducts />} path='/dashboard/products' />
         <Route element={<AdminViewOneOrder />} path='/orders/show/:id' />
         <Route element={<ProductCreateOne />} path='/products/create' />
         <Route element={<ProductEdit />} path='/products/:id/edit' />
         <Route element={<OrderConfirmation />} path='/order-confirmation/:id' />
-          {/* <Route element={<Payment />} path="/payment" />
-          <Route element={<Completion />} path="/completion" /> */}
       </Routes>
     </div>
 

@@ -1,12 +1,24 @@
 import React from 'react'
+import axios from 'axios'
 import { FaMountain } from 'react-icons/fa'
 import CompanyLogo from './CompanyLogo'
+import { useNavigate } from 'react-router-dom'
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
 
 const AdminNavBar = () => {
+  const navigate = useNavigate()
+
+  const logout = () => {
+    axios.post('http://localhost:8000/admin/logout', {}, {
+      withCredentials: true,
+    })
+      .then(res => {
+        console.log(res)
+        navigate('/admin')
+      })
+      .catch(err => console.log(err))
+  }
+
   return (
     <div className=' w-full text-white bg-stone-800'>
       <div className=' mx-auto max-w-screen-xl w-full flex justify-center sm:justify-between items-center py-2 px-4  text-white bg-stone-800 font-body flex-wrap'>
@@ -33,7 +45,7 @@ const AdminNavBar = () => {
           {/* ------------- Logout Link ------------- */}
 
           <li className='py-4 text-white'>
-            <a href="/admins/logout">Logout</a>
+            <p className='cursor-pointer' onClick={logout}>Logout</p>
           </li>
 
         </ul>

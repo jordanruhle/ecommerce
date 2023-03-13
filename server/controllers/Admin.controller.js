@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 
 
 // Read All
-module.exports.getAllAdmins = (req, res) => {
+module.exports.getAllAdmins = (res) => {
   Admins.find()
     .then(allAdmins => res.json({ admin: allAdmins }))
     .catch(err => res.json({ message: 'Something went wrong', error: err }));
@@ -29,7 +29,9 @@ module.exports.createNewAdmin = async (req, res) => {
     }
     const adminToken = jwt.sign(payload, process.env.ADMIN_LOGIN_REG_SECRET_KEY)
     console.log(adminToken);
-    res.json({ msg: "success!", admin: admin, adminToken: adminToken });
+    res
+      .cookie("adminToken", adminToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true })
+      .json({ msg: "success!", admin: admin });
   } catch (err) {
     res.json(err)
   }
@@ -37,7 +39,7 @@ module.exports.createNewAdmin = async (req, res) => {
 
 // variable = function for login
 module.exports.adminLogin = async (req, res) => {
-  console.log("got to admin login");
+  console.log("1");
   console.log(req.body);
   // takes request = email + password
   const { email, password } = req.body;
@@ -45,27 +47,47 @@ module.exports.adminLogin = async (req, res) => {
     // checks if email is in the Database
     const admin = await Admins.findOne({ email: email })
 
+    // if email is not in database send response
+    if (!admin) {
+      res.json('401, Invalid email or password. Please try again.')
+    }
+
+    // Check if passwords match
     const matchedPasswords = await bcrypt.compare(password, admin.password)
 
-    console.log(admin.password);
-    console.log(password);
     // checks if password associated with email matches given password
     if (matchedPasswords) {
       console.log("made it to the if");
       // Build Response
-      const payload = {
+      var payload = {
         id: admin._id
       }
-      // create JWT
-      const adminToken = jwt.sign(payload, process.env.ADMIN_LOGIN_REG_SECRET_KEY)
-      console.log(adminToken);
-      // respond message + JWT
-      res.json({ msg: "login succesful", adminToken: adminToken })
+    } else {
+      res.json('401, Invalid email or password. Please try again.')
     }
+
+    // create JWT
+    const adminToken = jwt.sign(payload, process.env.ADMIN_LOGIN_REG_SECRET_KEY)
+
+    res
+      .cookie("adminToken", adminToken, { httpOnly: true, sameSite: 'strict', secure: true })
+      .json({ msg: "login succesful" })
   } catch (err) {
     console.log(err);
-    // catch if the shit above breaks
     // send err and error message
     res.json(err)
   }
 }
+
+module.exports.adminLogout = async (req, res) => {
+  try {
+    res.cookie('adminToken', '', { expires: new Date(0), httpOnly: true, sameSite: 'strict', secure: true })
+    console.log("adminToken cleared");
+    res
+      .json({ msg: 'logout successful' })
+      .sendStatus(200);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
