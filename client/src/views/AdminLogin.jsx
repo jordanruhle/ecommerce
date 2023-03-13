@@ -43,7 +43,7 @@ function AdminLogin() {
           {/*---------- Password ---------- */}
           <div className=' mb-6'>
             <p className='text-md font-semibold mb-2 uppercase focus:bg-slate-50'>Password</p>
-            <input onChange={handleChange} type="text" name="password" className=' w-full p-3 border' />
+            <input onChange={handleChange} type="password" name="password" className=' w-full p-3 border' />
           </div>
           <RedButton buttonText="Login" />  
         </form>
