@@ -1,35 +1,39 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import { Routes, Route, Navigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 const ProtectedRoute = ({ element: Component, ...rest }) => {
-  const [authenticated, setAuthenticated] = useState(false)
-  const [loaded, setLoaded] = useState(false)
+  const [authenticated, setAuthenticated] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/authenticate', {
-      withCredentials: true,
-    })
-      .then(res => {
-        console.log(res.data)
-        if (res.data.verified) {
-          setAuthenticated(true)
-        }
-        setLoaded(true)
-        console.log(loaded);
-      })
-      .catch(err => {
-        setLoaded(true) 
-        console.log("catch")
-      })
+      axios
+        .get("http://localhost:8000/api/authenticate", {
+          withCredentials: true,
+        })
+        .then((res) => {
+          if (res.data.verified) {
+            setAuthenticated(true);
+          }
+          if (!res.data.verified) {
+            setAuthenticated(false);
+          }
+          setLoaded(true);
+        })
+        .catch((err) => {
+          setLoaded(true);
+        });
   }, []);
 
-
-  return loaded ? authenticated ? (
-    <Component {...rest} />
+  return loaded ? (
+    authenticated ? (
+      <Component {...rest} />
+    ) : (
+      <Navigate to="/admin" />
+    )
   ) : (
-    <Navigate to="/admin" />
-  ) : <p>Loading...</p>
-}
+    <p>Loading...</p>
+  );
+};
 
-export default ProtectedRoute
+export default ProtectedRoute;
