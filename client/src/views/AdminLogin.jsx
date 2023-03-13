@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import CheckoutNav from '../components/CheckoutComponents/CheckoutNav'
 import RedButton from '../components/RedButton'
+import { useNavigate } from 'react-router-dom'
 
 function AdminLogin() {
-
+  const navigate = useNavigate()
   const [loginInfo, setLoginInfo] = useState({
     email: "",
     password: ""
@@ -15,11 +17,23 @@ function AdminLogin() {
       [e.target.name]: e.target.value
     }))
 
+    const submitHandler = async (e) => {
+      e.preventDefault()
+      try {
+        const res = await axios.post('http://localhost:8000/admin/login', loginInfo, {
+          withCredentials: true,
+        })
+        navigate("/dashboard/orders")
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
   return (
     <div>
       <CheckoutNav />
       <div className='mx-auto bg-gradient-to-br from-slate-50 to-stone-300 h-screen'>
-        <form className='max-w-screen-md mx-auto bg-white p-10 ' action="/dashboard/orders">
+        <form onSubmit={submitHandler} className='max-w-screen-md mx-auto bg-white p-10 '>
           <h3 className='text-2xl my-4 uppercase'>Admin Login</h3>
           {/*---------- Email ---------- */}
           <div className='mb-6'>
