@@ -39,15 +39,15 @@ function App() {
         <Route element={<ProductDetails cart={cart} setCart={setCart} />} path='/products/:id' />
         <Route element={<Cart cart={cart} setCart={setCart} />} path='/cart' />
         <Route element={<Checkout cart={cart} setCart={setCart} />} path='/checkout' />
-        <Route element={<AdminLogin />} path='/admin' />
-        <Route element={<ProtectedRoute element={AdminOrders} setCart={setCart} />} path='/dashboard/orders' /> 
-        {/* <ProtectedRoute element={AdminOrders} setCart={setCart} path='/dashboard/orders' /> */}
-        {/* <Route element={<AdminOrders setCart={setCart}  />} path='/dashboard/orders' /> */}
-        <Route element={<AdminProducts />} path='/dashboard/products' />
-        <Route element={<AdminViewOneOrder />} path='/orders/show/:id' />
-        <Route element={<ProductCreateOne />} path='/products/create' />
-        <Route element={<ProductEdit />} path='/products/:id/edit' />
         <Route element={<OrderConfirmation />} path='/order-confirmation/:id' />
+        {/* ADMIN Routes */}
+        <Route element={<AdminLogin />} path='/admin' />
+        {/* Protected Routes */}
+        <Route element={<ProtectedRoute element={AdminOrders} setCart={setCart} />} path='/dashboard/orders' /> 
+        <Route element={<ProtectedRoute element={AdminProducts}/>} path='/dashboard/products'/>
+        <Route element={<ProtectedRoute element={AdminViewOneOrder}/>} path='/orders/show/:id'/>
+        <Route element={<ProtectedRoute element={ProductCreateOne}/>} path='/products/create' />
+        <Route element={<ProtectedRoute element={ProductEdit}/>} path='/products/:id/edit' />
       </Routes>
     </div>
 
