@@ -76,22 +76,23 @@ module.exports.deleteAnExistingOrder = (req, res) => {
 // Search
 module.exports.searchOrders = async (req, res) => {
     const { searchTerm } = req.params;
+    const regex = new RegExp(searchTerm, 'i');
     try {
         const orders = await Orders.find({
             $or: [
-                { 'billing.email': new RegExp(searchTerm, 'i') },
-                { 'billing.firstName': new RegExp(searchTerm, 'i') },
-                { 'billing.lastName': new RegExp(searchTerm, 'i') },
-                { 'billing.company': new RegExp(searchTerm, 'i') },
-                { 'billing.address': new RegExp(searchTerm, 'i') },
-                { 'billing.phone': new RegExp(searchTerm, 'i') },
-                { 'shipping.firstName': new RegExp(searchTerm, 'i') },
-                { 'shipping.lastName': new RegExp(searchTerm, 'i') },
-                { 'shipping.company': new RegExp(searchTerm, 'i') },
-                { 'shipping.address': new RegExp(searchTerm, 'i') },
-                { 'status': new RegExp(searchTerm, 'i') },
-                { 'products': new RegExp(searchTerm, 'i') },
-                { 'deliveryMethod': new RegExp(searchTerm, 'i') }
+                { 'billing.email': regex },
+                { 'billing.firstName': regex },
+                { 'billing.lastName': regex },
+                { 'billing.company': regex },
+                { 'billing.address': regex },
+                { 'billing.phone': regex },
+                { 'shipping.firstName': regex },
+                { 'shipping.lastName': regex },
+                { 'shipping.company': regex },
+                { 'shipping.address': regex },
+                { 'status': regex },
+                { 'products': regex },
+                { 'deliveryMethod': regex }
             ]
         })
 

@@ -5,42 +5,42 @@ const productQueries = require('../queries/product.queries')
 // call back functions separated from routes
 // Read All
 module.exports.getAllProducts = (req, res) => {
-    Products.find()
-        .then(allProducts => res.json({product: allProducts} ))
-        .catch(err => res.json({ message: 'Something went wrong', error: err }));
+  Products.find()
+    .then(allProducts => res.json({ product: allProducts }))
+    .catch(err => res.json({ message: 'Something went wrong', error: err }));
 }
 
 // Find one
 module.exports.findoneSingleProduct = (req, res) => {
-    Products.findOne({ _id: req.params.id })
-        .then(oneSingleProduct => res.json({ product: oneSingleProduct }))
-        .catch(err => res.json({ message: 'Something went wrong', error: err }));
+  Products.findOne({ _id: req.params.id })
+    .then(oneSingleProduct => res.json({ product: oneSingleProduct }))
+    .catch(err => res.json({ message: 'Something went wrong', error: err }));
 }
 
 //  Create
-module.exports.createNewProduct =  async (req, res) => {
-    console.log(req.body, req.file)
-      const product = {
-        ...req.body,
-        image: req.file
-      }
-      const newProduct = new Products(product);
-  
-    try {
-      newProduct.validateSync(); 
-      await newProduct.save()
-      res.status(201).json({
-        message: 'Product created successfully',
-        product
-      })
-    } catch (error) {
-      console.error(error);
-      res.status(400).json({
-        message: 'Validation failed',
-        errors: error.errors
-      });
-    }
+module.exports.createNewProduct = async (req, res) => {
+  console.log(req.body, req.file)
+  const product = {
+    ...req.body,
+    image: req.file
   }
+  const newProduct = new Products(product);
+
+  try {
+    newProduct.validateSync();
+    await newProduct.save()
+    res.status(201).json({
+      message: 'Product created successfully',
+      product
+    })
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({
+      message: 'Validation failed',
+      errors: error.errors
+    });
+  }
+}
 
 // Update
 module.exports.updateExistingProduct = (req, res) => {
@@ -48,20 +48,20 @@ module.exports.updateExistingProduct = (req, res) => {
     ...req.body,
     image: req.file,
   }
-    Products.findOneAndUpdate(
-        { _id: req.params.id },
-        req.body,
-        { new: true, runValidators: true }
-    )
-        .then(updatedProduct => res.json({ product: updatedProduct }))
-        .catch(err => res.json({ message: 'Something went wrong', error: err }));
+  Products.findOneAndUpdate(
+    { _id: req.params.id },
+    req.body,
+    { new: true, runValidators: true }
+  )
+    .then(updatedProduct => res.json({ product: updatedProduct }))
+    .catch(err => res.json({ message: 'Something went wrong', error: err }));
 }
 
 // Delete
 module.exports.deleteAnExistingProduct = (req, res) => {
-    Products.deleteOne({ _id: req.params.id })
-        .then(result => res.json({ result: result }))
-        .catch(err => res.json({ message: 'Something went wrong', error: err }));
+  Products.deleteOne({ _id: req.params.id })
+    .then(result => res.json({ result: result }))
+    .catch(err => res.json({ message: 'Something went wrong', error: err }));
 }
 
 // Get mainCategory and subCategories
@@ -79,7 +79,7 @@ module.exports.getCategories = (req, res) => {
 module.exports.getByMainOrSubCategory = (req, res) => {
   const type = req.params.type;
   const name = req.params.name;
-  
+
   if (type === 'category') {
     Products.find({ mainCategory: name })
       .then(products => {
@@ -100,3 +100,23 @@ module.exports.getByMainOrSubCategory = (req, res) => {
     res.status(400).send('Invalid type parameter');
   }
 }
+
+// Search
+module.exports.searchProducts = async (req, res) => {
+  const { searchTerm } = req.params;
+  const regex = new RegExp(searchTerm, 'i');
+  try {
+    const products = await Products.find({
+      $or: [
+        { 'name': regex },
+        { 'brand': regex },
+        { 'mainCategory': regex },
+        { 'subCategory': regex },
+      ]
+    })
+
+    res.json(products);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
