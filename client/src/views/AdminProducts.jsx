@@ -28,10 +28,10 @@ const AdminProducts = () => {
     e.preventDefault()
     console.log(searchTerm);
     axios
-      .get(`http://localhost:8000/api/order/search/${searchTerm}`)
+      .get(`http://localhost:8000/api/product/search/${searchTerm}`)
       .then(res => {
-        setAllProducts(res.data.orders)
-        console.log(res.data.orders);
+        setAllProducts(res.data)
+        console.log(res.data);
         
       })
       .catch(err => console.log(err));
