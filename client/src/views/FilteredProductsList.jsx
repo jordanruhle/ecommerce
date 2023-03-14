@@ -8,6 +8,7 @@ import ProductGrid from '../components/productgrid';
 const FilteredProductsList = () => {
   const [allProducts, setAllProducts] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [page, setPage] = useState(1)
   const { type, name } = useParams()
   
   useEffect(() => {
@@ -18,12 +19,12 @@ const FilteredProductsList = () => {
         setLoaded(true)
       })
       .catch((err) => console.log(err));
-  }, [type, name]);
+  }, [type, name, page]);
 
   return (
     <>
     <Navbar />
-    <ProductGrid allProducts={allProducts} loaded={loaded} />
+    <ProductGrid allProducts={allProducts} loaded={loaded} setPage={setPage} />
     </>
   )
 }

@@ -4,8 +4,19 @@ import axios from "axios";
 import GrayButton from "./GrayButton";
 import ProductFilters from "./ProductFilters";
 
-const ProductGrid = ({allProducts, loaded}) => {
-  
+const ProductGrid = ({ allProducts, loaded, page, setPage, totalPages }) => {
+  const pageLinks = () => {
+    const links = []
+    let i = 1
+    while (i <= totalPages) {
+      const pageNumber = i;
+      links.push(
+        <p className="text-xl underline text-blue-700" key={i} onClick={() => setPage(pageNumber)}>{i}</p>
+      )
+      i++
+    }
+    return links
+  }
   return (
     // Body
     <div className="bg-gradient-to-br from-slate-50 to-stone-300 min-h-screen">
@@ -22,7 +33,7 @@ const ProductGrid = ({allProducts, loaded}) => {
               <GrayButton buttonText="View" />
             </form>
           </div>
-        ) : null }
+        ) : null}
         <div className="bg-white flex flex-col items-center rounded shadow p-4">
           <img
             src="https://jnsn.imgix.net/globalassets/digizuite/26185-en-bi003591-satin-smoke~arctic-blue.jpg?w=1000&auto=format&q=70&fit=max"
@@ -52,6 +63,9 @@ const ProductGrid = ({allProducts, loaded}) => {
             <GrayButton buttonText="View" />
           </Link>
         </div>
+      </div>
+      <div className="max-w-screen-xl mx-auto flex justify-end gap-1 w-full">
+        {loaded ? pageLinks() : null}
       </div>
     </div>
   );
