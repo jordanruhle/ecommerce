@@ -4,7 +4,7 @@ import RedButton from '../components/RedButton'
 import { FaSearch } from 'react-icons/fa'
 import axios from 'axios'
 
-const AdminProductTable = ({ allProducts, removeFromDom }) => {
+const AdminProductTable = ({ allProducts, removeFromDom, search, searchTerm, setSearchTerm }) => {
 
   const deleteProduct = (id) => {
     axios.delete(`http://localhost:8000/api/product/${id}`)
@@ -16,13 +16,18 @@ const AdminProductTable = ({ allProducts, removeFromDom }) => {
 
   const tableHeadings = ['Picture', 'Id', 'Name', 'Brand', 'Price', 'Category', 'Sub-Category', 'Action']
 
+  const searchChange = e =>{
+    setSearchTerm(e.target.value)
+    console.log(searchTerm);
+    }
+
   return (
     <div className='bg-gradient-to-br from-slate-50 to-stone-300 h-screen p-4'>
       <div className='max-w-screen-xl mx-auto '>
 
         <div className='flex items-center justify-between pb-4'>
-          <form action="" className='p-0'>
-            <input type="search" name="" id="" className='p-2 border' />
+          <form onSubmit={search} className='p-0'>
+            <input type="search" name="search" value={searchTerm} onChange={searchChange} className='p-2 border' />
             <button className='p-2'><FaSearch className='fa-7x' /></button>
           </form>
           <form action='/products/create' className='p-0 w-48'>
@@ -56,7 +61,6 @@ const AdminProductTable = ({ allProducts, removeFromDom }) => {
                     <td className='text-base py-4 px-5 truncate '>{product.name}</td>
                     <td className='text-base py-4 px-5 truncate '>{product.brand}</td>
                     <td className='text-base py-4 px-5'>{Number(product.price.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
-                    {console.log(product.price.$numberDecimal)}
                     <td className='text-base py-4 px-5'>{product.mainCategory}</td>
                     <td className='text-base py-4 px-5'>{product.subCategory}</td>
                     {/* <td className='text-base py-4 px-5'>{product.quantity}</td>

@@ -9,6 +9,7 @@ const AdminOrders = ({ setCart }) => {
   const [allOrders, setAllOrders] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [getAllTrigger, setGetAllTrigger] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('')
 
   useEffect(() => {
     axios
@@ -49,14 +50,27 @@ const AdminOrders = ({ setCart }) => {
       .catch((err) => console.log(err));
   };
 
+  const search = (e) => {
+    e.preventDefault()
+    console.log(searchTerm);
+    axios
+      .get(`http://localhost:8000/api/order/search/${searchTerm}`)
+      .then(res => {
+        setAllOrders(res.data)
+        console.log(res.data);
+        
+      })
+      .catch(err => console.log(err));
+  }
+
   return (
     <div>
       <AdminNavBar />
       <div className="bg-gradient-to-br from-slate-50 to-stone-300 min-h-screen p-4">
         <div className="max-w-screen-xl mx-auto ">
           <div className="flex items-center justify-between pb-4">
-            <form action="" className="p-0">
-              <input type="search" name="" id="" className="p-2 border" />
+            <form onSubmit={search} className="p-0">
+              <input type="search" value={searchTerm} onChange={e => {setSearchTerm(e.target.value)}} name="search" className="p-2 border" />
               <button className="p-2">
                 <FaSearch className="fa-7x" />
               </button>
