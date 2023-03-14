@@ -1,14 +1,28 @@
 const Products = require("../models/product.model")
 const productQueries = require('../queries/product.queries')
 
-
+const PAGE_SIZE = 1;
 // call back functions separated from routes
 // Read All
-module.exports.getAllProducts = (req, res) => {
-  Products.find()
-    .then(allProducts => res.json({ product: allProducts }))
-    .catch(err => res.json({ message: 'Something went wrong', error: err }));
-}
+module.exports.getAllProducts =  async (req, res) => {
+  const page = req.params.page ? parseInt(req.params.page) : 1;
+  const offset = (page - 1) * PAGE_SIZE;
+
+  try {
+    const totalDocs = await Products.countDocuments();
+    const totalPages = Math.ceil(totalDocs / PAGE_SIZE);
+
+    const products = await Products.find()
+      .sort({ createdAt: -1 })
+      .skip(offset)
+      .limit(PAGE_SIZE);
+
+    res.json({ products, page, totalPages });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+};
 
 // Find one
 module.exports.findoneSingleProduct = (req, res) => {
