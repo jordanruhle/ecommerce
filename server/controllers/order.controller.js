@@ -72,3 +72,31 @@ module.exports.deleteAnExistingOrder = (req, res) => {
         .then(result => res.json({ result: result }))
         .catch(err => res.json({ message: 'Something went wrong', error: err }));
 }
+
+// Search
+module.exports.searchOrders = async (req, res) => {
+    const { searchTerm } = req.params;
+    try {
+        const orders = await Orders.find({
+            $or: [
+                { 'billing.email': new RegExp(searchTerm, 'i') },
+                { 'billing.firstName': new RegExp(searchTerm, 'i') },
+                { 'billing.lastName': new RegExp(searchTerm, 'i') },
+                { 'billing.company': new RegExp(searchTerm, 'i') },
+                { 'billing.address': new RegExp(searchTerm, 'i') },
+                { 'billing.phone': new RegExp(searchTerm, 'i') },
+                { 'shipping.firstName': new RegExp(searchTerm, 'i') },
+                { 'shipping.lastName': new RegExp(searchTerm, 'i') },
+                { 'shipping.company': new RegExp(searchTerm, 'i') },
+                { 'shipping.address': new RegExp(searchTerm, 'i') },
+                { 'status': new RegExp(searchTerm, 'i') },
+                { 'products': new RegExp(searchTerm, 'i') },
+                { 'deliveryMethod': new RegExp(searchTerm, 'i') }
+            ]
+        })
+
+        res.json(orders);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
