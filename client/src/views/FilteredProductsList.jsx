@@ -9,13 +9,15 @@ const FilteredProductsList = () => {
   const [allProducts, setAllProducts] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [page, setPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(0)
   const { type, name } = useParams()
   
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/${type}/${name}`)
+    axios.get(`http://localhost:8000/api/${type}/${name}/${page}`)
       .then((res) => {
-        console.log(res.data);
-        setAllProducts(res.data)
+        const {products, totalPages} = res.data
+        setAllProducts(products);
+        setTotalPages(totalPages)
         setLoaded(true)
       })
       .catch((err) => console.log(err));
@@ -24,7 +26,7 @@ const FilteredProductsList = () => {
   return (
     <>
     <Navbar />
-    <ProductGrid allProducts={allProducts} loaded={loaded} setPage={setPage} />
+    <ProductGrid allProducts={allProducts} loaded={loaded} page={page} setPage={setPage} totalPages={totalPages} />
     </>
   )
 }

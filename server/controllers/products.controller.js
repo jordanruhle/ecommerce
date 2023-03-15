@@ -4,7 +4,7 @@ const productQueries = require('../queries/product.queries')
 const PAGE_SIZE = 1;
 // call back functions separated from routes
 // Read All
-module.exports.getAllProducts =  async (req, res) => {
+module.exports.getAllProducts = async (req, res) => {
   const page = req.params.page ? parseInt(req.params.page) : 1;
   const offset = (page - 1) * PAGE_SIZE;
 
@@ -90,30 +90,42 @@ module.exports.getCategories = (req, res) => {
 };
 
 // Get products by category or subcategory
-module.exports.getByMainOrSubCategory = (req, res) => {
-  const type = req.params.type;
-  const name = req.params.name;
+module.exports.getByMainOrSubCategory = async (req, res) => {
+  const { type, name, page } = req.params
+  const offset = (page - 1) * PAGE_SIZE;
 
-  if (type === 'category') {
-    Products.find({ mainCategory: name })
-      .then(products => {
-        res.json(products);
-      })
-      .catch(error => {
-        res.status(500).send(error);
-      });
-  } else if (type === 'subcategory') {
-    Products.find({ subCategory: name })
-      .then(products => {
-        res.json(products);
-      })
-      .catch(error => {
-        res.status(500).send(error);
-      });
-  } else {
-    res.status(400).send('Invalid type parameter');
+  try {
+    if (type === 'category') {
+      const totalDocs = await Products.find({ mainCategory: name }).countDocuments();
+      const totalPages = Math.ceil(totalDocs / PAGE_SIZE);
+
+      const products = await Products.find({ mainCategory: name })
+        .sort({ createdAt: -1 })
+        .skip(offset)
+        .limit(PAGE_SIZE);
+
+      res.json({ products, page, totalPages });
+
+    } else if (type === 'subcategory') {
+
+      const totalDocs = await Products.find({ subCategory: name }).countDocuments();
+      const totalPages = Math.ceil(totalDocs / PAGE_SIZE);
+
+      const products = await Products.find({ subCategory: name })
+        .sort({ createdAt: -1 })
+        .skip(offset)
+        .limit(PAGE_SIZE);
+
+      res.json({ products, page, totalPages });
+    } else {
+      res.status(400).send('Invalid parameter');
+    }
+  } catch (err) {
+    res.status(500).send("Internal server error");
   }
+
 }
+
 
 // Search
 module.exports.searchProducts = async (req, res) => {
