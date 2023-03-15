@@ -30,7 +30,7 @@ const ProductGrid = ({ allProducts, loaded, page, setPage, totalPages }) => {
           <div className="bg-white flex flex-col justify-between items-center rounded shadow p-4" key={key}>
             <img src={`../../../server/uploads/${product.image.filename}`} alt={product.name} />
             <p className="text-center my-4">{product.brand} {product.name}</p>
-            <p className="text-center my-4">${product.price.$numberDecimal}</p>
+            <p className="text-center my-4">{Number(product.price.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
             <form className="w-full" action={`/products/${product._id}`}>
               <GrayButton buttonText="View" />
             </form>
