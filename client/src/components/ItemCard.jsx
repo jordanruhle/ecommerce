@@ -7,7 +7,7 @@ const ItemCard = ({ id, cart, setCart, removeProduct, updateProduct, quantity })
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/product/${id}`)
+        axios.get(`http://localhost:8000/api/product/view/${id}`)
             .then(res => {
                 console.log(res.data);
                 let { product } = res.data

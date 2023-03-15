@@ -5,7 +5,7 @@ const CheckoutItemCard = ({ id, quantity }) => {
   const [loaded, setLoaded] = useState(false);
   const [productInfo, setProductInfo] = useState({})
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/product/${id}`)
+    axios.get(`http://localhost:8000/api/product/view/${id}`)
       .then(res => {
         let { product } = res.data
         setProductInfo((previousState) => ({

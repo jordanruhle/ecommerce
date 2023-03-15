@@ -107,6 +107,12 @@ const ViewOne = ({cart, setCart}) => {
               <div className="flex mb-4">
                 <div className="h-10 w-10 m-2 border-2 flex justify-center items-center p-6">{productInfo.size}</div>
               </div>
+              
+              <p className="font-semibold">Quantity:</p>
+              <div className="flex mb-4">
+                <input onChange={e => {setQuantity(e.target.value)
+                   console.log(quantity);}} type="number" value={quantity} className="h-10 w-10 m-2 border-2 flex justify-center items-center p-6" />
+              </div>
               <RedButton buttonText="Add to Cart" />
             </form>
           </div>
