@@ -13,9 +13,7 @@ const ViewAllProducts = () => {
     axios
       .get(`http://localhost:8000/api/product/${page}`)
       .then((res) => {
-        console.log( page)
         const {products, totalPages} = res.data
-        console.log(totalPages)
         setAllProducts(products);
         setTotalPages(totalPages)
         setLoaded(true);
