@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 
-const ItemCard = ({ id, cart, setCart, decrementProductQuantity, incrementProductQuantity, quantity }) => {
+const ItemCard = ({ id, decrementProductQuantity, incrementProductQuantity, quantity, removeItem}) => {
     const [productInfo, setProductInfo] = useState();
     const [loaded, setLoaded] = useState(false);
 
@@ -30,18 +30,6 @@ const ItemCard = ({ id, cart, setCart, decrementProductQuantity, incrementProduc
             .catch(err => console.log(err));
     }, []);
 
-
-
-    const removeItem = () => {
-        const productIndex = cart.findIndex(item => item.product_id === id)
-        if (productIndex !== -1) {
-            // If the product exists, update the quantity
-            const updatedCart = [...cart]
-            updatedCart.splice(productIndex, 1)
-            setCart(updatedCart)
-        }
-    }
-
     const capitalizeFirstLetter = (str) => {
         return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
     }
@@ -66,7 +54,7 @@ const ItemCard = ({ id, cart, setCart, decrementProductQuantity, incrementProduc
                                     <button className="w-12 bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full cursor-pointer">+</button>
                                 </form>
                             </div>
-                            <form onSubmit={removeItem}>
+                            <form onSubmit={e => removeItem(e, id)}>
                                 <button>Remove</button>
                             </form>
                             <p className='text-lg my-4 font-bold'>{Number(productInfo.price * quantity).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
