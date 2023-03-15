@@ -10,17 +10,36 @@ const AdminOrders = ({ setCart }) => {
   const [loaded, setLoaded] = useState(false);
   const [getAllTrigger, setGetAllTrigger] = useState(false);
   const [searchTerm, setSearchTerm] = useState('')
+  const [totalPages, setTotalPages] = useState(0)
+  const [page, setPage] = useState(1)
+
+  const pageLinks = () => {
+    const links = []
+    let i = 1
+    while (i <= totalPages) {
+      const pageNumber = i;
+      links.push(
+        pageNumber === page ?
+        <p className="text-xl underline text-slate-500 cursor-pointer" key={i} onClick={() => setPage(pageNumber)}>{i}</p>
+        : <p className="text-xl underline text-blue-700 cursor-pointer" key={i} onClick={() => setPage(pageNumber)}>{i}</p>
+      )
+      i++
+    }
+    return links
+  }
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/order")
+      .get(`http://localhost:8000/order/view/${page}`)
       .then((res) => {
         console.log(res.data);
-        setAllOrders(res.data.order);
+        setAllOrders(res.data.orders);
+        setPage(res.data.page);
+        setTotalPages(res.data.totalPages)
         setLoaded(true);
       })
       .catch((err) => console.log(err));
-  }, [getAllTrigger]);
+  }, [getAllTrigger, page]);
 
   const clearCart = (e) => {
     e.preventDefault();
@@ -166,6 +185,9 @@ const AdminOrders = ({ setCart }) => {
             </tbody>
           </table>
         </div>
+      <div className="max-w-screen-xl mx-auto flex justify-end gap-1 w-full">
+        {loaded ? pageLinks() : null}
+      </div>
       </div>
     </div>
   );

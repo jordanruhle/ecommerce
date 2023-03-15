@@ -11,7 +11,9 @@ const ProductGrid = ({ allProducts, loaded, page, setPage, totalPages }) => {
     while (i <= totalPages) {
       const pageNumber = i;
       links.push(
-        <p className="text-xl underline text-blue-700" key={i} onClick={() => setPage(pageNumber)}>{i}</p>
+        pageNumber === page ?
+        <p className="text-xl underline text-slate-500 cursor-pointer" key={i} onClick={() => setPage(pageNumber)}>{i}</p>
+        : <p className="text-xl underline text-blue-700 cursor-pointer" key={i} onClick={() => setPage(pageNumber)}>{i}</p>
       )
       i++
     }
@@ -64,7 +66,7 @@ const ProductGrid = ({ allProducts, loaded, page, setPage, totalPages }) => {
           </Link>
         </div>
       </div>
-      <div className="max-w-screen-xl mx-auto flex justify-end gap-1 w-full">
+      <div className="max-w-screen-xl mx-auto flex justify-end gap-1 w-full pr-4">
         {loaded ? pageLinks() : null}
       </div>
     </div>

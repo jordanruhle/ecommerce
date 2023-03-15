@@ -3,14 +3,28 @@ const { validationResult } = require('express-validator');
 const mongoose = require('mongoose');
 
 
-
+const PAGE_SIZE = 9;
 // call back functions separated from routes
 // Read All
-module.exports.getAllOrders = (req, res) => {
-    Orders.find()
-        .then(allOrders => res.json({ order: allOrders }))
-        .catch(err => res.json({ message: 'Something went wrong', error: err }));
-}
+module.exports.getAllOrders = async (req, res) => {
+    const page = req.params.page ? parseInt(req.params.page) : 1;
+    const offset = (page -1) * PAGE_SIZE;
+
+    try {
+        const totalDocs = await Orders.countDocuments();
+        const totalPages = Math.ceil(totalDocs / PAGE_SIZE);
+
+        const orders = await Orders.find()
+            .sort({ createdAt: -1})
+            .skip(offset)
+            .limit(PAGE_SIZE);
+
+        res.json({ orders, page, totalPages });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error')
+    }
+};
 
 // Find one
 module.exports.findoneSingleOrder = (req, res) => {
