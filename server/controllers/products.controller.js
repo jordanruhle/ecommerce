@@ -1,7 +1,7 @@
 const Products = require("../models/product.model")
 const productQueries = require('../queries/product.queries')
 
-const PAGE_SIZE = 6;
+const PAGE_SIZE = 1;
 // call back functions separated from routes
 // Read All
 module.exports.getAllProducts =  async (req, res) => {

@@ -4,7 +4,7 @@ import RedButton from '../components/RedButton'
 import { FaSearch } from 'react-icons/fa'
 import axios from 'axios'
 
-const AdminProductTable = ({ allProducts, removeFromDom, search, searchTerm, setSearchTerm }) => {
+const AdminProductTable = ({ allProducts, removeFromDom, search, searchTerm, setSearchTerm, page, setPage, totalPages, loaded }) => {
 
   const deleteProduct = (id) => {
     axios.delete(`http://localhost:8000/api/product/${id}`)
@@ -12,7 +12,22 @@ const AdminProductTable = ({ allProducts, removeFromDom, search, searchTerm, set
         removeFromDom(id)
       })
       .catch(err => console.error(err));
-  }
+  };
+
+  const pageLinks = () => {
+    const links = []
+    let i = 1
+    while (i <= totalPages) {
+      const pageNumber = i;
+      links.push(
+        pageNumber === page ?
+        <p className="text-xl underline text-slate-500 cursor-pointer" key={i} onClick={() => setPage(pageNumber)}>{i}</p>
+        : <p className="text-xl underline text-blue-700 cursor-pointer" key={i} onClick={() => setPage(pageNumber)}>{i}</p>
+      )
+      i++
+    }
+    return links
+  };
 
   const tableHeadings = ['Picture', 'Id', 'Name', 'Brand', 'Price', 'Category', 'Sub-Category', 'Action']
 
@@ -79,6 +94,9 @@ const AdminProductTable = ({ allProducts, removeFromDom, search, searchTerm, set
             }
           </tbody>
         </table>
+      </div>
+      <div className="max-w-screen-xl mx-auto flex justify-end gap-1 w-full"> 
+        {loaded ? pageLinks() : null}
       </div>
     </div>
   )
