@@ -6,14 +6,31 @@ import OrderSummary from '../components/ordersummary';
 
 export const Cart = ({ cart, setCart }) => {
 
-    const updateProduct = (product) => {
-        // ...allows you to change the quantity of a product in the cart to anything greater than zero
-        // take in a quantity and product Id and setCart with them
-        // happen on submit of the cart form aka clicking checkout button
+    const decrementProductQuantity = (e, id) => {
+        e.preventDefault()
+        const productIndex = cart.findIndex(item => item.product_id === id)
+        if(cart[productIndex].quantity >1){
+            const updatedCart = [...cart]
+            updatedCart[productIndex].quantity--
+            setCart(updatedCart)
+        }
     }
-    const removeProduct = (product) => {
-        // ...delete items out of the cart. 
-        //  takes in product Id
+
+    const incrementProductQuantity = (e, id) => {
+        e.preventDefault()
+        const productIndex = cart.findIndex(item => item.product_id === id)
+        const updatedCart = [...cart]
+        updatedCart[productIndex].quantity++
+        setCart(updatedCart)
+    }
+    const removeItem = (e, id) => {
+        const productIndex = cart.findIndex(item => item.product_id === id)
+        if (productIndex !== -1) {
+            // If the product exists, update the quantity
+            const updatedCart = [...cart]
+            updatedCart.splice(productIndex, 1)
+            setCart(updatedCart)
+        }
     }
 
     return (
@@ -22,8 +39,7 @@ export const Cart = ({ cart, setCart }) => {
             <div className="max-w-screen-xl mx-auto grid sm:grid-cols-2 md:grid-cols-3  gap-x-14 grid-flow-row-dense ">
                 {/* ------------ Shopping Cart ------------- */}
                 {cart.map((product, i) => (
-                    // console.log(product.product_id)
-                    <ItemCard key={i} quantity={product.quantity} id={product.product_id} cart={cart} setCart={setCart} removeProduct={removeProduct} updateProduct={updateProduct} />
+                    <ItemCard key={i} quantity={product.quantity} id={product.product_id} decrementProductQuantity={decrementProductQuantity} incrementProductQuantity={incrementProductQuantity} removeItem={removeItem} />
                 ))}
 
                 {/* ------------ Order Summary ------------- */}

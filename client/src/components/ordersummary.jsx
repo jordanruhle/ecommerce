@@ -24,7 +24,7 @@ const OrderSummary = ({ cart }) => {
             {/* ----------- Subtotal -------------- */}
             <div className='flex justify-between'>
                 <p className='text-lg my-4'>Subtotal</p>
-                <p className='text-lg my-4' >${subTotal}</p>
+                <p className='text-lg my-4' >{Number(subTotal).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
             </div>
           
             {/* ----------- Shipping -------------- */}
@@ -40,13 +40,13 @@ const OrderSummary = ({ cart }) => {
             {/* ----------- Tax -------------- */}
             <div className='flex justify-between'>
                 <p className='text-lg my-4'>Estimated Tax</p>
-                <p className='text-lg my-4' >{(subTotal * .08).toFixed(2)}</p>
+                <p className='text-lg my-4' >{Number(subTotal * .08).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
             </div>
 
             {/* ----------- Total -------------- */}
             <div className='flex justify-between'>
                 <p className='text-lg my-4 font-bold'>Total</p>
-                <p className='text-lg my-4 font-bold' >${(subTotal * 1.08).toFixed(2)}</p>
+                <p className='text-lg my-4 font-bold' >{Number(subTotal * 1.08).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
             </div>
             <RedButton buttonText="Checkout" />
 
