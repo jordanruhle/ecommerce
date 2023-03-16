@@ -27,7 +27,7 @@ const ProductGrid = ({ allProducts, loaded, page, setPage, totalPages }) => {
         {loaded ? allProducts.map((product, key) =>
           //   const imagePath = `../../../server/uploads/${product.image.filename}`;
           <div className="bg-white flex flex-col justify-between items-center rounded shadow p-4" key={key}>
-            <img src={`../../../server/uploads/${product.image.filename}`} alt={product.name} />
+            <img src={product.image.location} alt={product.name} />
             <p className="text-center my-4">{product.brand} {product.name}</p>
             <p className="text-center my-4">{Number(product.price.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
             <form className="w-full" action={`/products/${product._id}`}>
@@ -46,7 +46,7 @@ const ProductGrid = ({ allProducts, loaded, page, setPage, totalPages }) => {
         </div>
         <div className="bg-white flex flex-col items-center rounded shadow p-4">
           <img
-            src="https://jnsn.imgix.net/globalassets/digizuite/12295-en-bi002184-green~black~orange.jpg?w=1000&auto=format&q=70&fit=max"
+            src="https://jr.mb.ecommerce.s3.us-east-1.amazonaws.com/images/1679005935023_yeti-sb150-turq-x01-01-1544103271478-v6oqh0cclnha-865498f.jpg"
             alt="bike"
           />
           <p className="text-center my-4">Brand Bike Name</p>
