@@ -7,11 +7,13 @@ const ItemCard = ({ id, decrementProductQuantity, incrementProductQuantity, quan
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/product/view/${id}`)
-            .then(res => {
-                console.log(res.data);
+        const fetchData = async () => {
+          try {
+            const res = await axios.get(`http://localhost:8000/api/product/view/${id}`)
+            if (res.data.product) {
+                console.log(res.data.product);
                 let { product } = res.data
-                setProductInfo((previousState) => ({
+                await setProductInfo((previousState) => ({
                     ...previousState,
                     name: product.name,
                     brand: product.brand,
@@ -25,10 +27,15 @@ const ItemCard = ({ id, decrementProductQuantity, incrementProductQuantity, quan
                     colorName: product.colorName,
                     size: product.size,
                 }));
-                setLoaded(true);
-            })
-            .catch(err => console.log(err));
-    }, []);
+                    setLoaded(true) 
+            }
+          } catch (err){
+            console.log(err)
+          }
+        }
+      
+        fetchData();
+      }, []);
 
     const capitalizeFirstLetter = (str) => {
         return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
