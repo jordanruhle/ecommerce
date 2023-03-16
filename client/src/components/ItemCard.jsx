@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 
 const ItemCard = ({ id, decrementProductQuantity, incrementProductQuantity, quantity, removeItem}) => {
     const [productInfo, setProductInfo] = useState();
     const [loaded, setLoaded] = useState(false);
+    const navigate = useNavigate()
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/product/view/${id}`)
@@ -33,14 +35,19 @@ const ItemCard = ({ id, decrementProductQuantity, incrementProductQuantity, quan
     const capitalizeFirstLetter = (str) => {
         return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
     }
+
+    const returnToProduct = () => {
+        navigate(`/products/${id}`)
+    }
+
     return (
         <>
             {
                 loaded ?
                     <div className="flex justify-between h-60 gap-2 lg:gap-8 col-span-1 sm:col-span-2 items-center p-4">
-                        <img src="https://content.backcountry.com/images/items/1200/YTI/YTIR1DG/TUR.jpg" alt="cart item" className=' h-60' />
+                        <img className="cursor-pointer h-60" onClick={returnToProduct} src="https://content.backcountry.com/images/items/1200/YTI/YTIR1DG/TUR.jpg" alt="cart item" />
                         <div className='grow shrink-0 basis-1/3'>
-                            <p>{productInfo.brand} {productInfo.name}</p>
+                            <p className="cursor-pointer" onClick={returnToProduct}>{productInfo.brand} {productInfo.name}</p>
                             <p>{capitalizeFirstLetter(productInfo.colorName)}</p>
                             <p>{productInfo.size}</p>
                         </div>
