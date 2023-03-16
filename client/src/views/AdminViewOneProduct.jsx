@@ -1,12 +1,13 @@
 import React from 'react'
+import AdminProductDetails from '../components/AdminComponents/AdminProductDetails'
 import AdminNavBar from '../components/AdminNavBar'
-import ViewOne from '../components/viewone'
+
 
 const AdminViewOneProduct = () => {
   return (
     <>
       <AdminNavBar />
-      <ViewOne />
+      <AdminProductDetails />
     </>
   )
 }

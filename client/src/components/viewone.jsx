@@ -73,7 +73,7 @@ const ViewOne = ({cart, setCart}) => {
             setLoaded(true);
         })
         .catch(err => console.log(err));
-  }, []);
+  }, [id]);
 
   return (
     // Body

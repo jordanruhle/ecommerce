@@ -41,7 +41,7 @@ const ProductEdit = () => {
       }));
       setLoaded(true);
     }).catch(err => console.error(err));
-  }, []);
+  }, [id]);
 
   const updateProduct = (e) => {
     e.preventdefualt();
