@@ -14,6 +14,7 @@ import FilteredProductsList from './views/FilteredProductsList';
 import AdminViewOneOrder from "./views/AdminViewOneOrder";
 import OrderConfirmation from "./views/OrderConfirmation";
 import ProtectedRoute from "./views/ProtectedRoute";
+import AdminViewOneProduct from "./views/AdminViewOneProduct";
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
         {/* Protected Routes */}
         <Route element={<ProtectedRoute element={AdminOrders} setCart={setCart} />} path='/dashboard/orders' /> 
         <Route element={<ProtectedRoute element={AdminProducts}/>} path='/dashboard/products'/>
+        <Route element={<ProtectedRoute element={AdminViewOneProduct}/>} path='/products/show/:id'/>
         <Route element={<ProtectedRoute element={AdminViewOneOrder}/>} path='/orders/show/:id'/>
         <Route element={<ProtectedRoute element={ProductCreateOne}/>} path='/products/create' />
         <Route element={<ProtectedRoute element={ProductEdit}/>} path='/products/:id/edit' />

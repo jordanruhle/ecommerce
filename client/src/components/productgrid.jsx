@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import GrayButton from "./GrayButton";
 import ProductFilters from "./ProductFilters";
 
