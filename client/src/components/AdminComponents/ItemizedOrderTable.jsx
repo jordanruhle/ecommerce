@@ -21,7 +21,7 @@ const ItemizedOrderTable = ({ order }) => {
                   <td className='md:text-sm xl:text-xl py-4 px-5 text-clip'>{product.product_id}</td>
                   <td className='md:text-sm xl:text-xl py-4 px-5'>{product.name}</td>
                   <td className='md:text-sm xl:text-xl py-4 px-5'>{Number(product.price).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
-                  <td className='md:text-sm xl:text-xl py-4 px-5'>{product.color}</td>
+                  <td className='md:text-sm xl:text-xl py-4 px-5'>{product.colorName}</td>
                   <td className='md:text-sm xl:text-xl py-4 px-5'>{product.size}</td>
                   <td className='md:text-sm xl:text-xl py-4 px-5'>{product.quantity}</td>
                   <td className='md:text-sm xl:text-xl py-4 px-5'>{Number(product.total).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>

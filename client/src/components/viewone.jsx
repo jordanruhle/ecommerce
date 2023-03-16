@@ -20,6 +20,7 @@ const ViewOne = ({cart, setCart}) => {
     quantitySold: 0,
     image: "",
     color: "",
+    colorName: "",
     size: "xsm",
   });
 
@@ -41,7 +42,7 @@ const ViewOne = ({cart, setCart}) => {
           product_id: id,
           name: productInfo.name,
           price: productInfo.price,
-          color: productInfo.color,
+          colorName: productInfo.colorName,
           size: productInfo.size,
           quantity: quantity,
           total: quantity * productInfo.price
@@ -68,6 +69,7 @@ const ViewOne = ({cart, setCart}) => {
                 quantity: product.quantity,
                 quantitySold: product.quantitySold,
                 color: product.color,
+                colorName: product.colorName,
                 size: product.size,
             }));
             setLoaded(true);
