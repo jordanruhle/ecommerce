@@ -24,7 +24,7 @@ const ProductEdit = () => {
   });
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/product/${id}`).then((res) => {
+    axios.get(`http://localhost:8000/api/product/view/${id}`).then((res) => {
       const { product } = res.data;
       setProductInfo((previousState) => ({
         ...previousState,

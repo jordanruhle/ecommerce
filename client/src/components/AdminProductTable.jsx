@@ -71,7 +71,7 @@ const AdminProductTable = ({ allProducts, removeFromDom, search, searchTerm, set
                       <img src={imagePath} alt={product.name} />
                     </td>
                     <td className='text-base py-4 px-5 underline text-blue-700 '>
-                      <a href={'/orders/show/' + product._id}>{product._id}</a>
+                      <a href={'/products/show/' + product._id}>{product._id}</a>
                     </td>
                     <td className='text-base py-4 px-5 truncate '>{product.name}</td>
                     <td className='text-base py-4 px-5 truncate '>{product.brand}</td>
