@@ -25,7 +25,6 @@ const ProductGrid = ({ allProducts, loaded, page, setPage, totalPages }) => {
         <ProductFilters />
         {/* ------------Loop through all products-------------- */}
         {loaded ? allProducts.map((product, key) =>
-          //   const imagePath = `../../../server/uploads/${product.image.filename}`;
           <div className="bg-white flex flex-col justify-between items-center rounded shadow p-4" key={key}>
             <div className="w-full relative pb-[56.25%]">
               <img className="w-full h-full absolute object-cover" src={product.image.location} alt={product.name} />
