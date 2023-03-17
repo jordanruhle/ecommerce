@@ -21,6 +21,7 @@ const CheckoutItemCard = ({ id, quantity }) => {
           color: product.color,
           colorName: product.colorName,
           size: product.size,
+          image: product.image
         }));
         setLoaded(true);
       })
@@ -29,15 +30,19 @@ const CheckoutItemCard = ({ id, quantity }) => {
 
   const capitalizeFirstLetter = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-}
+  }
 
   return (
-    <div className="grid grid-cols-5">
+    <div className="grid mb-4 grid-cols-5 gap-x-4">
       {
         loaded
           ? <>
-            <div className="col-span-3 flex gap-8 h-24">
-              <img src="https://content.backcountry.com/images/items/1200/YTI/YTIR1DG/TUR.jpg" alt="cart item" />
+            <div className="col-span-3 flex gap-2">
+              <div className='w-32 shrink-0 p-4'>
+                <div className='w-full relative pb-[56.25%]'>
+                  <img className='w-full h-full absolute object-cover' src={productInfo.image.location} alt="cart item" />
+                </div>
+              </div>
               <div>
                 <p className='uppercase font-semibold'>{productInfo.brand} {productInfo.name}</p>
                 {/* eventually generate color productInfo.color? */}
