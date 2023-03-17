@@ -57,7 +57,6 @@ module.exports.adminLogin = async (req, res) => {
 
     // checks if password associated with email matches given password
     if (matchedPasswords) {
-      console.log("made it to the if");
       // Build Response
       var payload = {
         id: admin._id

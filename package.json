@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "@stripe/stripe-js": "^1.47.0",
+    "aws-sdk": "^2.1337.0",
+    "multer-s3": "^3.0.1",
     "react-stripe-elements": "^6.1.2",
     "stripe": "^11.12.0"
   }
