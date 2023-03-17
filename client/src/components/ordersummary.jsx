@@ -15,7 +15,7 @@ const OrderSummary = ({ cart }) => {
     }, [cart]);
 
     return (
-        <form action="/checkout" className='bg-white flex flex-col row-span-2  p-4'>
+        <form action="/checkout" className='bg-white rounded shadow flex flex-col row-span-2 p-4'>
 
             {/* ----------- Order Summary --------------- */}
             <h2 className='text-2xl my-4' >Order Summary</h2>
