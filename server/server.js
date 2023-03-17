@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config()
 const app = express();
 var bodyParser = require('body-parser');
 const multer  = require('multer');
@@ -7,7 +8,6 @@ const { resolve } = require("path");
 const port = 8000;
 const DB = "ecommerce"
 const cors = require('cors')
-require('dotenv').config()
 const jwt = require("jsonwebtoken");
 const cookieParser = require('cookie-parser');
 
