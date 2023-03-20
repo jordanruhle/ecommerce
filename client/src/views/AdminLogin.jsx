@@ -4,7 +4,7 @@ import CheckoutNav from '../components/CheckoutComponents/CheckoutNav'
 import RedButton from '../components/RedButton'
 import { useNavigate } from 'react-router-dom'
 
-function AdminLogin() {
+const AdminLogin = () => {
   const navigate = useNavigate()
   const [loginInfo, setLoginInfo] = useState({
     email: "",
