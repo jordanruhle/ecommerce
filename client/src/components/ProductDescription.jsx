@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ProductDescription({ description }) {
+const ProductDescription = ({ description }) => {
   const paragraphs = description.split('\n');
   const descriptionHTML = paragraphs.map((paragraph, index) => (
     <React.Fragment key={index}>
