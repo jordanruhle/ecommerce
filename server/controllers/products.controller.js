@@ -1,3 +1,4 @@
+const Orders = require("../models/order.model");
 const Products = require("../models/product.model")
 const productQueries = require('../queries/product.queries')
 
@@ -129,20 +130,27 @@ module.exports.getByMainOrSubCategory = async (req, res) => {
 
 // Search
 module.exports.searchProducts = async (req, res) => {
-  const { searchTerm } = req.params;
+  const { searchTerm, page } = req.params;
   const regex = new RegExp(searchTerm, 'i');
-  try {
-    const products = await Products.find({
-      $or: [
+  const offset = (page -1) * PAGE_SIZE;
+  
+  const searchAttributes = [
         { 'name': regex },
         { 'brand': regex },
         { 'mainCategory': regex },
         { 'subCategory': regex },
       ]
-    })
+  try {
+    const totalDocs = await Products.find({$or: searchAttributes}).countDocuments()
+    const totalPages = Math.ceil(totalDocs / PAGE_SIZE);
 
-    res.json(products);
+    const products = await Products.find({ $or: searchAttributes})
+    .sort({ createdAt: -1})
+    .skip(offset)
+    .limit(PAGE_SIZE);
+
+    res.json({ products, page, totalPages });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+      res.status(500).json({ message: err.message });
   }
 };

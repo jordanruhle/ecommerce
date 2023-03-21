@@ -111,7 +111,7 @@ module.exports.searchOrders = async (req, res) => {
                 { 'deliveryMethod': regex }
             ]
     try {
-        const totalDocs = await Orders.find({ $or: searchAttributes}).countDocuments();
+        const totalDocs = await Orders.find({$or: searchAttributes}).countDocuments();
         const totalPages = Math.ceil(totalDocs / PAGE_SIZE);
 
         const orders = await Orders.find({ $or: searchAttributes})

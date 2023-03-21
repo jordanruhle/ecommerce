@@ -9,35 +9,44 @@ const AdminProducts = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
+  const [searched, setSearched] = useState(false)
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:8000/api/product/${page}`)
+    if (searched){
+      axios
+      .get(`http://localhost:8000/api/product/search/${searchTerm}/${page}`)
       .then((res) => {
-        console.log(res.data);
-        const { products, totalPages } = res.data;
+        const { products, totalPages} = res.data;
         setAllProducts(products);
         setTotalPages(totalPages);
-        setLoaded(true);
-      })
-      .catch((err) => console.log(err));
-  }, [page]);
-
-  const removeFromDom = (productId) => {
-    setAllProducts(allProducts.filter((product) => product._id !== productId));
-  };
-  
-
-  const search = (e) => {
-    e.preventDefault();
-    console.log(searchTerm);
-    axios
-      .get(`http://localhost:8000/api/product/search/${searchTerm}`)
-      .then((res) => {
-        setAllProducts(res.data);
         console.log(res.data);
       })
       .catch((err) => console.log(err));
+    }
+    else {
+      console.log("else");
+      axios
+        .get(`http://localhost:8000/api/product/${page}`)
+        .then((res) => {
+          console.log(res.data);
+          const { products, totalPages } = res.data;
+          setAllProducts(products);
+          setTotalPages(totalPages);
+          setLoaded(true);
+        })
+        .catch((err) => console.log(err));
+      }
+    }, [searched, page]);
+    
+    const removeFromDom = (productId) => {
+      setAllProducts(allProducts.filter((product) => product._id !== productId));
+    };
+    
+    const search = (e) => {
+      e.preventDefault();
+      setPage(1)
+      setSearched(true)
+      console.log(searchTerm);
   };
 
   return (
