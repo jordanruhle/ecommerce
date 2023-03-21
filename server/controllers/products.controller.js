@@ -2,7 +2,7 @@ const Products = require("../models/product.model")
 const productQueries = require('../queries/product.queries')
 
 const PAGE_SIZE = 9;
-// call back functions separated from routes
+
 // Read All
 module.exports.getAllProducts = async (req, res) => {
   const page = req.params.page ? parseInt(req.params.page) : 1;

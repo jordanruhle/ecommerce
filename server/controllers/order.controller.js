@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 
 const PAGE_SIZE = 9;
-// call back functions separated from routes
+
 // Read All
 module.exports.getAllOrders = async (req, res) => {
     const page = req.params.page ? parseInt(req.params.page) : 1;
