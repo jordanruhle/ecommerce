@@ -39,7 +39,7 @@ const AdminOrders = ({ setCart }) => {
         setLoaded(true);
       })
       .catch((err) => console.log(err));
-  }, [getAllTrigger, page]);
+  }, [getAllTrigger]);
 
   const clearCart = (e) => {
     e.preventDefault();
@@ -73,11 +73,13 @@ const AdminOrders = ({ setCart }) => {
     e.preventDefault()
     console.log(searchTerm);
     axios
-      .get(`http://localhost:8000/api/order/search/${searchTerm}`)
+      .get(`http://localhost:8000/search/${searchTerm}/${page}`)
       .then(res => {
-        setAllOrders(res.data)
         console.log(res.data);
-        
+        setAllOrders(res.data.orders)
+        setPage(res.data.page);
+        setTotalPages(res.data.totalPages)
+        setLoaded(true);
       })
       .catch(err => console.log(err));
   }

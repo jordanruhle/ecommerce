@@ -31,7 +31,7 @@ const AdminProductTable = ({ allProducts, removeFromDom, search, searchTerm, set
 
   const tableHeadings = ['Picture', 'Id', 'Name', 'Brand', 'Price', 'Category', 'Sub-Category', 'Action']
 
-  const searchChange = e =>{
+  const searchChange = (e) =>{
     setSearchTerm(e.target.value)
     console.log(searchTerm);
     }
