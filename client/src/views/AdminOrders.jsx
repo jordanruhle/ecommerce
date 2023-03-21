@@ -22,8 +22,8 @@ const AdminOrders = ({ setCart }) => {
       const pageNumber = i;
       links.push(
         pageNumber === page ?
-        <p className="text-xl underline text-slate-500 cursor-pointer" key={i} onClick={() => setPage(pageNumber)}>{i}</p>
-        : <p className="text-xl underline text-blue-700 cursor-pointer" key={i} onClick={() => setPage(pageNumber)}>{i}</p>
+          <p className="text-xl underline text-slate-500 cursor-pointer" key={i} onClick={() => setPage(pageNumber)}>{i}</p>
+          : <p className="text-xl underline text-blue-700 cursor-pointer" key={i} onClick={() => setPage(pageNumber)}>{i}</p>
       )
       i++
     }
@@ -31,31 +31,47 @@ const AdminOrders = ({ setCart }) => {
   }
 
   useEffect(() => {
-    if(searched){
-      console.log(searchTerm);
-    axios
-      .get(`http://localhost:8000/search/${searchTerm}/${page}`)
-      .then(res => {
-        console.log(res.data);
-        setAllOrders(res.data.orders)
-        setPage(res.data.page);
-        setTotalPages(res.data.totalPages)
-        setLoaded(true);
-      })
-      .catch(err => console.log(err));
-    } else {
-      axios
-      .get(`http://localhost:8000/order/view/${page}`)
-      .then((res) => {
-        console.log(res.data);
-        setAllOrders(res.data.orders);
-        setPage(res.data.page);
-        setTotalPages(res.data.totalPages)
-        setLoaded(true);
-      })
-      .catch((err) => console.log(err));
+    const fetchData = async () => {
+      let ordersQuery
+      try {
+        if (searched) {
+          ordersQuery = await axios.get(`http://localhost:8000/search/${searchTerm}/${page}`)
+        }
+        else {
+          ordersQuery = await axios.get(`http://localhost:8000/order/view/${page}`)
+        }
+        
+          console.log(ordersQuery.data);
+          setAllOrders(ordersQuery.data.orders);
+          setPage(ordersQuery.data.page);
+          setTotalPages(ordersQuery.data.totalPages)
+          setLoaded(true);
+        
+      }
+      catch (err) {
+        console.log(err);
+      }
     }
+    fetchData()
   }, [getAllTrigger, page, searched]);
+  // if (searched) {
+  //   console.log(searchTerm);
+  //   axios
+  //     .get(`http://localhost:8000/search/${searchTerm}/${page}`)
+
+  // } else {
+  //   axios
+  //     .get(`http://localhost:8000/order/view/${page}`)
+  // }
+  //   axios
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       setAllOrders(res.data.orders);
+  //       setPage(res.data.page);
+  //       setTotalPages(res.data.totalPages)
+  //       setLoaded(true);
+  //     })
+  // .catch((err) => console.log(err));
 
   const clearCart = (e) => {
     e.preventDefault();
@@ -95,7 +111,7 @@ const AdminOrders = ({ setCart }) => {
     <div>
       <AdminNavBar />
       <div className="bg-gradient-to-br from-slate-50 to-stone-300 min-h-screen p-4">
-        <OrdersTable 
+        <OrdersTable
           search={search}
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
@@ -103,11 +119,11 @@ const AdminOrders = ({ setCart }) => {
           loaded={loaded}
           allOrders={allOrders}
           onStatusUpdate={onStatusUpdate}
-          deleteOrder={deleteOrder} 
+          deleteOrder={deleteOrder}
         />
-      <div className="max-w-screen-xl mx-auto flex justify-end gap-1 w-full">
-        {loaded ? pageLinks() : null}
-      </div>
+        <div className="max-w-screen-xl mx-auto flex justify-end gap-1 w-full">
+          {loaded ? pageLinks() : null}
+        </div>
       </div>
     </div>
   );
