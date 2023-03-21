@@ -33,7 +33,7 @@ const AdminProductTable = ({ allProducts, removeFromDom, search, searchTerm, set
 
   const searchChange = (e) =>{
     setSearchTerm(e.target.value)
-    console.log(searchTerm);
+    // console.log(searchTerm);
     }
 
   return (
