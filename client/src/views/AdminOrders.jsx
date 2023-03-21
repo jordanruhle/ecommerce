@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { FaSearch } from "react-icons/fa";
-import RedButton from "../components/RedButton";
-
 import AdminNavBar from "../components/AdminNavBar";
 import OrdersTable from "../components/AdminComponents/OrdersTable";
 
@@ -32,21 +29,20 @@ const AdminOrders = ({ setCart }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      let ordersQuery
+      let response
       try {
         if (searched) {
-          ordersQuery = await axios.get(`http://localhost:8000/search/${searchTerm}/${page}`)
+          response = await axios.get(`http://localhost:8000/search/${searchTerm}/${page}`)
         }
         else {
-          ordersQuery = await axios.get(`http://localhost:8000/order/view/${page}`)
+          response = await axios.get(`http://localhost:8000/order/view/${page}`)
         }
-        
-          console.log(ordersQuery.data);
-          setAllOrders(ordersQuery.data.orders);
-          setPage(ordersQuery.data.page);
-          setTotalPages(ordersQuery.data.totalPages)
-          setLoaded(true);
-        
+        console.log(response.data);
+        setAllOrders(response.data.orders);
+        setPage(response.data.page);
+        setTotalPages(response.data.totalPages)
+        setLoaded(true);
+
       }
       catch (err) {
         console.log(err);
@@ -54,24 +50,6 @@ const AdminOrders = ({ setCart }) => {
     }
     fetchData()
   }, [getAllTrigger, page, searched]);
-  // if (searched) {
-  //   console.log(searchTerm);
-  //   axios
-  //     .get(`http://localhost:8000/search/${searchTerm}/${page}`)
-
-  // } else {
-  //   axios
-  //     .get(`http://localhost:8000/order/view/${page}`)
-  // }
-  //   axios
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       setAllOrders(res.data.orders);
-  //       setPage(res.data.page);
-  //       setTotalPages(res.data.totalPages)
-  //       setLoaded(true);
-  //     })
-  // .catch((err) => console.log(err));
 
   const clearCart = (e) => {
     e.preventDefault();
