@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 
 const PAGE_SIZE = 9;
-// call back functions separated from routes
+
 // Read All
 module.exports.getAllOrders = async (req, res) => {
     const page = req.params.page ? parseInt(req.params.page) : 1;
@@ -28,6 +28,7 @@ module.exports.getAllOrders = async (req, res) => {
 
 // Find one
 module.exports.findoneSingleOrder = (req, res) => {
+    console.log("find one")
     const id = req.params.id
     console.log(id)
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
@@ -89,11 +90,12 @@ module.exports.deleteAnExistingOrder = (req, res) => {
 
 // Search
 module.exports.searchOrders = async (req, res) => {
-    const { searchTerm } = req.params;
+    console.log("Order Search");
+    const { searchTerm, page } = req.params;
+    const offset = (page -1) * PAGE_SIZE;
+    
     const regex = new RegExp(searchTerm, 'i');
-    try {
-        const orders = await Orders.find({
-            $or: [
+    const searchAttributes = [
                 { 'billing.email': regex },
                 { 'billing.firstName': regex },
                 { 'billing.lastName': regex },
@@ -108,9 +110,16 @@ module.exports.searchOrders = async (req, res) => {
                 { 'products': regex },
                 { 'deliveryMethod': regex }
             ]
-        })
+    try {
+        const totalDocs = await Orders.find({ $or: searchAttributes}).countDocuments();
+        const totalPages = Math.ceil(totalDocs / PAGE_SIZE);
 
-        res.json(orders);
+        const orders = await Orders.find({ $or: searchAttributes})
+            .sort({ createdAt: -1})
+            .skip(offset)
+            .limit(PAGE_SIZE);
+
+        res.json({ orders, page, totalPages });
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
