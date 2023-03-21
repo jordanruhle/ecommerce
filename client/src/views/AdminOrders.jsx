@@ -13,6 +13,7 @@ const AdminOrders = ({ setCart }) => {
   const [searchTerm, setSearchTerm] = useState('')
   const [totalPages, setTotalPages] = useState(0)
   const [page, setPage] = useState(1)
+  const [searched, setSearched] = useState(false)
 
   const pageLinks = () => {
     const links = []
@@ -30,7 +31,20 @@ const AdminOrders = ({ setCart }) => {
   }
 
   useEffect(() => {
+    if(searched){
+      console.log(searchTerm);
     axios
+      .get(`http://localhost:8000/search/${searchTerm}/${page}`)
+      .then(res => {
+        console.log(res.data);
+        setAllOrders(res.data.orders)
+        setPage(res.data.page);
+        setTotalPages(res.data.totalPages)
+        setLoaded(true);
+      })
+      .catch(err => console.log(err));
+    } else {
+      axios
       .get(`http://localhost:8000/order/view/${page}`)
       .then((res) => {
         console.log(res.data);
@@ -40,7 +54,8 @@ const AdminOrders = ({ setCart }) => {
         setLoaded(true);
       })
       .catch((err) => console.log(err));
-  }, [getAllTrigger]);
+    }
+  }, [getAllTrigger, page, searched]);
 
   const clearCart = (e) => {
     e.preventDefault();
@@ -72,17 +87,8 @@ const AdminOrders = ({ setCart }) => {
 
   const search = (e) => {
     e.preventDefault()
-    console.log(searchTerm);
-    axios
-      .get(`http://localhost:8000/search/${searchTerm}/${page}`)
-      .then(res => {
-        console.log(res.data);
-        setAllOrders(res.data.orders)
-        setPage(res.data.page);
-        setTotalPages(res.data.totalPages)
-        setLoaded(true);
-      })
-      .catch(err => console.log(err));
+    setPage(1)
+    setSearched(true);
   }
 
   return (
