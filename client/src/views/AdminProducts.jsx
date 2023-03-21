@@ -43,7 +43,6 @@ const AdminProducts = () => {
   return (
     <>
       <AdminNavBar />
-      {/* {loaded && console.log(allProducts)} */}
       {loaded ? (
         <AdminProductTable
           removeFromDom={removeFromDom}
