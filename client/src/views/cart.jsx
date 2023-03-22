@@ -1,7 +1,7 @@
 import React from "react";
 import ItemCard from "../components/ItemCard";
-import Navbar from "../components/navbar";
-import OrderSummary from "../components/ordersummary";
+import Navbar from "../components/Navbar";
+import OrderSummary from "../components/OrderSummary";
 
 export const Cart = ({ cart, setCart }) => {
   const decrementProductQuantity = (e, id) => {

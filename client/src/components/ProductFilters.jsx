@@ -83,7 +83,7 @@ const ProductFilters = () => {
   ];
 
   return (
-    <div className="bg-white rounded shadow py-4 row-span-full">
+    <div className="bg-white rounded shadow row-span-full">
       <div>
         {categories.map((category) => (
           <React.Fragment>
@@ -91,7 +91,7 @@ const ProductFilters = () => {
               type="category"
               name={category.name}
               text={category.text}
-              classes="text-2xl my-3 ml-6 bg-transparent"
+              classes="text-2xl ml-6 bg-transparent"
               selected={selected}
             />
             {category.subcategory.map((subcategory) => (
@@ -99,7 +99,7 @@ const ProductFilters = () => {
                 type="subcategory"
                 name={subcategory.name}
                 text={subcategory.text}
-                classes="text-xl my-3 ml-10 bg-transparent"
+                classes="text-xl ml-10 bg-transparent"
                 selected={selected}
               />
             ))}

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import AdminNavBar from "../components/AdminNavBar";
+import AdminNavBar from "../components/AdminComponents/AdminNavBar";
 import ProductForm from "../components/ProductForm";
 
 const ProductEdit = () => {

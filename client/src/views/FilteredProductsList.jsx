@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom';
-import Navbar from '../components/navbar';
-import ProductGrid from '../components/productgrid';
+import Navbar from '../components/Navbar';
+import ProductGrid from '../components/ProductGrid';
 
 
 const FilteredProductsList = () => {

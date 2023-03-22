@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import OrderShippingAddressCard from '../components/AdminComponents/OrderShippingAddressCard';
 import OrderBillingAddressCard from '../components/AdminComponents/OrderBillingAddressCard';
 import OrderSummary from '../components/AdminComponents/OrderSummary';
-import Navbar from '../components/navbar';
+import Navbar from '../components/Navbar';
 import CheckoutOrderSummary from '../components/CheckoutComponents/CheckoutOrderSummary';
 
 
