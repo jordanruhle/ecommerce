@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import GrayButton from "./GrayButton";
+import GrayButton from "../GenericComponents/GrayButton";
 import ProductFilters from "./ProductFilters";
 
 const ProductGrid = ({ allProducts, loaded, page, setPage, totalPages }) => {

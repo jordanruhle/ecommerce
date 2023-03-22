@@ -3,8 +3,8 @@ import axios from "axios";
 import { useParams } from 'react-router-dom';
 import OrderShippingAddressCard from '../components/AdminComponents/OrderShippingAddressCard';
 import OrderBillingAddressCard from '../components/AdminComponents/OrderBillingAddressCard';
-import OrderSummary from '../components/AdminComponents/OrderSummary';
-import Navbar from '../components/Navbar';
+import OrderSummary from '../components/AdminComponents/AdminOrderSummary';
+import Navbar from '../components/GenericComponents/Navbar';
 import CheckoutOrderSummary from '../components/CheckoutComponents/CheckoutOrderSummary';
 
 

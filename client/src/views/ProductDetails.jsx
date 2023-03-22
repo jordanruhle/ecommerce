@@ -1,6 +1,6 @@
 import React from 'react'
-import Navbar from '../components/Navbar'
-import ViewOne from '../components/ViewOne'
+import Navbar from '../components/GenericComponents/Navbar'
+import ViewOne from '../components/ProductComponents/ViewOne'
 
 const ProductDetails = ({cart, setCart}) => {
   return (

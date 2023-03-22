@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import AdminNavBar from "../components/AdminComponents/AdminNavBar";
-import ProductForm from "../components/ProductForm";
+import ProductForm from "../components/ProductComponents/ProductForm";
 
 const ProductEdit = () => {
   const navigate = useNavigate();

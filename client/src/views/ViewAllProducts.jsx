@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import Navbar from '../components/Navbar';
-import ProductGrid from '../components/ProductGrid';
+import Navbar from '../components/GenericComponents/Navbar';
+import ProductGrid from '../components/ProductComponents/ProductGrid';
 import { useParams } from 'react-router-dom';
 
 const ViewAllProducts = () => {
