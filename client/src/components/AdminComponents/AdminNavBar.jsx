@@ -1,7 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { FaMountain } from 'react-icons/fa'
-import CompanyLogo from './CompanyLogo'
+import CompanyLogo from '../GenericComponents/CompanyLogo'
 import { useNavigate } from 'react-router-dom'
 
 

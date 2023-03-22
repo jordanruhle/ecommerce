@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
-import ProductDescription from "../ProductDescription";
+import ProductDescription from "../ProductComponents/ProductDescription";
 
 const AdminProductDetails = () => {
   const { id } = useParams();

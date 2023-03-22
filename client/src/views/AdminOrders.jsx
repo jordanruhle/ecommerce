@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import AdminNavBar from "../components/AdminNavBar";
+import AdminNavBar from "../components/AdminComponents/AdminNavBar";
 import OrdersTable from "../components/AdminComponents/OrdersTable";
 
 const AdminOrders = ({ setCart }) => {

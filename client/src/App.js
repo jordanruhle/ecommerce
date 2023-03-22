@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom'
 import ViewAllProducts from './views/ViewAllProducts';
 import ProductDetails from './views/ProductDetails';
-import Cart from './views/cart';
-import Checkout from './views/checkout';
+import Cart from './views/Cart';
+import Checkout from './views/Checkout';
 import AdminLogin from './views/AdminLogin';
 import AdminOrders from './views/AdminOrders';
 import AdminProducts from './views/AdminProducts';

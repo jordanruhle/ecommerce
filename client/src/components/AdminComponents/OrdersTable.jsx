@@ -1,5 +1,5 @@
 import React from 'react'
-import RedButton from '../RedButton'
+import RedButton from '../GenericComponents/RedButton'
 import { FaSearch } from "react-icons/fa";
 
 const OrdersTable = ({search, searchTerm, setSearchTerm, clearCart, loaded, allOrders, onStatusUpdate, deleteOrder}) => {

@@ -4,14 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import CheckoutNav from './CheckoutNav';
 import BillingInfo from './BillingInfo';
 import ShippingAddressForm from './ShippingAddressForm';
-import RedButton from '../RedButton';
+import RedButton from '../GenericComponents/RedButton';
 import { DeliveryMethod } from './DeliveryMethod';
 import CreditCardForm from './CreditCardForm';
 import CheckoutOrderSummary from './CheckoutOrderSummary';
 import SameAddressCheckbox from './SameAddressCheckbox';
 import { Elements } from 'react-stripe-elements';
 import StripeProviderWrapper from '../StripeComponents/StripeProviderWrapper';
-import Alert from '../Alert';
+import Alert from '../GenericComponents/Alert';
 
 
 const CheckoutForm = ({ cart, setCart }) => {

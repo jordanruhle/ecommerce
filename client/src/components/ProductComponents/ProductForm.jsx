@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import RedButton from './RedButton'
+import RedButton from '../GenericComponents/RedButton'
 import SubCategoryFilter from './SubCategoryFilter'
 
 

@@ -4,8 +4,8 @@ import { useParams } from 'react-router-dom';
 import ItemizedOrderTable from '../components/AdminComponents/ItemizedOrderTable';
 import OrderShippingAddressCard from '../components/AdminComponents/OrderShippingAddressCard';
 import OrderBillingAddressCard from '../components/AdminComponents/OrderBillingAddressCard';
-import OrderSummary from '../components/AdminComponents/OrderSummary';
-import AdminNavBar from '../components/AdminNavBar';
+import OrderSummary from '../components/AdminComponents/AdminOrderSummary';
+import AdminNavBar from '../components/AdminComponents/AdminNavBar';
 
 
 const AdminViewOneOrder = () => {

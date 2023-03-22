@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import AdminNavBar from '../components/AdminNavBar'
-import ProductForm from '../components/ProductForm'
+import AdminNavBar from "../components/AdminComponents/AdminNavBar";
+import ProductForm from '../components/ProductComponents/ProductForm'
 
 const ProductCreateOne = () => {
 

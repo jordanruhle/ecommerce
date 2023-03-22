@@ -1,6 +1,6 @@
 import React from 'react'
 import { FaMountain } from 'react-icons/fa'
-import CompanyLogo from '../CompanyLogo'
+import CompanyLogo from '../GenericComponents/CompanyLogo'
 
 const CheckoutNav = (props) => {
     return (

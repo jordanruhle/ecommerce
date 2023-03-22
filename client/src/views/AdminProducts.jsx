@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import AdminNavBar from "../components/AdminNavBar";
+import AdminNavBar from "../components/AdminComponents/AdminNavBar";
 import axios from "axios";
-import AdminProductTable from "../components/AdminProductTable";
+import AdminProductTable from "../components/AdminComponents/AdminProductTable";
 
 const AdminProducts = () => {
   const [allProducts, setAllProducts] = useState([]);
