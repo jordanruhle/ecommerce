@@ -9,7 +9,7 @@ const ProductFilters = () => {
   const selected = (id) => {
     console.log(id);
     if (id === name) {
-      return "bg-gray-100 text-gray-900";
+      return "border-b-2 border-stone-800";
     }
     return "bg-white";
   };
@@ -91,7 +91,7 @@ const ProductFilters = () => {
               type="category"
               name={category.name}
               text={category.text}
-              classes="block text-2xl my-3 px-4 hover:text-3xl"
+              classes="text-2xl my-3 ml-6 bg-transparent"
               selected={selected}
             />
             {category.subcategory.map((subcategory) => (
@@ -99,7 +99,7 @@ const ProductFilters = () => {
                 type="subcategory"
                 name={subcategory.name}
                 text={subcategory.text}
-                classes="block text-xl my-3 ml-6 hover:text-2xl px-4"
+                classes="text-xl my-3 ml-10 bg-transparent"
                 selected={selected}
               />
             ))}
