@@ -2,6 +2,7 @@ import React from "react";
 import ItemCard from "../components/ProductComponents/ItemCard";
 import Navbar from "../components/GenericComponents/Navbar";
 import OrderSummary from "../components/CheckoutComponents/CartOrderSummary";
+import EmptyCart from "../components/CheckoutComponents/EmptyCart";
 
 export const Cart = ({ cart, setCart }) => {
   const decrementProductQuantity = (e, id) => {
@@ -36,20 +37,24 @@ export const Cart = ({ cart, setCart }) => {
       <Navbar />
       <div className="py-4 bg-gradient-to-br from-slate-50 to-stone-300 min-h-screen">
         <div className="max-w-screen-xl mx-auto grid sm:grid-cols-2 md:grid-cols-3 gap-10 grid-flow-row-dense ">
-          {/* ------------ Shopping Cart ------------- */}
-          {cart.map((product, i) => (
-            <ItemCard
-              key={i}
-              quantity={product.quantity}
-              id={product.product_id}
-              decrementProductQuantity={decrementProductQuantity}
-              incrementProductQuantity={incrementProductQuantity}
-              removeItem={removeItem}
-            />
-          ))}
-
-          {/* ------------ Order Summary ------------- */}
-          <OrderSummary cart={cart} />
+          {cart.length === 0 ?
+            <EmptyCart />
+              // ------------ Shopping Cart -------------
+            : <React.Fragment>
+              {cart.map((product, i) => (
+                <ItemCard
+                  key={i}
+                  quantity={product.quantity}
+                  id={product.product_id}
+                  decrementProductQuantity={decrementProductQuantity}
+                  incrementProductQuantity={incrementProductQuantity}
+                  removeItem={removeItem}
+                />
+              ))}
+              {/* // ----------- Order Summary --------------- */}
+              <OrderSummary cart={cart} />
+            </React.Fragment>
+          }
         </div>
       </div>
     </>
