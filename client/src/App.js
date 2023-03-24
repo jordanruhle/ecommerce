@@ -44,6 +44,7 @@ function App() {
         <Route element={<OrderConfirmation />} path='/order-confirmation/:id' />
         {/* ADMIN Routes */}
         <Route element={<AdminLogin />} path='/admin' />
+        <Route element={<AdminRegistration />} path='/admin/reg' />
         {/* Protected Routes */}
         <Route element={<ProtectedRoute element={AdminOrders} setCart={setCart} />} path='/dashboard/orders' /> 
         <Route element={<ProtectedRoute element={AdminProducts}/>} path='/dashboard/products'/>
