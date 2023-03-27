@@ -3,7 +3,7 @@ const { check } = require('express-validator');
 
 
 module.exports = app => {
-    app.get('/order/view/:page', OrderController.getAllOrders);
+    app.get('/api/order/view/:page', OrderController.getAllOrders);
     app.get('/order/:id', check('id').isMongoId(), OrderController.findoneSingleOrder);
     app.get('/search/:searchTerm/:page', OrderController.searchOrders);
     app.post('/api/order', OrderController.createNewOrder);
