@@ -227,7 +227,7 @@ const Navbar = () => {
                             </Transition>
                         </Menu>
                     </li>
-                    <li>
+                    <li className='px-4'>
                         <a href='/cart'><FaShoppingCart size="1.2em" /></a>
                     </li>
                 </ul>
