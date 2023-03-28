@@ -70,7 +70,7 @@ module.exports.adminLogin = async (req, res) => {
     console.log("admin token: " + adminToken)
 
     res
-      .cookie("adminToken", adminToken, { httpOnly: true, sameSite: 'strict', secure: true })
+      .cookie("adminToken", adminToken, { domain: '44.199.254.34'  })
       .json({ msg: "login succesful" })
   } catch (err) {
     console.log(err);
