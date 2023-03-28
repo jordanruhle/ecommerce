@@ -82,9 +82,9 @@ const ViewOne = ({ cart, setCart }) => {
     // Body
     <div className="bg-gradient-to-br from-slate-50 to-stone-300 p-2 min-h-screen ">
       {loaded ? (
-        <div className="max-w-screen-xl mx-auto grid  sm:grid-cols-3 lg:grid-cols-4 rounded shadow ">
+        <div className="max-w-screen-xl mx-auto grid  md:grid-cols-3 lg:grid-cols-4 rounded shadow ">
           {/* -------- Product Image -------- */}
-          <div className="bg-white col-span-1 sm:col-span-2 lg:col-span-3 items-center lg:p-24 xl:p-36 ">
+          <div className="bg-white md:col-span-2 lg:col-span-3 items-center flex ">
             <div className="w-full relative pb-[56.25%]">
               <img className="w-full h-full absolute object-cover" src={productInfo.image.location} alt="bike" />
             </div>
@@ -117,7 +117,7 @@ const ViewOne = ({ cart, setCart }) => {
           </div>
 
           {/* ------------ Description -------------- */}
-          <div className="bg-white col-span-1 sm:col-span-3 p-8 lg:col-span-4 ">
+          <div className="bg-white  p-8 md:col-span-3 lg:col-span-4 ">
             <h2 className="text-3xl font-semibold my-4 uppercase">{productInfo.name}</h2>
             <p className="text-xl font-semibold mb-1">Description:</p>
             <ProductDescription description={productInfo.description} />
