@@ -84,7 +84,7 @@ const ViewOne = ({ cart, setCart }) => {
       {loaded ? (
         <div className="max-w-screen-xl mx-auto grid  md:grid-cols-3 lg:grid-cols-4 rounded shadow ">
           {/* -------- Product Image -------- */}
-          <div className="bg-white md:col-span-2 lg:col-span-3 items-center flex ">
+          <div className="bg-white p-4 md:col-span-2 lg:col-span-3 xl:px-12 items-center flex ">
             <div className="w-full relative pb-[56.25%]">
               <img className="w-full h-full absolute object-cover" src={productInfo.image.location} alt="bike" />
             </div>
