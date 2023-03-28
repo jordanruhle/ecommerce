@@ -13,7 +13,7 @@ const CreditCardForm = ({CheckoutChangeHandler}) => {
                 </div>
                 {/*---------- Card Security Code ---------- */}
                 <div className='mb-6 w-full'>
-                    <p className='text-md font-semibold mb-2 uppercase'>Card Security Code</p>
+                    <p className='text-md font-semibold mb-2 uppercase'>CVV</p>
                     <input onChange={CheckoutChangeHandler} type="text" name="stripeCvc" className=' w-full p-3 border' />
                 </div>
             </div>
