@@ -23,7 +23,7 @@ const ProductFilters = () => {
           text: "Trail",
         },
         {
-          name: "allMountain",
+          name: "allmountain",
           text: "All Mountain",
         },
         {
