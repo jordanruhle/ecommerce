@@ -83,7 +83,7 @@ const ProductFilters = () => {
   ];
 
   return (
-    <div className="hidden md:block bg-white rounded shadow row-span-full">
+    <div className="hidden md:block bg-white rounded shadow col-span-2 row-span-full">
       <div>
         {categories.map((category) => (
           <React.Fragment>
@@ -91,7 +91,7 @@ const ProductFilters = () => {
               type="category"
               name={category.name}
               text={category.text}
-              classes="text-2xl text-stone-800 ml-6 bg-transparent"
+              classes="text-2xl text-stone-800 ml-4 bg-transparent"
               selected={selected}
             />
             {category.subcategory.map((subcategory) => (
@@ -99,7 +99,7 @@ const ProductFilters = () => {
                 type="subcategory"
                 name={subcategory.name}
                 text={subcategory.text}
-                classes="text-xl text-stone-800 ml-10 bg-transparent"
+                classes="text-xl text-stone-800 ml-8 bg-transparent"
                 selected={selected}
               />
             ))}

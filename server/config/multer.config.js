@@ -15,6 +15,7 @@ const s3 = new S3({
 const storage = multerS3({
     s3: s3,
     bucket: myBucket,
+    limits: { fileSize: 10000000 },
     key: function (req, file, cb) {
       cb(null, 'images/' + Date.now() + '_' + file.originalname);
     }
