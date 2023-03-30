@@ -30,7 +30,7 @@ module.exports.createNewAdmin = async (req, res) => {
     const adminToken = jwt.sign(payload, process.env.ADMIN_LOGIN_REG_SECRET_KEY)
     console.log(adminToken);
     res
-      .cookie("adminToken", adminToken, { domain: '44.199.254.34' })
+      .cookie("adminToken", adminToken, { domain: 'mountainbikes.store' })
       .json({ msg: "success!", admin: admin });
   } catch (err) {
     res.json(err)
@@ -70,7 +70,7 @@ module.exports.adminLogin = async (req, res) => {
     console.log("admin token: " + adminToken)
 
     res
-      .cookie("adminToken", adminToken, { domain: '44.199.254.34'  })
+      .cookie("adminToken", adminToken, { domain: 'mountainbikes.store' })
       .json({ msg: "login succesful" })
   } catch (err) {
     console.log(err);
