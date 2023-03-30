@@ -4,10 +4,8 @@ import ProductFilterLinks from "./ProductFilterLinks";
 
 const ProductFilters = () => {
   const { name } = useParams();
-  console.log(useParams());
 
   const selected = (id) => {
-    console.log(id);
     if (id === name) {
       return "border-b-2 border-stone-800";
     }
