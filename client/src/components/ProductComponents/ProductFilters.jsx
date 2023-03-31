@@ -84,7 +84,7 @@ const ProductFilters = () => {
     <div className="hidden md:block bg-white rounded shadow col-span-2 row-span-full">
       <div>
         {categories.map((category) => (
-          <React.Fragment>
+          <React.Fragment key={category.name}>
             <ProductFilterLinks
               type="category"
               name={category.name}
@@ -99,6 +99,7 @@ const ProductFilters = () => {
                 text={subcategory.text}
                 classes="text-xl text-stone-800 ml-8 bg-transparent"
                 selected={selected}
+                key={subcategory.name}
               />
             ))}
           </React.Fragment>
