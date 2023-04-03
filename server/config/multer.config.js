@@ -3,6 +3,7 @@ const { S3 } = require("@aws-sdk/client-s3");
 const multerS3 = require('multer-s3');
 
 const myBucket = process.env.MY_S3_BUCKET_NAME;
+const cloudfrontUrl = process.env.MY_CLOUDFRONT_URL;
 
 const s3 = new S3({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -10,12 +11,17 @@ const s3 = new S3({
   region: process.env.AWS_REGION,
 });
 
+const date = Date.now()
+
 const storage = multerS3({
   s3: s3,
   bucket: myBucket,
   contentType: multerS3.AUTO_CONTENT_TYPE,
   key: function (req, file, cb) {
-    cb(null, 'images/' + Date.now() + '_' + file.originalname);
+    cb(null, 'images/' + date + '_' + file.originalname);
+  },
+  url: function (req, file, cb) {
+    cb(null, cloudfrontUrl + '/images/' + date + '_' + file.originalname);
   }
 });
 
