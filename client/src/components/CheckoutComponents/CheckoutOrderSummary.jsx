@@ -19,6 +19,7 @@ const CheckoutOrderSummary = ({ cart }) => {
                 ))}
             </div>
             <div className=' sm:hidden'>
+            <p className='col-span-3 uppercase text-xl font-semibold'>Items Summary</p>
                 {cart.map((product, i) => (
                     <MobileItemCheckoutCard key={i} id={product.product_id} quantity={product.quantity} />
                 ))}

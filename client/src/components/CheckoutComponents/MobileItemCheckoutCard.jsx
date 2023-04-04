@@ -38,7 +38,7 @@ const MobileItemCheckoutCard = ({ id, quantity }) => {
       {
         loaded
           ?
-          <div className='flex flex-col gap-2'>
+          <div className='pt-8 flex flex-col gap-2'>
             <img src={`https://d2tty9970z28ut.cloudfront.net/${productInfo.image.key}`} alt={productInfo.name} />
             <div className='flex justify-between gap-4'>
               <p className='uppercase font-semibold'>Brand</p>
