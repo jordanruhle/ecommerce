@@ -53,9 +53,9 @@ const AdminProductDetails = () => {
         <div className="max-w-screen-xl mx-auto grid  md:grid-cols-3 lg:grid-cols-4 rounded shadow ">
 
           {/* -------- Product Image -------- */}
-          <div className="bg-white p-4 md:col-span-2 lg:col-span-3 xl:px-12 items-center flex ">
+          <div className="bg-white p-4 md:col-span-2 lg:col-span-3 items-center flex ">
             <div className="w-full relative pb-[56.25%]">
-              <img className="w-full h-full absolute object-cover" src={`https://d2tty9970z28ut.cloudfront.net/${productInfo.image.key}`} />
+              <img className="w-full h-full absolute object-scale-down" src={`https://d2tty9970z28ut.cloudfront.net/${productInfo.image.key}`} />
             </div>
           </div>
 

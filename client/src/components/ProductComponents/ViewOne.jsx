@@ -88,16 +88,19 @@ const ViewOne = ({ cart, setCart }) => {
       {loaded ? (
         <div className="max-w-screen-xl mx-auto grid  md:grid-cols-3 lg:grid-cols-4 rounded shadow ">
           {/* -------- Product Image -------- */}
-          <div className="bg-white p-4 md:col-span-2 lg:col-span-3 xl:px-12 items-center flex ">
+          <div className="bg-white p-4 md:col-span-2 lg:col-span-3 items-center flex ">
             <div className="w-full relative pb-[56.25%]">
-              <img className="w-full h-full absolute object-cover" src={`https://d2tty9970z28ut.cloudfront.net/${productInfo.image.key}`} alt={productInfo.name} />
+              <img className="w-full h-full absolute object-scale-down" src={`https://d2tty9970z28ut.cloudfront.net/${productInfo.image.key}`} alt={productInfo.name} />
             </div>
           </div>
           {/* ------------- Summary --------------- */}
           <div className="bg-white flex flex-col  p-8">
             <p className="text-2xl my-4">{productInfo.brand}</p>
             <h2 className="text-3xl font-bold uppercase">{productInfo.name}</h2>
-            <p className="text-xl my-4">${productInfo.price}</p>
+            <p className="text-xl my-4">{Number(productInfo.price).toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD",
+              })}</p>
 
             {/* Color Picker */}
             <form onSubmit={addProduct}>
