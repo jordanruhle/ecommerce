@@ -5,6 +5,7 @@ import AdminNavBar from "../components/AdminComponents/AdminNavBar";
 import ProductForm from '../components/ProductComponents/ProductForm'
 
 const ProductCreateOne = () => {
+  const [inputValue, setInputValue] = useState('$0.00')
 
   const navigate = useNavigate()
   const [productInfo, setProductInfo] = useState({
@@ -50,7 +51,16 @@ const ProductCreateOne = () => {
   return (
     <div className='bg-gradient-to-br from-slate-50 to-stone-300 min-h-screen'>
         <AdminNavBar />
-        <ProductForm title="Create New Product" subTitle="Enter product info" buttonText="Add Product" submitFunction={createProduct} productInfo={productInfo} setProductInfo={setProductInfo} errors={errors} />
+        <ProductForm 
+          title="Create New Product" 
+          subTitle="Enter product info"
+          buttonText="Add Product"
+          submitFunction={createProduct}
+          productInfo={productInfo}
+          setProductInfo={setProductInfo}
+          errors={errors}
+          inputValue={inputValue}
+          setInputValue={setInputValue} />
     </div>
   )
 }
