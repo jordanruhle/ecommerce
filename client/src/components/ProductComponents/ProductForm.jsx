@@ -3,8 +3,8 @@ import RedButton from '../GenericComponents/RedButton'
 import SubCategoryFilter from './SubCategoryFilter'
 
 
-const ProductForm = ({ title, subTitle, buttonText, submitFunction, productInfo, setProductInfo, errors}) => {
-    const [inputValue, setInputValue] = useState('$0.00')
+const ProductForm = ({ title, subTitle, buttonText, submitFunction, productInfo, setProductInfo, errors, inputValue, setInputValue}) => {
+
 
     const changeHandler = (e) => {
         setProductInfo((previousState) => ({

@@ -1,7 +1,6 @@
 const jwt = require("jsonwebtoken");
  
 module.exports.authenticate =async (req, res, next) => {
-  console.log(req)
   const adminToken = req.cookies.adminToken;
   console.log("admin token: " + adminToken)
   try {

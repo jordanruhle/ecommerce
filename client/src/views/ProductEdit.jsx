@@ -9,17 +9,20 @@ const ProductEdit = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [loaded, setLoaded] = useState(false);
+  const [errors, setErrors] = useState([])
+  const [inputValue, setInputValue] = useState('$0.00')
   const [productInfo, setProductInfo] = useState({
     name: "",
     brand: "",
     description: "",
     mainCategory: "bikes",
     subCategory: "",
-    price: 0.0,
+    price: "0.0",
     quantity: 0,
     quantitySold: 0,
     image: "",
     color: "#000000",
+    colorName: "",
     size: "One Size",
   });
 
@@ -36,39 +39,43 @@ const ProductEdit = () => {
         price: product.price.$numberDecimal,
         quantity: product.quantity,
         quantitySold: product.quantitySold,
+        image: product.image,
         color: product.color,
+        colorName: product.colorName,
         size: product.size,
       }));
+      setInputValue(product.price.$numberDecimal)
       setLoaded(true);
     }).catch(err => console.error(err));
   }, [id]);
 
   const updateProduct = (e) => {
-    e.preventdefualt();
+    e.preventDefault();
+  
     const formData = new FormData();
     for (let key in productInfo) {
       formData.append(key, productInfo[key]);
     }
+  
     console.log(formData);
+  
     axios
       .put(`http://localhost:8000/api/product/${id}`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then((res) => {
-        // Not critical right now.
-        // Let's add some error checking here
-        // What if res.data is null,
-        // Waht if there is a validation error
-        console.log(res.data);
-        if (res.data.errors) {
-          // set errors in state,
-          // render in UI
-        } else {
-          navigate("/dashboard/products");
-        }
+        navigate("/dashboard/products");
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err)
+        const errs = []
+        const data = err.response.data.errors
+        for (const key in data){
+          let errMessage = data[key].message;
+          errs.push(errMessage)
+        }
+        setErrors(errs)
+        console.log(errors);
       });
   };
 
@@ -83,6 +90,8 @@ const ProductEdit = () => {
           buttonText="Update Product"
           productInfo={productInfo}
           setProductInfo={setProductInfo}
+          inputValue={inputValue}
+          setInputValue={setInputValue}
         />
       ) : (
         <p>Loading...</p>

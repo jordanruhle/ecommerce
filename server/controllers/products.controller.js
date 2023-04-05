@@ -1,6 +1,15 @@
 const Orders = require("../models/order.model");
 const Products = require("../models/product.model")
 const productQueries = require('../queries/product.queries')
+const { S3 } = require("@aws-sdk/client-s3");
+
+const myBucket = 'jr.mb.ecommerce';
+
+const s3 = new S3({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: process.env.AWS_REGION,
+});
 
 const PAGE_SIZE = 9;
 
@@ -58,19 +67,33 @@ module.exports.createNewProduct = async (req, res) => {
 }
 
 // Update
-module.exports.updateExistingProduct = (req, res) => {
-  req.body = {
-    ...req.body,
-    image: req.file,
+module.exports.updateExistingProduct = async (req, res) => {
+  try {
+    // Get the old image key by finding the product by id
+    const oldProduct = await Products.findById(req.params.id);
+    const oldImageKey = oldProduct.image.key;
+    
+    // Update the product with the new image
+    req.body = {
+      ...req.body,
+      image: req.file
+    }
+
+    const updatedProduct = await Products.findOneAndUpdate(
+      { _id: req.params.id },
+      req.body,
+      { new: true, runValidators: true }
+    );
+
+    // Delete the old image from S3 bucket
+    await s3.deleteObject({ Bucket: myBucket, Key: oldImageKey }).promise();
+
+    res.json({ product: updatedProduct });
+  } catch (err) {
+    res.json({ message: 'Something went wrong', error: err });
   }
-  Products.findOneAndUpdate(
-    { _id: req.params.id },
-    req.body,
-    { new: true, runValidators: true }
-  )
-    .then(updatedProduct => res.json({ product: updatedProduct }))
-    .catch(err => res.json({ message: 'Something went wrong', error: err }));
 }
+
 
 // Delete
 module.exports.deleteAnExistingProduct = (req, res) => {
