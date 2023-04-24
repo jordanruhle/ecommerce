@@ -30,7 +30,7 @@ module.exports.createNewAdmin = async (req, res) => {
     const adminToken = jwt.sign(payload, process.env.ADMIN_LOGIN_REG_SECRET_KEY)
     console.log(adminToken);
     res
-      .cookie("adminToken", adminToken, { domain: '.mountainbikes.store' })
+      .cookie("adminToken", adminToken, { domain: '.mountainbikes.store', httpOnly: true })
       .json({ msg: "success!", admin: admin });
   } catch (err) {
     res.json(err)
@@ -45,16 +45,16 @@ module.exports.adminLogin = async (req, res) => {
   try {
     // checks if email is in the Database
     const admin = await Admins.findOne({ email: email })
-    
+
     // if email is not in database send response
     if (!admin) {
       res.json('401, Invalid email or password. Please try again.')
     }
-    
+
     // Check if passwords match
     const matchedPasswords = await bcrypt.compare(password, admin.password)
     console.log("passwords match: " + matchedPasswords)
-    
+
     // checks if password associated with email matches given password
     if (matchedPasswords) {
       // Build Response
@@ -64,13 +64,13 @@ module.exports.adminLogin = async (req, res) => {
     } else {
       res.json('401, Invalid email or password. Please try again.')
     }
-    
+
     // create JWT
     const adminToken = jwt.sign(payload, process.env.ADMIN_LOGIN_REG_SECRET_KEY)
     console.log("admin token: " + adminToken)
 
     res
-      .cookie("adminToken", adminToken, { domain: '.mountainbikes.store' })
+      .cookie("adminToken", adminToken, { domain: '.mountainbikes.store', httpOnly: true })
       .json({ msg: "login succesful" })
   } catch (err) {
     console.log(err);
